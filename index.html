@@ -1,0 +1,1441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Shopping Bhiwandi - Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Great+Vibes&display=swap" rel="stylesheet" />
+
+      <!--Navbar-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"> <!-- [file:1] -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"> <!-- [file:1] -->
+    <!--Navbar-->
+
+
+</head>
+<body>
+<!-- host page -->
+<div id="navbar-placeholder"></div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script><!-- [file:1] -->
+<script type="module">
+  async function loadNavbar() {
+    const mount = document.getElementById('navbar-placeholder');
+    if (!mount) return;
+
+    const resp = await fetch('/navbar.html', { cache: 'no-cache' });  // adjust path
+    const html = await resp.text();
+    mount.innerHTML = html;  // inline scripts inside navbar.html will NOT run
+
+    // 1) Wire offcanvas drawer navigation (works even if other handlers call preventDefault)
+    const drawer = document.getElementById('navDrawer');
+    const links = mount.querySelectorAll('.drawer-menu .drawer-link, .nav-list .nav-link');
+    links.forEach(a => {
+      a.addEventListener('click', (e) => {
+        const url = a.getAttribute('href');
+        if (!url || url === '#') return;        // ignore placeholders
+        e.preventDefault();                      // stop any global preventDefault
+        try {
+          if (drawer && window.bootstrap) {
+            const inst = bootstrap.Offcanvas.getOrCreateInstance(drawer);
+            inst.hide();
+          }
+        } catch(_) {}
+        setTimeout(() => { window.location.assign(url); }, 20);
+      }, { capture: true });
+    });
+
+    // 2) Recompute active state for both desktop and drawer menus
+    const page = document.body.getAttribute('data-current-page')
+               || location.pathname.split('/').pop() || 'index.html';
+    links.forEach(a => {
+      a.classList.remove('active'); a.removeAttribute('aria-current');
+      const href = a.getAttribute('href');
+      const isHome = page === 'index.html' && (href === '/' || href === '#' || href === 'index.html');
+      if (href === page || isHome) { a.classList.add('active'); a.setAttribute('aria-current','page'); }
+    });
+  }
+  loadNavbar();
+</script>
+
+
+
+
+  <!-- Banner -->
+<section class="position-relative" style="background:linear-gradient(102deg,#2ed596 60%,#7cf2cf 100%); min-height:320px; margin-top: 84px; margin-bottom: 20px;">
+  <!-- Banner Image (customize src as needed) -->
+  <img src="./images/hhhhhihihi.png"
+       class="position-absolute top-0 end-0 h-100 d-none d-md-block"
+       style="object-fit:cover; width:50%; max-width:700px; height:60%; border-bottom-left-radius:50px; z-index:1;" 
+       alt="Banner Image">
+  <div class="container position-relative" style="z-index:2;">
+    <div class="row align-items-center" style="min-height:320px;">
+      <div class="col-md-7 text-white py-4">
+        <h1 class="display-4 fw-bold mb-3" style="letter-spacing:1px;">
+          Follw Me Boutique
+        </h1>
+        <h2 class="fw-bold mb-2" style="font-size:2.5rem;">
+          Fashion Hub
+        </h2>
+        <p class="fs-5 mb-4" style="max-width:430px;">
+          All the trendy Men's Apperal and Clothing Within a Single Roof 
+        </p>
+        <!-- Optional CTA Button -->
+        <a href="#shop" class="btn btn-light btn-lg fw-semibold shadow-sm">Shop Now</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+  <!-- Shop through videos -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+
+  <style>
+    /* Custom desktop arrows */
+    .carousel-btn{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      width:44px;height:44px;
+      display:flex;align-items:center;justify-content:center;
+      z-index:3;
+      background:#fff !important;
+      border:1.5px solid #eee !important;
+      border-radius:50% !important;
+      box-shadow:0 6px 18px rgba(0,0,0,.12) !important;
+      line-height:1;font-size:28px;color:#000;user-select:none;cursor:pointer;
+    }
+    .carousel-btn.prev{ left:8px; }
+    .carousel-btn.next{ right:8px; }
+
+    /* Prevent vertical scroll blocking horizontal pan */
+    #cardCarousel{ touch-action: pan-y; }
+
+    /* Single-row track inside the viewport */
+    .slide-track{
+      display:flex;
+      flex-wrap: nowrap;          /* no wrapping */
+      gap: .5rem;                 /* item gap similar to g-2 */
+      justify-content:flex-start; /* left align for scroller */
+      padding: 0 .25rem;          /* slight edge padding */
+      scroll-snap-type: x mandatory; /* enable snap per card */
+    }
+
+    /* Each card as a fixed responsive width so only 2 fit on mobile, ~6 on desktop */
+    .card-item{
+      flex: 0 0 auto;
+      width: clamp(160px, 48vw, 240px);  /* ~2 per view on phones */
+      scroll-snap-align: start;          /* snap to each card */
+    }
+    @media (min-width: 992px){           /* lg and up: ~6 per view */
+      .card-item{ width: clamp(180px, 16.66vw, 240px); }
+    }
+
+    /* Card box styling */
+    .product-card{
+      border-width:2px;height:400px;max-width:240px;margin:auto;overflow:hidden;border-color:#000;
+    }
+
+    /* Keep the small avatar centered over media */
+    .thumb-overlay{
+      width:65px;height:65px;bottom:-50px;left:50%;transform:translate(-50%,0);
+      z-index:2;background:#fff;border-radius:10px;border:2px solid #eee;box-shadow:0 2px 8px rgba(0,0,0,0.07);object-fit:cover;
+    }
+
+    /* Horizontal scroll viewport wrapper */
+    .slide-viewport{
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scroll-behavior: smooth;
+      scrollbar-width: none; /* Firefox */
+    }
+    .slide-viewport::-webkit-scrollbar{ display:none; } /* WebKit */
+  </style>
+</head>
+<body>
+
+<section class="py-0">
+  <div class="container-fluid px-2">
+    <h2 class="text-center fw-bold mb-4 position-relative" style="z-index:2;">
+      Our Products
+    </h2>
+
+    <div id="cardCarousel" class="carousel slide" data-bs-interval="false" data-bs-touch="false">
+      <!-- Custom arrows: hidden on mobile, visible md+ -->
+      <button class="carousel-btn prev btn btn-light rounded-circle shadow d-none d-md-flex"
+              type="button" aria-label="Previous">
+        ‹
+      </button>
+      <button class="carousel-btn next btn btn-light rounded-circle shadow d-none d-md-flex"
+              type="button" aria-label="Next">
+        ›
+      </button>
+
+      <div class="carousel-inner">
+        <!-- Use a single carousel-item that contains a continuous track of all cards -->
+        <div class="carousel-item active">
+          <div class="slide-viewport">
+            <div class="slide-track">
+
+              <!-- Item 1 -->
+              <div class="card-item">
+                <div class="card product-card border-black">
+                  <div class="position-relative" style="height:70%;">
+                    <video class="w-100 h-100" style="object-fit:cover;" autoplay muted loop playsinline>
+                      <source src="./images/followvideo1.mp4" type="video/mp4">
+                    </video>
+                    <img src="./images/follow1.PNG" class="position-absolute start-50" style="width:65px;height:65px;bottom:-20px;left:50%;z-index:2;background:#fff;border-radius:10px;border:2px solid #eee;box-shadow:0 2px 8px rgba(0,0,0,0.07);object-fit:cover;transform:translateX(-50%);" alt="Product Thumbnail">
+                  </div>
+                  <div class="card-body text-center pt-5 px-2 d-flex flex-column justify-content-end" style="height:30%;min-height:80px;padding-top:40px;">
+                    <div class="fw-semibold" style="font-size:1.13em;margin-bottom:3px;">Nice Bottle With The Sipper and</div>
+                    <div>
+                      ₹99 <span class="text-decoration-line-through text-muted">₹599</span>
+                      <span class="badge bg-success fw-bold" style="margin-left:10px;font-size:.80em;">80% OFF</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Item 2 -->
+              <div class="card-item">
+                <div class="card product-card border-black">
+                  <div class="position-relative" style="height:70%;">
+                    <video class="w-100 h-100" style="object-fit:cover;" autoplay muted loop playsinline>
+                      <source src="./images/followvideo2.mp4" type="video/mp4">
+                    </video>
+                    <img src="./images/follow2.PNG" class="position-absolute start-50" style="width:65px;height:65px;bottom:-20px;left:50%;z-index:2;background:#fff;border-radius:10px;border:2px solid #eee;box-shadow:0 2px 8px rgba(0,0,0,0.07);object-fit:cover;transform:translateX(-50%);" alt="Product Thumbnail">
+                  </div>
+                  <div class="card-body text-center pt-5 px-2 d-flex flex-column justify-content-end" style="height:30%;min-height:80px;padding-top:40px;">
+                    <div class="fw-semibold" style="font-size:1.13em;margin-bottom:3px;">Nice Bottle With The Sipper and</div>
+                    <div>
+                      ₹399 <span class="text-decoration-line-through text-muted">₹1499</span>
+                      <span class="badge bg-success fw-bold" style="margin-left:10px;font-size:.80em;">70% OFF</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Item 3 -->
+              <div class="card-item">
+                <div class="card product-card border-black">
+                  <div class="position-relative" style="height:70%;">
+                    <video class="w-100 h-100" style="object-fit:cover;" autoplay muted loop playsinline>
+                      <source src="./images/followvideo3.mp4" type="video/mp4">
+                    </video>
+                    <img src="./images/follow3.PNG" class="position-absolute start-50" style="width:65px;height:65px;bottom:-20px;left:50%;z-index:2;background:#fff;border-radius:10px;border:2px solid #eee;box-shadow:0 2px 8px rgba(0,0,0,0.07);object-fit:cover;transform:translateX(-50%);" alt="Product Thumbnail">
+                  </div>
+                  <div class="card-body text-center pt-5 px-2 d-flex flex-column justify-content-end" style="height:30%;min-height:80px;padding-top:40px;">
+                    <div class="fw-semibold" style="font-size:1.13em;margin-bottom:3px;">Nice Bottle With The Sipper and</div>
+                    <div>
+                      ₹799 <span class="text-decoration-line-through text-muted">₹1777</span>
+                      <span class="badge bg-success fw-bold" style="margin-left:10px;font-size:.80em;">72% OFF</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Item 4 -->
+              <div class="card-item">
+                <div class="card product-card border-black">
+                  <div class="position-relative" style="height:70%;">
+                    <video class="w-100 h-100" style="object-fit:cover;" autoplay muted loop playsinline>
+                      <source src="./images/followvideo1.mp4" type="video/mp4">
+                    </video>
+                    <img src="./images/follow1.PNG" class="position-absolute start-50" style="width:65px;height:65px;bottom:-20px;left:50%;z-index:2;background:#fff;border-radius:10px;border:2px solid #eee;box-shadow:0 2px 8px rgba(0,0,0,0.07);object-fit:cover;transform:translateX(-50%);" alt="Product Thumbnail">
+                  </div>
+                  <div class="card-body text-center pt-5 px-2 d-flex flex-column justify-content-end" style="height:30%;min-height:80px;padding-top:40px;">
+                    <div class="fw-semibold" style="font-size:1.13em;margin-bottom:3px;">Nice Bottle With The Sipper and</div>
+                    <div>
+                      ₹400 <span class="text-decoration-line-through text-muted">₹1600</span>
+                      <span class="badge bg-success fw-bold" style="margin-left:10px;font-size:.80em;">78% OFF</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Item 5 -->
+              <div class="card-item">
+                <div class="card product-card border-black">
+                  <div class="position-relative" style="height:70%;">
+                    <video class="w-100 h-100" style="object-fit:cover;" autoplay muted loop playsinline>
+                      <source src="./images/followvideo2.mp4" type="video/mp4">
+                    </video>
+                    <img src="./images/follow2.PNG" class="position-absolute start-50" style="width:65px;height:65px;bottom:-20px;left:50%;z-index:2;background:#fff;border-radius:10px;border:2px solid #eee;box-shadow:0 2px 8px rgba(0,0,0,0.07);object-fit:cover;transform:translateX(-50%);" alt="Product Thumbnail">
+                  </div>
+                  <div class="card-body text-center pt-5 px-2 d-flex flex-column justify-content-end" style="height:30%;min-height:80px;padding-top:40px;">
+                    <div class="fw-semibold" style="font-size:1.13em;margin-bottom:3px;">Nice Bottle With The Sipper and</div>
+                    <div>
+                      ₹900 <span class="text-decoration-line-through text-muted">₹1600</span>
+                      <span class="badge bg-success fw-bold" style="margin-left:10px;font-size:.80em;">70% OFF</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Item 6 -->
+              <div class="card-item">
+                <div class="card product-card border-black">
+                  <div class="position-relative" style="height:70%;">
+                    <video class="w-100 h-100" style="object-fit:cover;" autoplay muted loop playsinline>
+                      <source src="./images/followvideo3.mp4" type="video/mp4">
+                    </video>
+                    <img src="./images/follow3.PNG" class="position-absolute start-50" style="width:65px;height:65px;bottom:-20px;left:50%;z-index:2;background:#fff;border-radius:10px;border:2px solid #eee;box-shadow:0 2px 8px rgba(0,0,0,0.07);object-fit:cover;transform:translateX(-50%);" alt="Product Thumbnail">
+                  </div>
+                  <div class="card-body text-center pt-5 px-2 d-flex flex-column justify-content-end" style="height:30%;min-height:80px;padding-top:40px;">
+                    <div class="fw-semibold" style="font-size:1.13em;margin-bottom:3px;">Nice Bottle With The Sipper and</div>
+                    <div>
+                      ₹600 <span class="text-decoration-line-through text-muted">₹999</span>
+                      <span class="badge bg-success fw-bold" style="margin-left:10px;font-size:.80em;">60% OFF</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Add more .card-item blocks as needed -->
+
+            </div> <!-- /slide-track -->
+          </div> <!-- /slide-viewport -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function(){
+    const el = document.getElementById('cardCarousel');
+    const viewport = el.querySelector('.slide-viewport');
+    const track = el.querySelector('.slide-track');
+    const prevBtn = el.querySelector('.prev');
+    const nextBtn = el.querySelector('.next');
+
+    // Disable Bootstrap's internal slide behavior; we control scrolling.
+    bootstrap.Carousel.getOrCreateInstance(el, {
+      interval:false, touch:false, ride:false, pause:false, wrap:false
+    });
+
+    function gapPx(){
+      const g = getComputedStyle(track).gap || '0px';
+      return parseFloat(g);
+    }
+    function cardStep(){
+      const first = track.querySelector('.card-item');
+      if(!first) return 0;
+      const rect = first.getBoundingClientRect();
+      return rect.width + gapPx();
+    }
+    function clamp(v, min, max){ return Math.max(min, Math.min(max, v)); }
+
+    function pageBy(delta){
+      const step = cardStep();
+      if(!step) return;
+      const maxScroll = viewport.scrollWidth - viewport.clientWidth;
+      const target = clamp(viewport.scrollLeft + delta * step, 0, maxScroll);
+      viewport.scrollTo({ left: target, behavior: 'smooth' });
+    }
+
+    nextBtn?.addEventListener('click', () => pageBy(+1));
+    prevBtn?.addEventListener('click', () => pageBy(-1));
+
+    // After touch scroll ends, snap to the nearest card index precisely.
+    let touchTimer;
+    viewport.addEventListener('touchend', () => {
+      clearTimeout(touchTimer);
+      touchTimer = setTimeout(() => {
+        const step = cardStep();
+        if(!step) return;
+        const idx = Math.round(viewport.scrollLeft / step);
+        viewport.scrollTo({ left: idx * step, behavior: 'smooth' });
+      }, 80);
+    });
+
+    // Keep alignment on resize/orientation change.
+    const alignToNearest = () => {
+      const step = cardStep();
+      if(!step) return;
+      const idx = Math.round(viewport.scrollLeft / step);
+      viewport.scrollLeft = idx * step;
+    };
+    window.addEventListener('resize', alignToNearest);
+    window.addEventListener('orientationchange', alignToNearest);
+  });
+</script>
+
+
+
+
+
+  <!-- latest -->
+<style>
+/* Scroller track */
+/* Scroller track */
+.card-scroller{
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch; /* iOS momentum */
+  scrollbar-width: none; /* Firefox */
+}
+.card-scroller::-webkit-scrollbar{ display:none; } /* WebKit */
+
+/* Each item snaps cleanly */
+.card-item{
+  scroll-snap-align: start;
+  /* Responsive width:
+     - On very small screens ~2 per view
+     - On desktop ~6 per view
+     Tweak min/max as preferred */
+  width: clamp(220px, 48vw, 320px);
+}
+@media (min-width: 992px){ /* lg and up ≈ 6 per row */
+  .card-item{
+    width: clamp(220px, 16.66vw, 280px);
+  }
+}
+
+/* Keep even spacing without edge gaps */
+.card-scroller{
+  padding-left: 0;
+  padding-right: 0;
+}
+.card-scroller > .card-item:first-child{ margin-left: 16px; }
+.card-scroller > .card-item:last-child{ margin-right: 16px; }
+
+/* Arrow buttons (positioned over track) */
+.carousel-btn{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px; height: 40px;
+  display: grid; place-items: center;
+  z-index: 3;
+}
+.carousel-btn.prev{ left: 4px; }
+.carousel-btn.next{ right: 4px; }
+
+/* Responsive product card height from earlier */
+.product-card{
+  min-height: clamp(420px, 76vh, 880px); /* was 360px,70vh,820px */
+  border-radius: 0.75rem;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(0,0,0,.08);
+  margin-bottom: 30px;
+}
+.product-media{
+  min-height: clamp(180px, 28vh, 360px);
+  max-height: clamp(220px, 32vh, 420px);
+  aspect-ratio: 4 / 3;
+  position: relative;
+}
+.product-img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.product-body{
+  flex: 1 1 auto;
+  min-height: clamp(210px, 38vh, 480px); /* was 160px,32vh,420px */
+}
+.badge-top{
+  position: absolute;
+  top: .5rem;
+  left: .5rem;
+  z-index: 2;
+}
+</style>
+
+  <style>
+  /* Circular color radios styled as swatches */
+  .color-swatch {
+    position: relative;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  .color-swatch input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .color-swatch .dot {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--swatch, #000);
+    display: inline-block;
+    box-shadow: inset 0 0 0 2px rgba(255,255,255,0.9), 0 0 0 1px rgba(0,0,0,0.15);
+    transition: box-shadow .15s ease, transform .15s ease;
+  }
+  .color-swatch input:checked + .dot {
+    box-shadow:
+      inset 0 0 0 6px rgba(255,255,255,0.9),
+      0 0 0 2px var(--swatch, #000),
+      0 2px 6px rgba(0,0,0,0.25);
+    transform: scale(1.02);
+  }
+</style>
+<!-- Latest Articles -->
+<section class="container-fluid ">
+  <!-- Top centered heading -->
+  <div class="row">
+    <div class="col-12">
+    <h2 class="text-center fw-bold mb-4 position-relative" style="z-index:2;">
+      Latest Articles
+    </h2>
+    </div>
+  </div>
+
+  <!-- Carousel wrapper -->
+  <div class="position-relative">
+
+    <!-- Left/Right arrows (hidden on mobile, visible md+) -->
+    <button class="carousel-btn prev btn btn-light rounded-circle shadow d-none d-md-flex"
+            aria-label="Previous" type="button">
+      ‹
+    </button>
+    <button class="carousel-btn next btn btn-light rounded-circle shadow d-none d-md-flex"
+            aria-label="Next" type="button">
+      ›
+    </button>
+
+    <!-- Horizontal scroller: no gutters to remove side space -->
+    <div class="row g-0">
+      <div class="col-12">
+        <div class="card-scroller d-flex gap-3 px-2" id="latestScroller" tabindex="0" aria-label="Latest products">
+
+          <!-- Card item -->
+          <div class="card-item flex-0-0-auto"
+               data-gender="boys"
+               data-sizes="xs,s,m,l,xl"
+               data-price="399">
+            <div class="product-card position-relative d-flex flex-column">
+              <span class="badge bg-success badge-top">New</span>
+
+              <div class="product-media">
+                <img class="product-img"
+                     src="https://images.unsplash.com/photo-1544441893-675973e31985?q=80&w=1200&auto=format&fit=crop"
+                     alt="Graphic Tee" />
+              </div>
+
+              <div class="p-3 d-flex flex-column product-body">
+                <div class="d-flex justify-content-between align-items-center">
+                  <h4><span class="fw-bold">₹<span class="product-price">399</span></span></h4>
+                </div>
+
+                <!-- Ensure a product-title exists so scripts can read/update -->
+                <h6 class="product-title text-muted small mb-1">Graphic Tee (Purple)</h6>
+                <p class="text-muted small mb-1">Gender: Boys</p>
+
+                <!-- Clickable sizes -->
+                <div class="small ">
+                  <span class="text-muted ">Size</span>
+                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="XS">XS</button>
+                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="S">S</button>
+                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="M">M</button>
+                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="L">L</button>
+
+                </div>
+
+                <div class="">
+                  <div class="">
+                    <div class="form-label small mb-1">Colors</div>
+                    <div class="d-flex align-items-center gap-3">
+                      <label class="color-swatch" data-color="purple" style="--swatch:#7E3FF2;">
+                        <input type="radio" class="color-option" value="purple" checked />
+                        <span class="dot"></span>
+                      </label>
+                      <label class="color-swatch" data-color="black" style="--swatch:#1E1E1E;">
+                        <input type="radio" class="color-option" value="black" />
+                        <span class="dot"></span>
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="pt-3">
+                    <button class="btn btn-success w-100 buy-btn">
+                      <i class="bi bi-bag-check"></i> Buy
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /Card item -->
+
+          <!-- Duplicate .card-item for more cards -->
+          <div class="card-item flex-0-0-auto"> ...same card... </div>
+          <div class="card-item flex-0-0-auto"> ...same card... </div>
+          <div class="card-item flex-0-0-auto"> ...same card... </div>
+          <div class="card-item flex-0-0-auto"> ...same card... </div>
+          <div class="card-item flex-0-0-auto"> ...same card... </div>
+          <div class="card-item flex-0-0-auto"> ...same card... </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function(){
+    const scroller = document.getElementById('latestScroller');
+    const prev = document.querySelector('.carousel-btn.prev');
+    const next = document.querySelector('.carousel-btn.next');
+
+    function itemAdvance(){
+      const item = scroller.querySelector('.card-item');
+      if(!item) return 300;
+      const rect = item.getBoundingClientRect();
+      // Gap approximated as 12px; adjust if you change .gap
+      return rect.width + 12;
+    }
+
+    function scrollByItems(dir){
+      scroller.scrollBy({ left: dir * itemAdvance(), behavior: 'smooth' });
+    }
+
+    prev?.addEventListener('click', () => scrollByItems(-1));
+    next?.addEventListener('click', () => scrollByItems(1));
+
+    // Keyboard support (focus the scroller and use arrows)
+    scroller.addEventListener('keydown', (e) => {
+      if(e.key === 'ArrowLeft'){ e.preventDefault(); scrollByItems(-1); }
+      if(e.key === 'ArrowRight'){ e.preventDefault(); scrollByItems(1); }
+    });
+  })();
+</script>
+
+
+
+  <!-- latest -->
+<style>
+/* Scroller track */
+/* Scroller track */
+.card-scroller{
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch; /* iOS momentum */
+  scrollbar-width: none; /* Firefox */
+}
+.card-scroller::-webkit-scrollbar{ display:none; } /* WebKit */
+
+/* Each item snaps cleanly */
+.card-item{
+  scroll-snap-align: start;
+  /* Responsive width:
+     - On very small screens ~2 per view
+     - On desktop ~6 per view
+     Tweak min/max as preferred */
+  width: clamp(220px, 48vw, 320px);
+}
+@media (min-width: 992px){ /* lg and up ≈ 6 per row */
+  .card-item{
+    width: clamp(220px, 16.66vw, 280px);
+  }
+}
+
+/* Keep even spacing without edge gaps */
+.card-scroller{
+  padding-left: 0;
+  padding-right: 0;
+}
+.card-scroller > .card-item:first-child{ margin-left: 16px; }
+.card-scroller > .card-item:last-child{ margin-right: 16px; }
+
+/* Arrow buttons (positioned over track) */
+.carousel-btn{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px; height: 40px;
+  display: grid; place-items: center;
+  z-index: 3;
+}
+.carousel-btn.prev{ left: 4px; }
+.carousel-btn.next{ right: 4px; }
+
+/* Responsive product card height from earlier */
+.product-card{
+  min-height: clamp(420px, 7vh, 820px); /* was 360px,70vh,820px */
+  border-radius: 0.75rem;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(0,0,0,.08);
+  margin-bottom: 30px;
+}
+.product-media{
+  min-height: clamp(180px, 28vh, 360px);
+  max-height: clamp(220px, 32vh, 420px);
+  aspect-ratio: 4 / 3;
+  position: relative;
+}
+.product-img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.product-body{
+  flex: 1 1 auto;
+  min-height: clamp(210px, 38vh, 480px); /* was 160px,32vh,420px */
+}
+.badge-top{
+  position: absolute;
+  top: .5rem;
+  left: .5rem;
+  z-index: 2;
+}
+</style>
+
+  <style>
+  /* Circular color radios styled as swatches */
+  .color-swatch {
+    position: relative;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  .color-swatch input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .color-swatch .dot {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--swatch, #000);
+    display: inline-block;
+    box-shadow: inset 0 0 0 2px rgba(255,255,255,0.9), 0 0 0 1px rgba(0,0,0,0.15);
+    transition: box-shadow .15s ease, transform .15s ease;
+  }
+  .color-swatch input:checked + .dot {
+    box-shadow:
+      inset 0 0 0 6px rgba(255,255,255,0.9),
+      0 0 0 2px var(--swatch, #000),
+      0 2px 6px rgba(0,0,0,0.25);
+    transform: scale(1.02);
+  }
+</style>
+<!--boys-->
+<section class="container-fluid ">
+  <!-- Top centered heading -->
+  <div class="row">
+    <div class="col-12">
+    <h2 class="text-center fw-bold mb-4 position-relative" style="z-index:2;">
+      Boys
+    </h2>
+    </div>
+  </div>
+
+  <!-- Carousel wrapper -->
+  <div class="position-relative">
+
+    <!-- Left/Right arrows (hidden on mobile, visible md+) -->
+    <button class="carousel-btn prev btn btn-light rounded-circle shadow d-none d-md-flex"
+            aria-label="Previous" type="button">
+      ‹
+    </button>
+    <button class="carousel-btn next btn btn-light rounded-circle shadow d-none d-md-flex"
+            aria-label="Next" type="button">
+      ›
+    </button>
+
+    <!-- Horizontal scroller: no gutters to remove side space -->
+    <div class="row g-0">
+      <div class="col-12">
+        <div class="card-scroller d-flex gap-3 px-2" id="latestScroller" tabindex="0" aria-label="Latest products">
+
+          <!-- Card item -->
+          <div class="card-item flex-0-0-auto"
+               data-gender="boys"
+               data-sizes="xs,s,m,l,xl"
+               data-price="399">
+            <div class="product-card position-relative d-flex flex-column">
+              <span class="badge bg-success badge-top">New</span>
+
+              <div class="product-media">
+                <img class="product-img"
+                     src="https://images.unsplash.com/photo-1544441893-675973e31985?q=80&w=1200&auto=format&fit=crop"
+                     alt="Graphic Tee" />
+              </div>
+
+              <div class="p-3 d-flex flex-column product-body">
+                <div class="d-flex justify-content-between align-items-center">
+                  <h4><span class="fw-bold">₹<span class="product-price">399</span></span></h4>
+                </div>
+
+                <!-- Ensure a product-title exists so scripts can read/update -->
+                <h6 class="product-title text-muted small mb-1">Graphic Tee (Purple)</h6>
+                <p class="text-muted small mb-1">Gender: Boys</p>
+
+                <!-- Clickable sizes -->
+                <div class="small ">
+                  <span class="text-muted ">Size</span>
+                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="XS">XS</button>
+                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="S">S</button>
+                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="M">M</button>
+                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="L">L</button>
+
+                </div>
+
+                <div class="">
+                  <div class="">
+                    <div class="form-label small mb-1">Colors</div>
+                    <div class="d-flex align-items-center gap-3">
+                      <label class="color-swatch" data-color="purple" style="--swatch:#7E3FF2;">
+                        <input type="radio" class="color-option" value="purple" checked />
+                        <span class="dot"></span>
+                      </label>
+                      <label class="color-swatch" data-color="black" style="--swatch:#1E1E1E;">
+                        <input type="radio" class="color-option" value="black" />
+                        <span class="dot"></span>
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="pt-3">
+                    <button class="btn btn-success w-100 buy-btn">
+                      <i class="bi bi-bag-check"></i> Buy
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /Card item -->
+
+          <!-- Duplicate .card-item for more cards -->
+          <div class="card-item flex-0-0-auto"> ...same card... </div>
+          <div class="card-item flex-0-0-auto"> ...same card... </div>
+          <div class="card-item flex-0-0-auto"> ...same card... </div>
+          <div class="card-item flex-0-0-auto"> ...same card... </div>
+          <div class="card-item flex-0-0-auto"> ...same card... </div>
+          <div class="card-item flex-0-0-auto"> ...same card... </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!--latsttsts-->
+<section class="container-fluid ">
+  <!-- Top centered heading -->
+  <div class="row">
+    <div class="col-12">
+    <h2 class="text-center fw-bold mb-4 position-relative" style="z-index:2;">
+      Girls
+    </h2>
+    </div>
+  </div>
+
+  <!-- Carousel wrapper -->
+  <div class="position-relative">
+
+    <!-- Left/Right arrows (hidden on mobile, visible md+) -->
+    <button class="carousel-btn prev btn btn-light rounded-circle shadow d-none d-md-flex"
+            aria-label="Previous" type="button">
+      ‹
+    </button>
+    <button class="carousel-btn next btn btn-light rounded-circle shadow d-none d-md-flex"
+            aria-label="Next" type="button">
+      ›
+    </button>
+
+    <!-- Horizontal scroller: no gutters to remove side space -->
+    <div class="row g-0">
+      <div class="col-12">
+        <div class="card-scroller d-flex gap-3 px-2" id="latestScroller" tabindex="0" aria-label="Latest products">
+
+          <!-- Card item -->
+          <div class="card-item flex-0-0-auto"
+               data-gender="boys"
+               data-sizes="xs,s,m,l,xl"
+               data-price="399">
+            <div class="product-card position-relative d-flex flex-column">
+              <span class="badge bg-success badge-top">New</span>
+
+              <div class="product-media">
+                <img class="product-img"
+                     src="https://images.unsplash.com/photo-1544441893-675973e31985?q=80&w=1200&auto=format&fit=crop"
+                     alt="Graphic Tee" />
+              </div>
+
+              <div class="p-3 d-flex flex-column product-body">
+                <div class="d-flex justify-content-between align-items-center">
+                  <h4><span class="fw-bold">₹<span class="product-price">399</span></span></h4>
+                </div>
+
+                <!-- Ensure a product-title exists so scripts can read/update -->
+                <h6 class="product-title text-muted small mb-1">Graphic Tee (Purple)</h6>
+                <p class="text-muted small mb-1">Gender: Boys</p>
+
+                <!-- Clickable sizes -->
+                <div class="small ">
+                  <span class="text-muted ">Size</span>
+                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="XS">XS</button>
+                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="S">S</button>
+                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="M">M</button>
+                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="L">L</button>
+
+                </div>
+
+                <div class="">
+                  <div class="">
+                    <div class="form-label small mb-1">Colors</div>
+                    <div class="d-flex align-items-center gap-3">
+                      <label class="color-swatch" data-color="purple" style="--swatch:#7E3FF2;">
+                        <input type="radio" class="color-option" value="purple" checked />
+                        <span class="dot"></span>
+                      </label>
+                      <label class="color-swatch" data-color="black" style="--swatch:#1E1E1E;">
+                        <input type="radio" class="color-option" value="black" />
+                        <span class="dot"></span>
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="pt-3">
+                    <button class="btn btn-success w-100 buy-btn">
+                      <i class="bi bi-bag-check"></i> Buy
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /Card item -->
+
+          <!-- Duplicate .card-item for more cards -->
+          <div class="card-item flex-0-0-auto"> ...same card... </div>
+          <div class="card-item flex-0-0-auto"> ...same card... </div>
+          <div class="card-item flex-0-0-auto"> ...same card... </div>
+          <div class="card-item flex-0-0-auto"> ...same card... </div>
+          <div class="card-item flex-0-0-auto"> ...same card... </div>
+          <div class="card-item flex-0-0-auto"> ...same card... </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Styles for active size chip -->
+<style>
+  .size-chip.active {
+    background-color: #0d6efd;
+    color: #fff;
+    border-color: #0d6efd;
+  }
+</style>
+
+
+
+
+
+
+
+  <!-- Selling Out Fast -->
+<!-- <section class="py-4">
+  <div class="container">
+    <h2 class="text-center fw-bold mb-4">Most Selling Product</h2>
+    <div class="row justify-content-center g-4">
+      <div class="col-12 col-md-4 col-lg-2">
+        <div class="card h-100 position-relative border-danger" style="border-width:2px;">
+          <span class="position-absolute top-0 end-0 bg-success text-white fw-bold px-2 py-1 rounded-bottom-start"
+                style="font-size:0.85rem; z-index:11;">64% OFF</span>
+        
+          <img src="https://cdn-icons-png.flaticon.com/512/254/254030.png"
+               class="card-img-top p-3" alt="Inflator Foot Pump">
+          <div class="card-body text-center">
+            <h6 class="card-title m-0">Inflator foot pump</h6>
+            <p class="card-text text-muted small mt-1 mb-2" style="font-size:0.85rem;">
+              Inflator for Car and Bike 1 Pc - Multicolor Foldable Mini Manual Foot...
+            </p>
+            <div class="mb-2">
+              ₹249 <span class="text-decoration-line-through text-muted">₹699</span>
+            </div>
+            <button class="btn btn-outline-danger btn-sm mt-3 w-100 d-flex align-items-center justify-content-center gap-2">
+              <i class="bi bi-cart"></i> Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+  <!-- Smart Living Made Simple -->
+  <!-- <section class="py-4">
+    <div class="container">
+      <h2 class="text-center fw-bold mb-4">Smart Living Made Simple</h2>
+      <div class="row justify-content-center g-4">
+        <div class="col-6 col-md-2">
+          <div class="card h-100">
+            <img src="https://img.icons8.com/color/96/wrist-watch.png" class="card-img-top" alt="Casual watch">
+            <div class="card-body text-center">
+              <h6 class="card-title">Casual watch for men</h6>
+              <div>₹1,450 <span class="text-decoration-line-through text-muted">₹1,999</span></div>
+              <span class="badge bg-success mb-2">27% OFF</span>
+              <button class="btn btn-outline-primary btn-sm w-100">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-2">
+          <div class="card h-100">
+            <img src="https://img.icons8.com/color/96/wrist-watch.png" class="card-img-top" alt="Mens Watch">
+            <div class="card-body text-center">
+              <h6 class="card-title">Mens watch</h6>
+              <div>₹1,200 <span class="text-decoration-line-through text-muted">₹2,400</span></div>
+              <span class="badge bg-success mb-2">50% OFF</span>
+              <button class="btn btn-outline-primary btn-sm w-100">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-2">
+          <div class="card h-100">
+            <img src="https://img.icons8.com/color/96/wrist-watch.png" class="card-img-top" alt="Casual watch Day & date">
+            <div class="card-body text-center">
+              <h6 class="card-title">Casual watch with day & date</h6>
+              <div>₹1,249 <span class="text-decoration-line-through text-muted">₹1,999</span></div>
+              <span class="badge bg-success mb-2">38% OFF</span>
+              <button class="btn btn-outline-primary btn-sm w-100">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-2">
+          <div class="card h-100">
+            <img src="https://img.icons8.com/color/96/wrist-watch.png" class="card-img-top" alt="Analog watch">
+            <div class="card-body text-center">
+              <h6 class="card-title">Analog all working</h6>
+              <div>₹1,650 <span class="text-decoration-line-through text-muted">₹2,499</span></div>
+              <span class="badge bg-success mb-2">34% OFF</span>
+              <button class="btn btn-outline-primary btn-sm w-100">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-2">
+          <div class="card h-100">
+            <img src="https://img.icons8.com/color/96/wrist-watch.png" class="card-img-top" alt="Sport quartz watch">
+            <div class="card-body text-center">
+              <h6 class="card-title">Mens stainless steel sport quartz watch</h6>
+              <div>₹1,400 <span class="text-decoration-line-through text-muted">₹2,400</span></div>
+              <span class="badge bg-success mb-2">42% OFF</span>
+              <button class="btn btn-outline-primary btn-sm w-100">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-2">
+          <div class="card h-100">
+            <img src="https://img.icons8.com/color/96/wrist-watch.png" class="card-img-top" alt="Leather strap">
+            <div class="card-body text-center">
+              <h6 class="card-title">Classic leather strap watch</h6>
+              <div>₹1,049 <span class="text-decoration-line-through text-muted">₹1,800</span></div>
+              <span class="badge bg-success mb-2">42% OFF</span>
+              <button class="btn btn-outline-primary btn-sm w-100">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> -->
+  
+  <!-- Footer -->
+<footer class="simple-gold-footer center-footer">
+  <div class="fw-wrap">
+    <!-- Brand + tagline -->
+    <div class="fw-brand center-block">
+      <span class="fw-mark"></span>
+      <span class="fw-script">Follow Me</span>
+      <p class="fw-tag">Comfortable, timeless kids wear for play and celebration.</p>
+    </div>
+
+    <!-- Columns (centered) -->
+    <div class="fw-cols center-grid">
+      <div class="fw-col">
+        <h6>Quick Links</h6>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="catalogue.html">Shop</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="fw-col">
+        <h6>Customer Care</h6>
+        <ul>
+          <li><a href="#">Size Guide</a></li>
+          <li><a href="#">Shipping & Delivery</a></li>
+          <li><a href="#">Returns & Exchanges</a></li>
+          <li><a href="#">FAQs</a></li>
+        </ul>
+      </div>
+
+      <div class="fw-col">
+        <h6>Contact</h6>
+        <ul class="fw-contacts">
+          <li><span class="dot"></span> Bhiwandi, Maharashtra</li>
+          <li><span class="dot"></span> Mon–Sat, 10:00–19:00</li>
+          <li><span class="dot"></span> hello@followme.kids</li>
+          <li><span class="dot"></span> +91 96232 66520</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom -->
+    <div class="fw-bottom center-block">
+      <div class="fw-social">
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+      </div>
+      <p class="fw-copy">© 2025 Follow Me. All rights reserved.</p>
+      <ul class="fw-legal">
+        <li><a href="#">Terms</a></li>
+        <li><a href="#">Privacy</a></li>
+        <li><a href="#">Returns</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<style>
+  :root{ --gold:#d4af37; --gold-deep:#b9931e; --ink:#1f1f1f; }
+
+  .simple-gold-footer{
+    background: linear-gradient(180deg, #fff9e6 0%, #fff2cc 60%, #ffeeb8 100%);
+    border-top:1px solid rgba(212,175,55,.45);
+    color:#2b2710;
+    text-align:center;
+  }
+  .fw-wrap{ width:min(1100px,94%); margin:0 auto; padding:22px 0 16px; }
+
+  /* Brand */
+  .fw-brand{ margin-bottom:10px; }
+  .fw-mark{
+    width:34px; height:34px; border-radius:8px; display:inline-block;
+    border:1px solid rgba(212,175,55,.6);
+    background: radial-gradient(circle at 30% 30%, #fff 10%, #fef6d8 40%, #f3e2a2 70%);
+    box-shadow:0 6px 14px rgba(212,175,55,.28);
+    vertical-align:middle; margin-right:8px;
+  }
+  .fw-script{
+    font-family:"Great Vibes",cursive;
+    font-size:28px; color:var(--gold-deep);
+    text-shadow:0 1px 6px rgba(212,175,55,.25);
+    vertical-align:middle;
+  }
+  .fw-tag{ margin:6px 0 0; color:#6f5b23; }
+
+  /* Centered columns */
+  .fw-cols{
+    display:grid; gap:12px; margin-top:12px;
+    grid-template-columns: 1fr; justify-items:center;
+  }
+  @media(min-width:860px){
+    .fw-cols{ grid-template-columns: repeat(3, minmax(220px, 1fr)); }
+  }
+  .fw-col{ max-width: 360px; }
+
+  .fw-col h6{ margin:0 0 8px; font-size:15px; font-weight:800; color:#3a340f; }
+  .fw-col ul{ list-style:none; margin:0; padding:0; display:grid; gap:6px; }
+  .fw-col a{ text-decoration:none; color:#2b2710; font-weight:600; }
+  .fw-col a:hover{ color:#1e1a08; text-decoration:underline; }
+
+  .fw-contacts .dot{
+    width:8px; height:8px; border-radius:50%; display:inline-block;
+    background:var(--gold); margin-right:8px; box-shadow:0 0 0 3px rgba(212,175,55,.2);
+  }
+
+  /* Bottom */
+  .fw-bottom{ margin-top:14px; padding-top:12px; border-top:1px solid rgba(212,175,55,.45); }
+  .fw-social{ display:flex; gap:8px; justify-content:center; margin-bottom:8px; }
+  .fw-social a{
+    width:36px; height:36px; border-radius:10px; display:inline-flex; align-items:center; justify-content:center;
+    border:1px solid rgba(212,175,55,.45); color:#2b2710; background:#fff7d9;
+  }
+  .fw-social a:hover{ background:#fff3c6; }
+
+  .fw-copy{ margin:4px 0; color:#6f5b23; font-size:13px; }
+  .fw-legal{ list-style:none; margin:6px 0 0; padding:0; display:flex; gap:12px; justify-content:center; }
+  .fw-legal a{ text-decoration:none; color:#2b2710; font-weight:700; }
+  .fw-legal a:hover{ color:var(--gold-deep); }
+</style>
+  <!-- Bootstrap JS CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  // WhatsApp number: digits-only international format (no +, spaces, dashes)
+  const PHONE_IN_E164 = '919623266520'; // per WhatsApp docs [web:21][web:12]
+
+  function initScroller(scroller) {
+    if (!scroller || scroller.__fmInit) return;
+    scroller.__fmInit = true;
+
+    const ensureCode = (wrap) => {
+      if (!wrap.dataset.code) {
+        wrap.dataset.code =
+          'FM-' + Date.now().toString(36).toUpperCase() + '-' +
+          Math.random().toString(36).slice(2,6).toUpperCase();
+      }
+      return wrap.dataset.code;
+    };
+    const txt = (el, fb='') => el ? (el.textContent || '').trim() : fb;
+
+    // One delegated listener handles size clicks and Buy
+    scroller.addEventListener('click', (e) => {
+      // Size chip selection
+      const sizeChip = e.target.closest('.size-chip');
+      if (sizeChip && scroller.contains(sizeChip)) {
+        const card = sizeChip.closest('.product-card');
+        if (card) {
+          card.querySelectorAll('.size-chip').forEach(c => c.classList.remove('active'));
+          sizeChip.classList.add('active');
+        }
+        return;
+      }
+
+      // Buy button → WhatsApp
+      const buyBtn = e.target.closest('.buy-btn');
+      if (!buyBtn || !scroller.contains(buyBtn)) return;
+
+      const card = buyBtn.closest('.product-card');
+      const wrap = buyBtn.closest('.card-item');
+      if (!card || !wrap) return;
+
+      const code = ensureCode(wrap);
+      const titleEl = card.querySelector('.product-title') || card.querySelector('h6, h5, h4');
+      const priceEl = card.querySelector('.product-price');
+      const imgEl = card.querySelector('img.product-img');
+      const genderTextEl = Array.from(card.querySelectorAll('p,span'))
+        .find(p => /gender\s*:/i.test(p.textContent || ''));
+
+      const chosenColor = card.querySelector('.color-option:checked')?.value || 'default';
+      const chosenSize = card.querySelector('.size-chip.active')?.dataset.size
+                       || card.querySelector('.size-chip.active')?.textContent?.trim()
+                       || 'N/A';
+
+      const genderData = wrap.dataset.gender || '';
+      const priceData = wrap.dataset.price || '';
+
+      // Always show Available Sizes: N/A as required
+      const msg = [
+        'New Order Request',
+        `Article Code: ${code}`,
+        `Title: ${txt(titleEl, 'Product')}`,
+        `Gender: ${genderData || txt(genderTextEl).replace(/^\s*Gender:\s*/i,'') || 'N/A'}`,
+        `Chosen Size: ${chosenSize}`,
+        `Available Sizes: N/A`,
+        `Price: ₹${priceData || txt(priceEl) || 'N/A'}`,
+        `Color: ${chosenColor}`,
+        `Image: ${imgEl ? imgEl.src : ''}`
+      ].join('\n');
+
+      const url = `https://wa.me/${PHONE_IN_E164}?text=${encodeURIComponent(msg)}`; // correct format [web:21][web:12][web:56]
+      location.href = url; // fewer popup-blocker issues vs window.open [web:52][web:79]
+    }, false);
+  }
+
+  // Initialize all scrollers in the page, so every “Latest” section works
+  document.querySelectorAll('.card-scroller').forEach(initScroller); // avoid relying on a single id [web:68][web:63]
+</script>
+
+<script>
+  (function(){
+    const scroller = document.getElementById('latestScroller');
+    const prev = document.querySelector('.carousel-btn.prev');
+    const next = document.querySelector('.carousel-btn.next');
+
+    function itemAdvance(){
+      const item = scroller.querySelector('.card-item');
+      if(!item) return 300;
+      const rect = item.getBoundingClientRect();
+      // Gap approximated as 12px; adjust if you change .gap
+      return rect.width + 12;
+    }
+
+    function scrollByItems(dir){
+      scroller.scrollBy({ left: dir * itemAdvance(), behavior: 'smooth' });
+    }
+
+    prev?.addEventListener('click', () => scrollByItems(-1));
+    next?.addEventListener('click', () => scrollByItems(1));
+
+    // Keyboard support (focus the scroller and use arrows)
+    scroller.addEventListener('keydown', (e) => {
+      if(e.key === 'ArrowLeft'){ e.preventDefault(); scrollByItems(-1); }
+      if(e.key === 'ArrowRight'){ e.preventDefault(); scrollByItems(1); }
+    });
+  })();
+</script>
+
+<style>
+/* Tokens */
+:root {
+  --gold: #d4af37;
+  --gold-deep: #b9931e;
+  --ink: #1f1f1f;
+}
+
+/* Container row */
+.nav-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 68px; /* compact, matches image 1 density */
+}
+
+/* Glass + bottom glow */
+.gold-glass-nav {
+  background: rgba(255,255,255,0.58);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 2px solid rgba(212,175,55,0.35);
+  box-shadow: 0 10px 24px rgba(212,175,55,0.22);
+}
+
+/* Brand */
+.brand-mark {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  border: 1px solid rgba(212,175,55,0.6);
+  background: radial-gradient(circle at 30% 30%, #fff 10%, #fef6d8 40%, #f3e2a2 70%);
+  box-shadow: 0 6px 14px rgba(212,175,55,.28);
+}
+.brand-script {
+  font-family: "Great Vibes", cursive;
+  font-size: 26px; /* slightly smaller for compact look */
+  color: var(--gold-deep);
+  text-shadow: 0 1px 8px rgba(212,175,55,.35);
+  letter-spacing: .4px;
+  white-space: nowrap;
+}
+
+/* Center desktop menu */
+.nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+  gap: 0; /* squeeze group like image 1 */
+}
+.nav-list > li { display: inline-flex; }
+
+.nav-link {
+  color: #2b2710 !important;
+  font-weight: 400;
+  border-radius: 10px;
+  padding: .5rem .75rem;  /* narrower than before */
+  margin-left: 10px;      /* reduced spacing between items */
+  letter-spacing: 0;
+  transition: color .12s ease, background .12s ease, transform .12s ease;
+}
+.nav-link:first-child { margin-left: 0; }
+.nav-link:hover { color: #1e1a08 !important; background: #fffaf0; }
+.nav-link.active, .nav-link[aria-current="page"] {
+  color: var(--gold) !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Desktop social icons match image 1 */
+.social-wrap { gap: 0; }
+.social-link {
+  color: #2b2710 !important;
+  border-radius: 10px;
+  padding: 0;                 /* no extra pad */
+  margin-left: 40px;          /* consistent 40px between icons */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+.social-link:first-child { margin-left: 0; }
+.social-link i { font-size: 18px; }
+.social-link:hover { background: transparent; color: #1e1a08 !important; }
+
+/* Mobile toggler and drawer */
+.navbar-toggler {
+  border: 1px solid rgba(212,175,55,.55)!important;
+  border-radius: 10px;
+  background: #fffdf4;
+  padding: .35rem .5rem;
+  margin-left: auto;
+}
+.navbar-toggler .navbar-toggler-icon {
+  background-image: none;
+  position: relative;
+  width: 1.4rem; height: 1.2rem; display: inline-block;
+}
+.navbar-toggler .navbar-toggler-icon::before,
+.navbar-toggler .navbar-toggler-icon::after {
+  content: "";
+  position: absolute; left: 0; right: 0;
+  height: 2px; background: #2b2710; border-radius: 2px;
+}
+.navbar-toggler .navbar-toggler-icon::before { top: 3px; }
+.navbar-toggler .navbar-toggler-icon::after  { bottom: 3px; }
+
+/* Mobile drawer look (kept from original) */
+@media (max-width: 991.98px) {
+  .offcanvas.nav-offcanvas {
+    background-color: #ffffff !important;
+    width: 280px !important; max-width: 88vw !important; height: 100vh !important;
+    border-left: 1px solid rgba(212,175,55,.28) !important;
+    box-shadow: -10px 0 28px rgba(0,0,0,.16) !important; z-index: 1060 !important;
+  }
+  .offcanvas-backdrop.show { opacity: .45 !important; z-index: 1055 !important; }
+  .offcanvas.nav-offcanvas .offcanvas-header {
+    background: #ffffff !important;
+    border-bottom: 1px solid rgba(0,0,0,.06) !important;
+    padding: 12px 14px !important; margin: 0 !important;
+  }
+  .offcanvas.nav-offcanvas .offcanvas-body {
+    background: #ffffff !important; padding: 14px !important; overflow: auto !important; -webkit-overflow-scrolling: touch;
+  }
+  .drawer-menu { display: flex; flex-direction: column; gap: 6px; }
+  .drawer-link, .offcanvas.nav-offcanvas .nav-link {
+    display: block; padding: 10px 12px; border-radius: 10px; text-decoration: none;
+    color: #2b2710 !important; font-weight: 600; background: transparent !important;
+  }
+  .drawer-link:hover, .offcanvas.nav-offcanvas .nav-link:hover { background: #fffaf0 !important; color: #1e1a08 !important; }
+  .drawer-link.active, .offcanvas.nav-offcanvas .nav-link.active, .offcanvas.nav-offcanvas .nav-link[aria-current="page"] {
+    color: var(--gold) !important; background: transparent !important; box-shadow: none !important;
+  }
+  .btn-icon {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 40px; height: 40px; border-radius: 10px;
+    border: 1px solid rgba(212,175,55,.45); color: #2b2710; background: #fff;
+  }
+  .btn-icon:hover { background: #fffaf0; }
+}
+
+/* Hide mobile toggler on desktop explicitly */
+@media (min-width: 992px) {
+  .navbar-toggler { display: none !important; }
+}
+</style>
+</body>
+</html>

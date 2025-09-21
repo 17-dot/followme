@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>About Us — Kids Wear Fashion</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Great+Vibes&display=swap" rel="stylesheet" />
+
+    <!--Navbar-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"> <!-- [file:1] -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"> <!-- [file:1] -->
+    <!--Navbar-->
+
+  <style>
+    :root{
+      --gold:#d4af37;
+      --gold-deep:#b9931e;
+      --gold-soft:#f6e7b4;
+      --white:#ffffff;
+      --bg:#fff9ef;
+      --text:#2a2a2a;
+      --ink:#1f1f1f;
+    }
+    *{box-sizing:border-box}
+    html,body{
+      margin:0; padding:0; color:var(--text);
+      font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      background:linear-gradient(180deg,var(--bg),#fff);
+    }
+
+    /* Hero */
+    .hero{
+      position:relative;
+      min-height:52vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:72px 20px 40px;
+      background:
+        radial-gradient(1200px 420px at 10% 0%, rgba(212,175,55,0.18), transparent 60%),
+        radial-gradient(1200px 420px at 90% 0%, rgba(212,175,55,0.18), transparent 60%),
+        linear-gradient(180deg,#fff, #fffaf0 60%, #fff);
+      overflow:hidden;
+    }
+    .hero .shine{
+      position:absolute;
+      inset:-25% -15%;
+      background:conic-gradient(from 0deg, rgba(212,175,55,.14), transparent 30%, rgba(212,175,55,.14) 60%, transparent 100%);
+      filter:blur(40px);
+      animation:spin 18s linear infinite;
+      pointer-events:none;
+    }
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    .hero-card{
+      position:relative;
+      width:min(960px, 94%);
+      margin:auto;
+      padding:38px 28px;
+      border-radius:22px;
+      background:rgba(255,255,255,0.58);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border:1px solid rgba(212,175,55,0.4);
+      box-shadow:0 22px 64px rgba(212,175,55,0.18), 0 12px 24px rgba(0,0,0,0.06);
+      text-align:center;
+    }
+    .brand{
+      font-family:"Great Vibes",cursive;
+      font-size:44px;
+      color:var(--gold-deep);
+      margin:0 0 6px;
+      letter-spacing:1px;
+      text-shadow:0 2px 12px rgba(212,175,55,.35);
+    }
+    .hero h1{
+      font-size:clamp(30px, 4.6vw, 48px);
+      margin:6px 0 10px;
+      color:var(--ink);
+    }
+    .hero p{
+      margin:0;color:#5b4a1a;font-weight:400;
+    }
+    .divider{
+      width:90px;height:4px;border-radius:4px;
+      background:linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin:18px auto 0;
+    }
+
+    /* Section container */
+    .container{
+      width:min(1100px, 94%);
+      margin: -24px auto 70px;
+    }
+
+    /* Shared card style */
+    .card{
+      background:#fff;
+      border:1px solid rgba(212,175,55,0.38);
+      border-radius:18px;
+      box-shadow:0 12px 34px rgba(212,175,55,0.18), 0 8px 20px rgba(0,0,0,0.05);
+      overflow:hidden;
+    }
+    .section{
+      padding:22px;
+    }
+    .section-head{
+      display:flex;align-items:center;gap:12px;margin-bottom:8px;
+    }
+    .pill{
+      display:inline-flex;align-items:center;justify-content:center;
+      height:28px; padding:0 12px; border-radius:999px;
+      background:linear-gradient(180deg, var(--gold) 0%, #f3d777 50%, var(--gold) 100%);
+      color:#1e1a08; font-weight:700; font-size:13px;
+      border:1px solid rgba(212,175,55,.8);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.6), 0 6px 16px rgba(212,175,55,.25);
+    }
+    .section h2{
+      margin:8px 0 10px; font-size:clamp(22px, 2.6vw, 28px); color:#3a340f;
+    }
+    .section p{
+      margin:8px 0 12px; color:#6f5b23; line-height:1.7;
+    }
+
+    /* Grids */
+    .grid-2{
+      display:grid; grid-template-columns:1fr; gap:18px; align-items:center;
+    }
+    @media(min-width:900px){
+      .grid-2{ grid-template-columns:1.2fr .8fr; gap:24px; }
+    }
+    .media{
+      border-radius:14px; overflow:hidden;
+      border:1px solid rgba(212,175,55,.35);
+      box-shadow:0 10px 26px rgba(212,175,55,.18);
+      background:
+        linear-gradient(180deg,#fff,#fff8e6);
+      min-height:220px;
+      display:grid;place-items:center;
+      padding:18px;
+    }
+    .media img{
+      width:100%; height:auto; display:block; border-radius:10px;
+      filter:saturate(1.02) contrast(1.02);
+    }
+
+    /* Icon bullets */
+    .bullets{display:grid; gap:10px; margin-top:8px;}
+    .bullet{
+      display:flex; gap:12px; align-items:flex-start;
+      padding:10px 8px; border-bottom:1px dashed rgba(212,175,55,.35);
+    }
+    .bullet:last-child{border-bottom:none}
+    .dot{
+      width:10px;height:10px;border-radius:50%;
+      background:var(--gold); margin-top:6px;
+      box-shadow:0 0 0 3px rgba(212,175,55,.2);
+    }
+
+    /* Values - cards */
+    .values{
+      display:grid; grid-template-columns:1fr; gap:16px; margin-top:8px;
+    }
+    @media(min-width:900px){
+      .values{ grid-template-columns:1fr 1fr 1fr; }
+    }
+    .value-card{
+      background:#fffef8; border:1px solid rgba(212,175,55,.38); border-radius:16px;
+      padding:16px; box-shadow:0 12px 28px rgba(212,175,55,.16);
+      transition:transform .12s ease, box-shadow .12s ease;
+    }
+    .value-card:hover{
+      transform:translateY(-2px);
+      box-shadow:0 18px 36px rgba(212,175,55,.22);
+    }
+    .value-title{
+      display:flex; align-items:center; gap:10px; color:#3a340f; font-weight:700; margin:0 0 6px;
+    }
+    .tag{
+      display:inline-flex; align-items:center; justify-content:center;
+      font-size:12px; padding:0 10px; height:24px; border-radius:999px;
+      border:1px solid rgba(212,175,55,.8);
+      background:linear-gradient(180deg,#fffef5,#fff3c9);
+      color:#4a3f14; font-weight:600;
+    }
+    .mini{
+      font-size:13px; color:#6f5b23; margin:0;
+    }
+
+    /* CTA band */
+    .cta{
+      margin:26px 0 0; padding:18px;
+      border-radius:16px;
+      border:1px solid rgba(212,175,55,.5);
+      background:
+        radial-gradient(400px 120px at 20% 0%, rgba(212,175,55,.2), transparent 60%),
+        radial-gradient(400px 120px at 80% 0%, rgba(212,175,55,.2), transparent 60%),
+        #fffef6;
+      box-shadow:0 14px 34px rgba(212,175,55,.18);
+      text-align:center;
+    }
+    .cta .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      padding:12px 18px;border-radius:12px;border:1px solid var(--gold);
+      color:#1e1a08;background: linear-gradient(180deg, var(--gold) 0%, #f3d777 30%, #f7e7a8 70%, var(--gold) 100%);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.6), 0 10px 22px rgba(212,175,55,.35);
+      cursor:pointer; font-weight:700;
+      transition:transform .12s ease, box-shadow .12s ease, filter .12s ease;
+    }
+    .cta .btn:hover{ transform: translateY(-1px); filter:saturate(1.05); }
+    .cta .btn:active{ transform: translateY(0); box-shadow:0 6px 14px rgba(212,175,55,.3); }
+
+    /* Footer */
+    footer{
+      text-align:center; color:#7a6829; font-size:13px; padding:18px 12px 36px;
+    }
+  </style>
+</head>
+<body data-current-page="about.html">
+
+<!-- host page -->
+<div id="navbar-placeholder"></div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script><!-- [file:1] -->
+<script type="module">
+  async function loadNavbar() {
+    const mount = document.getElementById('navbar-placeholder');
+    if (!mount) return;
+
+    const resp = await fetch('/navbar.html', { cache: 'no-cache' });  // adjust path
+    const html = await resp.text();
+    mount.innerHTML = html;  // inline scripts inside navbar.html will NOT run
+
+    // 1) Wire offcanvas drawer navigation (works even if other handlers call preventDefault)
+    const drawer = document.getElementById('navDrawer');
+    const links = mount.querySelectorAll('.drawer-menu .drawer-link, .nav-list .nav-link');
+    links.forEach(a => {
+      a.addEventListener('click', (e) => {
+        const url = a.getAttribute('href');
+        if (!url || url === '#') return;        // ignore placeholders
+        e.preventDefault();                      // stop any global preventDefault
+        try {
+          if (drawer && window.bootstrap) {
+            const inst = bootstrap.Offcanvas.getOrCreateInstance(drawer);
+            inst.hide();
+          }
+        } catch(_) {}
+        setTimeout(() => { window.location.assign(url); }, 20);
+      }, { capture: true });
+    });
+
+    // 2) Recompute active state for both desktop and drawer menus
+    const page = document.body.getAttribute('data-current-page')
+               || location.pathname.split('/').pop() || 'index.html';
+    links.forEach(a => {
+      a.classList.remove('active'); a.removeAttribute('aria-current');
+      const href = a.getAttribute('href');
+      const isHome = page === 'index.html' && (href === '/' || href === '#' || href === 'index.html');
+      if (href === page || isHome) { a.classList.add('active'); a.setAttribute('aria-current','page'); }
+    });
+  }
+  loadNavbar();
+</script>
+
+
+  <!-- Hero -->
+  <section class="hero" style="margin-top: 40px;">
+    <div class="shine"></div>
+    <div class="hero-card">
+      <div class="brand">Follow Me</div>
+      <h1>About Us</h1>
+      <p>Timeless designs, playful comfort, and crafted quality for every little royal.</p>
+      <div class="divider"></div>
+    </div>
+  </section>
+
+  <main class="container">
+
+    <!-- Section 1: Our Story -->
+    <section class="card section" style="margin-top: 40px;">
+      <div class="section-head">
+        <span class="pill">Our Story</span>
+      </div>
+      <div class="grid-2">
+        <div>
+          <h2>From Sketches to Smiles</h2>
+          <p>Little Royals began with a small sketchbook and a big dream: to create kids wear that blends comfort, durability, and a touch of celebration in every stitch.</p>
+          <p>Over the years, we’ve grown into a community of parents, artisans, and designers who believe childhood deserves outfits that feel as good as they look.</p>
+          <div class="bullets">
+            <div class="bullet">
+              <span class="dot"></span>
+              <div>
+                <strong>Play‑ready styles</strong><br/>
+                <span class="mini">Breathable, soft, and easy to move in—perfect for all‑day fun.</span>
+              </div>
+            </div>
+            <div class="bullet">
+              <span class="dot"></span>
+              <div>
+                <strong>Occasion wear magic</strong><br/>
+                <span class="mini">From birthday twirls to festival sparkle, we design for every moment.</span>
+              </div>
+            </div>
+            <div class="bullet">
+              <span class="dot"></span>
+              <div>
+                <strong>Thoughtful details</strong><br/>
+                <span class="mini">Tag‑less comfort, soft seams, and careful fits for happy kiddos.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="media" aria-hidden="true">
+          <!-- Decorative image placeholder: replace with your own brand image -->
+          <img src="https://images.unsplash.com/photo-1516826957135-700dedea698c?q=80&w=1400&auto=format&fit=crop" alt="Kids fashion studio moodboard" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Our Craft & Quality -->
+    <section class="card section" style="margin-top:18px;">
+      <div class="section-head">
+        <span class="pill">Our Craft & Quality</span>
+      </div>
+      <div class="grid-2" style="grid-template-columns: .9fr 1.1fr;">
+        <div class="media" aria-hidden="true">
+          <img src="https://images.unsplash.com/photo-1520975928316-56f2d01b0854?q=80&w=1400&auto=format&fit=crop" alt="Tailoring and fabric selection" />
+        </div>
+        <div>
+          <h2>Made with Care, Meant to Last</h2>
+          <p>We hand‑pick soft, child‑friendly fabrics and test our patterns across sizes to ensure confident fits and long‑lasting wear.</p>
+          <p>Every piece passes through careful finishing for colorfastness, neat seams, and easy care—so outfits can be loved, washed, and re‑worn.</p>
+          <div class="values">
+            <div class="value-card">
+              <div class="value-title"><span class="tag">Fabric</span> Premium Cotton Blends</div>
+              <p class="mini">Gentle on skin, breathable, and crafted for everyday comfort.</p>
+            </div>
+            <div class="value-card">
+              <div class="value-title"><span class="tag">Fit</span> Kid‑tested Patterns</div>
+              <p class="mini">Room to move with sizes tailored for growing bodies.</p>
+            </div>
+            <div class="value-card">
+              <div class="value-title"><span class="tag">Finish</span> Durable Details</div>
+              <p class="mini">Secure stitching, soft seams, and colors that stay bright.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Values & Impact -->
+    <section class="card section" style="margin-top:18px;">
+      <div class="section-head">
+        <span class="pill">Values & Impact</span>
+      </div>
+      <div class="grid-2">
+        <div>
+          <h2>Designed with Heart</h2>
+          <p>We’re proud to partner with local artisans and family‑run workshops, supporting livelihoods while preserving craft.</p>
+          <p>Packaging is kept minimal and reusable where possible, and we continually refine our process to reduce waste and improve quality.</p>
+          <div class="bullets">
+            <div class="bullet">
+              <span class="dot"></span>
+              <div>
+                <strong>Community first</strong><br/>
+                <span class="mini">Fair practices and long‑term partnerships with makers.</span>
+              </div>
+            </div>
+            <div class="bullet">
+              <span class="dot"></span>
+              <div>
+                <strong>Mindful materials</strong><br/>
+                <span class="mini">Responsible sourcing and classic styles that outlast trends.</span>
+              </div>
+            </div>
+            <div class="bullet">
+              <span class="dot"></span>
+              <div>
+                <strong>Care & repair</strong><br/>
+                <span class="mini">Tips to keep clothes fresh, and easy fixes for longer life.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="media" aria-hidden="true">
+          <img src="https://images.unsplash.com/photo-1604335399105-a0c6f3ab7616?q=80&w=1400&auto=format&fit=crop" alt="Community and values in kids fashion" />
+        </div>
+      </div>
+
+      <!-- Call to action band -->
+      <div class="cta">
+        <p style="margin:0 0 10px;">Want to know more, customize an outfit, or plan a special look?</p>
+        <button class="btn" onclick="window.location.href='contact.html'">Explore Contact Options</button>
+      </div>
+    </section>
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <!-- global scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script><!-- [file:1] -->
+
+  <!-- loader script for navbar + footer -->
+  <script type="module">
+    async function inject(id, url) {
+      const mount = document.getElementById(id);
+      if (!mount) return;
+      const resp = await fetch(url, { cache: 'no-cache' }); // adjust path if needed
+      mount.innerHTML = await resp.text();
+    }
+   // if using the navbar partial too
+    inject('footer-placeholder', '/footer.html');   // footer partial
+  </script>
+</body>
+</html>

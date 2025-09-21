@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Contact Us — Kids Wear Fashion</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Great+Vibes&display=swap" rel="stylesheet" />
+
+      <!--Navbar-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"> <!-- [file:1] -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"> <!-- [file:1] -->
+    <!--Navbar-->
+
+  <style>
+    :root{
+      --gold:#d4af37;
+      --gold-deep:#b9931e;
+      --gold-soft:#f6e7b4;
+      --white:#ffffff;
+      --bg:#fff9ef;
+      --text:#2a2a2a;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;color:var(--text);font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:linear-gradient(180deg,var(--bg),#fff);}
+
+    /* Hero */
+    .hero{
+      position:relative;
+      min-height:48vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:64px 20px 40px;
+      background:
+        radial-gradient(1200px 400px at 10% 0%, rgba(212,175,55,0.18), transparent 60%),
+        radial-gradient(1200px 400px at 90% 0%, rgba(212,175,55,0.18), transparent 60%),
+        linear-gradient(180deg,#fff, #fffaf0 60%, #fff);
+      overflow:hidden;
+    }
+    .hero .shine{
+      position:absolute;
+      inset:-20% -10%;
+      background:conic-gradient(from 0deg, rgba(212,175,55,.15), transparent 30%, rgba(212,175,55,.15) 60%, transparent 100%);
+      filter:blur(40px);
+      animation:spin 16s linear infinite;
+      pointer-events:none;
+    }
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    .hero-card{
+      position:relative;
+      width:min(960px, 94%);
+      margin:auto;
+      padding:36px 28px;
+      border-radius:20px;
+      background:rgba(255,255,255,0.55);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border:1px solid rgba(212,175,55,0.35);
+      box-shadow:0 20px 60px rgba(212,175,55,0.18), 0 10px 20px rgba(0,0,0,0.06);
+      text-align:center;
+    }
+    .brand{
+      font-family:"Great Vibes",cursive;
+      font-size:42px;
+      color:var(--gold-deep);
+      margin:0 0 6px;
+      letter-spacing:1px;
+      text-shadow: 0 2px 12px rgba(212,175,55,.35);
+    }
+    .hero h1{
+      font-size:clamp(30px, 4.4vw, 46px);
+      margin:6px 0 10px;
+      color:#1f1f1f;
+    }
+    .hero p{
+      margin:0;
+      color:#5b4a1a;
+      font-weight:400;
+    }
+    .divider{
+      width:80px;height:4px;border-radius:4px;
+      background:linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin:16px auto 0;
+    }
+
+    /* Layout container */
+    .container{
+      width:min(1100px, 94%);
+      margin:-30px auto 60px;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:20px;
+    }
+    @media(min-width:900px){
+      .grid{
+        grid-template-columns: 420px 1fr;
+        gap:28px;
+      }
+    }
+
+    /* Contact card */
+    .card{
+      background:#fff;
+      border:1px solid rgba(212,175,55,0.35);
+      border-radius:18px;
+      box-shadow:0 10px 30px rgba(212,175,55,0.18), 0 6px 18px rgba(0,0,0,0.05);
+      padding:20px;
+    }
+    .card h3{
+      margin:4px 0 8px;
+      font-size:20px;
+      color:#3a340f;
+    }
+    .whatsapp-tile{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      padding:16px;
+      border-radius:14px;
+      background:linear-gradient(135deg, #fff, #fff9f0);
+      border:1px dashed rgba(212,175,55,0.6);
+      cursor:pointer;
+      transition:transform .15s ease, box-shadow .15s ease, border-color .2s ease;
+      user-select:none;
+    }
+    .whatsapp-tile:hover{
+      transform:translateY(-2px);
+      box-shadow:0 10px 26px rgba(212,175,55,.2);
+      border-color:var(--gold);
+    }
+    .whatsapp-icon{
+      width:44px;height:44px;border-radius:50%;
+      display:grid;place-items:center;
+      background: radial-gradient(circle at 30% 30%, #fff 10%, #fef6d8 40%, #f3e2a2 70%);
+      border:1px solid rgba(212,175,55,0.6);
+      color:#157347;
+      font-weight:700;
+    }
+    .tile-text small{display:block;color:#6f5b23}
+    .tile-text strong{color:#2b2710}
+
+    .list{
+      list-style:none;margin:16px 0 0;padding:0;
+    }
+    .list li{
+      display:flex;gap:10px;align-items:flex-start;
+      padding:10px 4px;
+      border-bottom:1px dashed rgba(212,175,55,0.35);
+      color:#4a3f14;
+    }
+    .list li:last-child{border-bottom:none}
+    .dot{
+      width:10px;height:10px;border-radius:50%;
+      background:var(--gold);
+      margin-top:7px;
+      box-shadow:0 0 0 3px rgba(212,175,55,.2);
+    }
+
+    /* Form */
+    .form{
+      background:#fff;
+      border:1px solid rgba(212,175,55,0.35);
+      border-radius:18px;
+      box-shadow:0 10px 30px rgba(212,175,55,0.15), 0 6px 18px rgba(0,0,0,0.05);
+      padding:20px;
+    }
+    .form h3{margin:0 0 8px;color:#3a340f}
+    .form p{margin:0 0 16px;color:#6f5b23}
+
+    .row{
+      display:grid;gap:14px;
+      grid-template-columns:1fr;
+    }
+    @media(min-width:720px){
+      .row.two{grid-template-columns:1fr 1fr;}
+      .row.three{grid-template-columns:1fr 1fr 1fr;}
+    }
+    label{
+      display:block;margin:0 0 6px;font-size:14px;color:#5b4a1a;
+    }
+    input, textarea, select{
+      width:100%;
+      padding:12px 14px;
+      border-radius:12px;
+      border:1px solid rgba(212,175,55,0.55);
+      background:#fffdfa;
+      outline:none;
+      transition:border-color .15s ease, box-shadow .15s ease, background .15s ease;
+      font-size:15px;
+    }
+    input:focus, textarea:focus, select:focus{
+      border-color:var(--gold-deep);
+      box-shadow:0 0 0 4px rgba(212,175,55,0.18);
+      background:#fffef6;
+    }
+    textarea{min-height:120px;resize:vertical}
+
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      padding:12px 18px;
+      border-radius:12px;
+      border:1px solid var(--gold);
+      color:#1e1a08;
+      background: linear-gradient(180deg, var(--gold) 0%, #f3d777 30%, #f7e7a8 70%, var(--gold) 100%);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.6), 0 10px 22px rgba(212,175,55,.35);
+      cursor:pointer;
+      transition: transform .12s ease, box-shadow .12s ease, filter .12s ease;
+      font-weight:700;
+    }
+    .btn:hover{ transform: translateY(-1px); filter:saturate(1.05); }
+    .btn:active{ transform: translateY(0); box-shadow: 0 6px 14px rgba(212,175,55,.3); }
+    .btn-outline{
+      background:#fff; border-style:dashed;
+      box-shadow:0 6px 16px rgba(212,175,55,.18);
+    }
+
+    .foot-note{
+      text-align:center;color:#7a6829;margin-top:10px;font-size:13px;
+    }
+  </style>
+</head>
+<body data-current-page="contact.html">
+
+<!-- host page -->
+<div id="navbar-placeholder"></div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script><!-- [file:1] -->
+<script type="module">
+  async function loadNavbar() {
+    const mount = document.getElementById('navbar-placeholder');
+    if (!mount) return;
+
+    const resp = await fetch('/navbar.html', { cache: 'no-cache' });  // adjust path
+    const html = await resp.text();
+    mount.innerHTML = html;  // inline scripts inside navbar.html will NOT run
+
+    // 1) Wire offcanvas drawer navigation (works even if other handlers call preventDefault)
+    const drawer = document.getElementById('navDrawer');
+    const links = mount.querySelectorAll('.drawer-menu .drawer-link, .nav-list .nav-link');
+    links.forEach(a => {
+      a.addEventListener('click', (e) => {
+        const url = a.getAttribute('href');
+        if (!url || url === '#') return;        // ignore placeholders
+        e.preventDefault();                      // stop any global preventDefault
+        try {
+          if (drawer && window.bootstrap) {
+            const inst = bootstrap.Offcanvas.getOrCreateInstance(drawer);
+            inst.hide();
+          }
+        } catch(_) {}
+        setTimeout(() => { window.location.assign(url); }, 20);
+      }, { capture: true });
+    });
+
+    // 2) Recompute active state for both desktop and drawer menus
+    const page = document.body.getAttribute('data-current-page')
+               || location.pathname.split('/').pop() || 'index.html';
+    links.forEach(a => {
+      a.classList.remove('active'); a.removeAttribute('aria-current');
+      const href = a.getAttribute('href');
+      const isHome = page === 'index.html' && (href === '/' || href === '#' || href === 'index.html');
+      if (href === page || isHome) { a.classList.add('active'); a.setAttribute('aria-current','page'); }
+    });
+  }
+  loadNavbar();
+</script>
+
+
+  <!-- Hero -->
+  <section class="hero" style="margin-top: 50px;">
+    <div class="shine"></div>
+    <div class="hero-card">
+      <div class="brand">Follow Me</div>
+      <h1>Contact Us</h1>
+      <p>Have questions or custom size requests? Send a quick WhatsApp and get instant help.</p>
+      <div class="divider"></div>
+    </div>
+  </section>
+
+  <!-- Content -->
+  <main class="container" style="margin-top: 20px;">
+    <div class="grid">
+      <!-- Contact card -->
+      <aside class="card">
+        <h3>Chat on WhatsApp</h3>
+        <div id="whatsTile" class="whatsapp-tile" role="button" tabindex="0" aria-label="Chat on WhatsApp">
+          <div class="whatsapp-icon">WA</div>
+          <div class="tile-text">
+            <small>Tap to message</small>
+            <strong>+91 96232 66520</strong>
+          </div>
+        </div>
+
+        <ul class="list">
+          <li><span class="dot"></span> Order enquiries and size guidance</li>
+          <li><span class="dot"></span> Custom party wear for kids</li>
+          <li><span class="dot"></span> Bulk/occasion orders and delivery</li>
+        </ul>
+      </aside>
+
+      <!-- Form -->
+      <section class="form">
+        <h3>Send a Message</h3>
+        <p>Fill the details below and submit; it opens WhatsApp with all information pre‑filled.</p>
+
+        <form id="contactForm" novalidate>
+          <div class="row two">
+            <div>
+              <label for="name">Full Name</label>
+              <input type="text" id="name" name="name" placeholder="Parent/Guardian name" required />
+            </div>
+            <div>
+              <label for="phone">Contact Number</label>
+              <input type="tel" id="phone" name="phone" placeholder="e.g. 98xxxxxx21" required />
+            </div>
+          </div>
+
+          <div class="row">
+            <div>
+              <label for="email">Email (optional)</label>
+              <input type="email" id="email" name="email" placeholder="name@example.com" />
+            </div>
+          </div>
+
+          <div class="row">
+            <div>
+              <label for="address">Address</label>
+              <input type="text" id="address" name="address" placeholder="House / Street / Area" />
+            </div>
+          </div>
+
+          <div class="row two">
+            <div>
+              <label for="city">City</label>
+              <input type="text" id="city" name="city" placeholder="City" />
+            </div>
+            <div>
+              <label for="pincode">Pincode</label>
+              <input type="text" id="pincode" name="pincode" placeholder="6-digit PIN" />
+            </div>
+          </div>
+
+          <div class="row two">
+            <div>
+              <label for="childAge">Child Age</label>
+              <input type="text" id="childAge" name="childAge" placeholder="e.g. 5 years" />
+            </div>
+            <div>
+              <label for="size">Preferred Size</label>
+              <select id="size" name="size">
+                <option value="">Select size</option>
+                <option>XS</option>
+                <option>S</option>
+                <option>M</option>
+                <option>L</option>
+                <option>XL</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <div>
+              <label for="details">Message / Details</label>
+              <textarea id="details" name="details" placeholder="Style, color, occasion, delivery date, or any other info..."></textarea>
+            </div>
+          </div>
+
+          <div class="row two" style="align-items:center;">
+            <div>
+              <button type="submit" class="btn">Submit & WhatsApp</button>
+            </div>
+            <div>
+              <button type="button" id="resetBtn" class="btn btn-outline">Clear</button>
+            </div>
+          </div>
+
+          <div class="foot-note">By submitting, the WhatsApp chat opens with your details pre‑filled. Review and send.</div>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    // Set your WhatsApp number in international format without +, spaces, or dashes.
+    // Example: India +91 9623266520 -> "919623266520"
+    const WHATSAPP_NUMBER = '919623266520'; // required wa.me digits only [web:21][web:12]
+
+    // Build wa.me link with encoded message
+    function buildWaLink(numberDigitsOnly, text) {
+      // wa.me format with prefilled message
+      return `https://wa.me/${numberDigitsOnly}?text=${encodeURIComponent(text)}`; // [web:21][web:12][web:18]
+    }
+
+    // Clickable WhatsApp contact tile
+    const whatsTile = document.getElementById('whatsTile');
+    if (whatsTile) {
+      const quickMsg = 'Hello! I would like to know more about your kids wear collection.';
+      const quickUrl = buildWaLink(WHATSAPP_NUMBER, quickMsg); // [web:21][web:12]
+      // Open in same tab to avoid popup blockers
+      const goWhats = () => location.href = quickUrl; // [web:21][web:12]
+      whatsTile.addEventListener('click', goWhats);
+      whatsTile.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') goWhats(); });
+    }
+
+    // Form -> WhatsApp
+    const form = document.getElementById('contactForm');
+    const resetBtn = document.getElementById('resetBtn');
+
+    function valueOf(id){ return (document.getElementById(id)?.value || '').trim(); }
+
+    form?.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      // Gather values
+      const name = valueOf('name');
+      const phone = valueOf('phone');
+      const email = valueOf('email');
+      const address = valueOf('address');
+      const city = valueOf('city');
+      const pincode = valueOf('pincode');
+      const childAge = valueOf('childAge');
+      const size = valueOf('size');
+      const details = valueOf('details');
+
+      // Basic client checks
+      if (!name || !phone) {
+        alert('Please provide your name and contact number.');
+        return;
+      }
+
+      // Compose message
+      const lines = [
+        'New Contact Request (Kids Wear)',
+        `Name: ${name}`,
+        `Contact: ${phone}`,
+        email ? `Email: ${email}` : null,
+        address ? `Address: ${address}` : null,
+        city ? `City: ${city}` : null,
+        pincode ? `Pincode: ${pincode}` : null,
+        childAge ? `Child Age: ${childAge}` : null,
+        size ? `Preferred Size: ${size}` : null,
+        details ? `Message: ${details}` : null
+      ].filter(Boolean);
+
+      const msg = lines.join('\n');
+
+      // Open WhatsApp with prefilled message
+      const url = buildWaLink(WHATSAPP_NUMBER, msg); // [web:21][web:12][web:18]
+      location.href = url; // use same-tab navigation
+    });
+
+    resetBtn?.addEventListener('click', () => form?.reset());
+  </script>
+
+    <div id="footer-placeholder"></div>
+
+  <!-- global scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script><!-- [file:1] -->
+
+  <!-- loader script for navbar + footer -->
+  <script type="module">
+    async function inject(id, url) {
+      const mount = document.getElementById(id);
+      if (!mount) return;
+      const resp = await fetch(url, { cache: 'no-cache' }); // adjust path if needed
+      mount.innerHTML = await resp.text();
+    }
+ // if using the navbar partial too
+    inject('footer-placeholder', '/footer.html');   // footer partial
+  </script>
+  
+</body>
+</html>

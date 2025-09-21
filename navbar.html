@@ -1,0 +1,267 @@
+<!-- Requires: Bootstrap 5 CSS, Font Awesome, and Bootstrap Bundle JS once per page -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"><!-- [file:1] -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"><!-- [file:1] -->
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet"><!-- [file:1] -->
+
+<nav class="navbar fixed-top gold-glass-nav ">
+  <div class="container-fluid px-3 px-lg-4 py-2 nav-row">
+    <!-- Brand -->
+    <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+      <span class="brand-mark"></span>
+      <span class="brand-script">Follow Me</span>
+    </a>
+
+    <!-- Center menu (desktop) -->
+<!-- /partials/navbar.html -->
+<ul class="nav-list d-none d-lg-flex">
+  <li><a class="nav-link" href="index.html">Home</a></li>
+  <li><a class="nav-link" href="about.html">About Us</a></li>
+  <li><a class="nav-link" href="catalogue.html">Catalogue</a></li>
+  <li><a class="nav-link" href="contact.html">Contact</a></li>
+</ul>
+
+<script>
+  // Runs after the partial is inserted into the DOM
+  (function initActiveState(root){
+    try {
+      const page = document.body.getAttribute('data-current-page')
+                 || location.pathname.split('/').pop() || 'index.html';
+      const links = (root || document).querySelectorAll('.nav-list .nav-link');
+      links.forEach(a => {
+        const href = a.getAttribute('href');
+        if (href === page || (page === 'index.html' && (href === '/' || href === '#'))) {
+          a.classList.add('active');
+          a.setAttribute('aria-current','page');
+        } else {
+          a.classList.remove('active');
+          a.removeAttribute('aria-current');
+        }
+      });
+    } catch(e){}
+  })(document.currentScript.closest('nav'));
+</script>
+
+    <!-- Right social (desktop) -->
+    <div class="social-wrap d-none d-lg-flex align-items-center">
+      <a href="#" class="nav-link social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="#" class="nav-link social-link" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+      <a href="#" class="nav-link social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+    </div>
+
+    <!-- Mobile toggler -->
+    <button class="navbar-toggler border-0 shadow-none d-lg-none" type="button"
+            data-bs-toggle="offcanvas" data-bs-target="#navDrawer" aria-controls="navDrawer" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+
+  <!-- Offcanvas for mobile -->
+  <div class="offcanvas offcanvas-end nav-offcanvas h-100" tabindex="-1" id="navDrawer" aria-labelledby="navDrawerLabel" data-bs-scroll="true">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title d-flex align-items-center gap-2 m-0" id="navDrawerLabel">
+        <span class="brand-mark"></span>
+        <span class="brand-script">Follow Me</span>
+      </h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+
+    <div class="offcanvas-body d-flex flex-column">
+<nav class="drawer-menu">
+  <a class="drawer-link" href="index.html" data-bs-dismiss="offcanvas">Home</a>
+  <a class="drawer-link" href="catalogue.html" data-bs-dismiss="offcanvas">Shop</a>
+  <a class="drawer-link" href="about.html" data-bs-dismiss="offcanvas">About Us</a>
+  <a class="drawer-link" href="contact.html" data-bs-dismiss="offcanvas">Contact</a>
+</nav>
+
+
+<script>
+  (function wireDrawerNav(){
+    const nav = document.querySelector('nav.gold-glass-nav');
+    if (!nav) return;
+
+    const drawer = document.getElementById('navDrawer');
+
+    nav.querySelectorAll('.drawer-menu .drawer-link').forEach(a => {
+      a.addEventListener('click', function(e){
+        const url = a.getAttribute('href');
+        // Only intercept for real URLs
+        if (!url || url === '#') return;
+
+        // Close offcanvas if available
+        try {
+          if (drawer && window.bootstrap) {
+            const inst = bootstrap.Offcanvas.getOrCreateInstance(drawer);
+            inst.hide();
+          }
+        } catch(_) {}
+
+        e.preventDefault();             // stop other handlers from blocking
+        setTimeout(() => { window.location.assign(url); }, 20); // navigate
+      }, { capture:true }); // capture phase beats most preventDefault calls
+    });
+  })();
+</script>
+
+
+      <div class="mt-auto pt-3 border-top">
+        <div class="d-flex gap-2">
+          <a href="#" class="btn btn-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="btn btn-icon" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+          <a href="#" class="btn btn-icon" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<style>
+/* Tokens */
+:root {
+  --gold: #d4af37;
+  --gold-deep: #b9931e;
+  --ink: #1f1f1f;
+}
+
+/* Container row */
+.nav-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 68px; /* compact, matches image 1 density */
+}
+
+/* Glass + bottom glow */
+.gold-glass-nav {
+  background: rgba(255,255,255,0.58);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 2px solid rgba(212,175,55,0.35);
+  box-shadow: 0 10px 24px rgba(212,175,55,0.22);
+}
+
+/* Brand */
+.brand-mark {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  border: 1px solid rgba(212,175,55,0.6);
+  background: radial-gradient(circle at 30% 30%, #fff 10%, #fef6d8 40%, #f3e2a2 70%);
+  box-shadow: 0 6px 14px rgba(212,175,55,.28);
+}
+.brand-script {
+  font-family: "Great Vibes", cursive;
+  font-size: 26px; /* slightly smaller for compact look */
+  color: var(--gold-deep);
+  text-shadow: 0 1px 8px rgba(212,175,55,.35);
+  letter-spacing: .4px;
+  white-space: nowrap;
+}
+
+/* Center desktop menu */
+.nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+  gap: 0; /* squeeze group like image 1 */
+}
+.nav-list > li { display: inline-flex; }
+
+.nav-link {
+  color: #2b2710 !important;
+  font-weight: 400;
+  border-radius: 10px;
+  padding: .5rem .75rem;  /* narrower than before */
+  margin-left: 10px;      /* reduced spacing between items */
+  letter-spacing: 0;
+  transition: color .12s ease, background .12s ease, transform .12s ease;
+}
+.nav-link:first-child { margin-left: 0; }
+.nav-link:hover { color: #1e1a08 !important; background: #fffaf0; }
+.nav-link.active, .nav-link[aria-current="page"] {
+  color: var(--gold) !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Desktop social icons match image 1 */
+.social-wrap { gap: 0; }
+.social-link {
+  color: #2b2710 !important;
+  border-radius: 10px;
+  padding: 0;                 /* no extra pad */
+  margin-left: 40px;          /* consistent 40px between icons */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+.social-link:first-child { margin-left: 0; }
+.social-link i { font-size: 18px; }
+.social-link:hover { background: transparent; color: #1e1a08 !important; }
+
+/* Mobile toggler and drawer */
+.navbar-toggler {
+  border: 1px solid rgba(212,175,55,.55)!important;
+  border-radius: 10px;
+  background: #fffdf4;
+  padding: .35rem .5rem;
+  margin-left: auto;
+}
+.navbar-toggler .navbar-toggler-icon {
+  background-image: none;
+  position: relative;
+  width: 1.4rem; height: 1.2rem; display: inline-block;
+}
+.navbar-toggler .navbar-toggler-icon::before,
+.navbar-toggler .navbar-toggler-icon::after {
+  content: "";
+  position: absolute; left: 0; right: 0;
+  height: 2px; background: #2b2710; border-radius: 2px;
+}
+.navbar-toggler .navbar-toggler-icon::before { top: 3px; }
+.navbar-toggler .navbar-toggler-icon::after  { bottom: 3px; }
+
+/* Mobile drawer look (kept from original) */
+@media (max-width: 991.98px) {
+  .offcanvas.nav-offcanvas {
+    background-color: #ffffff !important;
+    width: 280px !important; max-width: 88vw !important; height: 100vh !important;
+    border-left: 1px solid rgba(212,175,55,.28) !important;
+    box-shadow: -10px 0 28px rgba(0,0,0,.16) !important; z-index: 1060 !important;
+  }
+  .offcanvas-backdrop.show { opacity: .45 !important; z-index: 1055 !important; }
+  .offcanvas.nav-offcanvas .offcanvas-header {
+    background: #ffffff !important;
+    border-bottom: 1px solid rgba(0,0,0,.06) !important;
+    padding: 12px 14px !important; margin: 0 !important;
+  }
+  .offcanvas.nav-offcanvas .offcanvas-body {
+    background: #ffffff !important; padding: 14px !important; overflow: auto !important; -webkit-overflow-scrolling: touch;
+  }
+  .drawer-menu { display: flex; flex-direction: column; gap: 6px; }
+  .drawer-link, .offcanvas.nav-offcanvas .nav-link {
+    display: block; padding: 10px 12px; border-radius: 10px; text-decoration: none;
+    color: #2b2710 !important; font-weight: 600; background: transparent !important;
+  }
+  .drawer-link:hover, .offcanvas.nav-offcanvas .nav-link:hover { background: #fffaf0 !important; color: #1e1a08 !important; }
+  .drawer-link.active, .offcanvas.nav-offcanvas .nav-link.active, .offcanvas.nav-offcanvas .nav-link[aria-current="page"] {
+    color: var(--gold) !important; background: transparent !important; box-shadow: none !important;
+  }
+  .btn-icon {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 40px; height: 40px; border-radius: 10px;
+    border: 1px solid rgba(212,175,55,.45); color: #2b2710; background: #fff;
+  }
+  .btn-icon:hover { background: #fffaf0; }
+}
+
+/* Hide mobile toggler on desktop explicitly */
+@media (min-width: 992px) {
+  .navbar-toggler { display: none !important; }
+}
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script><!-- [file:1] -->

@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Follow Me Boutique — Catalogue</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet" />
+
+      <!--Navbar-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"> <!-- [file:1] -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"> <!-- [file:1] -->
+    <!--Navbar-->
+
+<style>
+
+    /* ===== Grid wrapper ===== */
+.card-container-grid {
+  display: grid;
+  gap: 16px;
+  padding: 12px;
+
+  /* DESKTOP: exactly 6 columns */
+  grid-template-columns: repeat(6, 1fr);
+}
+
+/* Optional: hide after 6 items (remove if all should show) */
+/* .card-container-grid > .product-card:nth-child(n+7) { display: none; } */
+
+/* ===== Card ===== */
+.product-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  transition: transform .25s ease, box-shadow .25s ease;
+  width: 100%;     /* fill its grid track */
+  min-width: 0;    /* allow internal flex to shrink properly */
+}
+
+.product-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px rgba(0,0,0,0.12);
+}
+
+/* Media area */
+.product-media {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  width: 100%;
+}
+.product-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Body */
+.product-body { flex: 1 1 auto; padding: 12px 14px; }
+.badge-top { position: absolute; top: .5rem; left: .5rem; z-index: 2; }
+
+/* ===== Breakpoints ===== */
+/* Tablets/laptops: still 6 columns if space allows; drop to 4 when narrower */
+@media (max-width: 1200px) {
+  .card-container-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* Tablets: 3 columns */
+@media (max-width: 992px) {
+  .card-container-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* MOBILE: exactly 2 columns */
+@media (max-width: 768px) {
+  .card-container-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    padding: 10px;
+  }
+  .product-card { max-width: none; }
+}
+
+/* Very narrow phones: keep 2 columns by reducing gap; if still too tight, uncomment 1 column fallback below */
+@media (max-width: 400px) {
+  .card-container-grid { gap: 10px; }
+  /* Fallback to one column if absolutely necessary:
+     .card-container-grid { grid-template-columns: 1fr; } */
+}
+
+/* Short viewport tweak */
+@media (max-height: 640px) { .product-media { aspect-ratio: 4 / 4.5; } }
+
+/* Filter inputs (optional) */
+.filters .form-select,
+.filters .form-range { max-width: 260px; }
+@media (max-width: 576px) {
+  .filters .form-select,
+  .filters .form-range { max-width: 100%; }
+}
+
+</style>
+
+
+  <style>
+    /* Circular color radios styled as swatches */
+    .color-swatch {
+      position: relative;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+    .color-swatch input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .color-swatch .dot {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--swatch, #000);
+      display: inline-block;
+      box-shadow: inset 0 0 0 2px rgba(255,255,255,0.9), 0 0 0 1px rgba(0,0,0,0.15);
+      transition: box-shadow .15s ease, transform .15s ease;
+    }
+    .color-swatch input:checked + .dot {
+      box-shadow:
+        inset 0 0 0 6px rgba(255,255,255,0.9),
+        0 0 0 2px var(--swatch, #000),
+        0 2px 6px rgba(0,0,0,0.25);
+      transform: scale(1.02);
+    }
+  </style>
+
+    <style>
+    :root{
+      --gold:#d4af37;
+      --gold-deep:#b9931e;
+      --gold-soft:#f6e7b4;
+      --white:#ffffff;
+      --bg:#fff9ef;
+      --text:#2a2a2a;
+      --ink:#1f1f1f;
+    }
+    *{box-sizing:border-box}
+    html,body{
+      margin:0; padding:0; color:var(--text);
+      font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      background:linear-gradient(180deg,var(--bg),#fff);
+    }
+
+    /* Hero */
+    .hero{
+      position:relative;
+      min-height:52vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:72px 20px 40px;
+      background:
+        radial-gradient(1200px 420px at 10% 0%, rgba(212,175,55,0.18), transparent 60%),
+        radial-gradient(1200px 420px at 90% 0%, rgba(212,175,55,0.18), transparent 60%),
+        linear-gradient(180deg,#fff, #fffaf0 60%, #fff);
+      overflow:hidden;
+    }
+    .hero .shine{
+      position:absolute;
+      inset:-25% -15%;
+      background:conic-gradient(from 0deg, rgba(212,175,55,.14), transparent 30%, rgba(212,175,55,.14) 60%, transparent 100%);
+      filter:blur(40px);
+      animation:spin 18s linear infinite;
+      pointer-events:none;
+    }
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    .hero-card{
+      position:relative;
+      width:min(960px, 94%);
+      margin:auto;
+      padding:38px 28px;
+      border-radius:22px;
+      background:rgba(255,255,255,0.58);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border:1px solid rgba(212,175,55,0.4);
+      box-shadow:0 22px 64px rgba(212,175,55,0.18), 0 12px 24px rgba(0,0,0,0.06);
+      text-align:center;
+    }
+    .brand{
+      font-family:"Great Vibes",cursive;
+      font-size:44px;
+      color:var(--gold-deep);
+      margin:0 0 6px;
+      letter-spacing:1px;
+      text-shadow:0 2px 12px rgba(212,175,55,.35);
+    }
+    .hero h1{
+      font-size:clamp(30px, 4.6vw, 48px);
+      margin:6px 0 10px;
+      color:var(--ink);
+    }
+    .hero p{
+      margin:0;color:#5b4a1a;font-weight:400;
+    }
+    .divider{
+      width:90px;height:4px;border-radius:4px;
+      background:linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin:18px auto 0;
+    }
+
+    /* Section container */
+    .container{
+      width:min(1100px, 94%);
+      margin: -24px auto 70px;
+    }
+
+    /* Shared card style */
+    .card{
+      background:#fff;
+      border:1px solid rgba(212,175,55,0.38);
+      border-radius:18px;
+      box-shadow:0 12px 34px rgba(212,175,55,0.18), 0 8px 20px rgba(0,0,0,0.05);
+      overflow:hidden;
+    }
+    .section{
+      padding:22px;
+    }
+    .section-head{
+      display:flex;align-items:center;gap:12px;margin-bottom:8px;
+    }
+    .pill{
+      display:inline-flex;align-items:center;justify-content:center;
+      height:28px; padding:0 12px; border-radius:999px;
+      background:linear-gradient(180deg, var(--gold) 0%, #f3d777 50%, var(--gold) 100%);
+      color:#1e1a08; font-weight:700; font-size:13px;
+      border:1px solid rgba(212,175,55,.8);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.6), 0 6px 16px rgba(212,175,55,.25);
+    }
+    .section h2{
+      margin:8px 0 10px; font-size:clamp(22px, 2.6vw, 28px); color:#3a340f;
+    }
+    .section p{
+      margin:8px 0 12px; color:#6f5b23; line-height:1.7;
+    }
+
+    /* Grids */
+    .grid-2{
+      display:grid; grid-template-columns:1fr; gap:18px; align-items:center;
+    }
+    @media(min-width:900px){
+      .grid-2{ grid-template-columns:1.2fr .8fr; gap:24px; }
+    }
+    .media{
+      border-radius:14px; overflow:hidden;
+      border:1px solid rgba(212,175,55,.35);
+      box-shadow:0 10px 26px rgba(212,175,55,.18);
+      background:
+        linear-gradient(180deg,#fff,#fff8e6);
+      min-height:220px;
+      display:grid;place-items:center;
+      padding:18px;
+    }
+    .media img{
+      width:100%; height:auto; display:block; border-radius:10px;
+      filter:saturate(1.02) contrast(1.02);
+    }
+
+    /* Icon bullets */
+    .bullets{display:grid; gap:10px; margin-top:8px;}
+    .bullet{
+      display:flex; gap:12px; align-items:flex-start;
+      padding:10px 8px; border-bottom:1px dashed rgba(212,175,55,.35);
+    }
+    .bullet:last-child{border-bottom:none}
+    .dot{
+      width:10px;height:10px;border-radius:50%;
+      background:var(--gold); margin-top:6px;
+      box-shadow:0 0 0 3px rgba(212,175,55,.2);
+    }
+
+    /* Values - cards */
+    .values{
+      display:grid; grid-template-columns:1fr; gap:16px; margin-top:8px;
+    }
+    @media(min-width:900px){
+      .values{ grid-template-columns:1fr 1fr 1fr; }
+    }
+    .value-card{
+      background:#fffef8; border:1px solid rgba(212,175,55,.38); border-radius:16px;
+      padding:16px; box-shadow:0 12px 28px rgba(212,175,55,.16);
+      transition:transform .12s ease, box-shadow .12s ease;
+    }
+    .value-card:hover{
+      transform:translateY(-2px);
+      box-shadow:0 18px 36px rgba(212,175,55,.22);
+    }
+    .value-title{
+      display:flex; align-items:center; gap:10px; color:#3a340f; font-weight:700; margin:0 0 6px;
+    }
+    .tag{
+      display:inline-flex; align-items:center; justify-content:center;
+      font-size:12px; padding:0 10px; height:24px; border-radius:999px;
+      border:1px solid rgba(212,175,55,.8);
+      background:linear-gradient(180deg,#fffef5,#fff3c9);
+      color:#4a3f14; font-weight:600;
+    }
+    .mini{
+      font-size:13px; color:#6f5b23; margin:0;
+    }
+
+    /* CTA band */
+    .cta{
+      margin:26px 0 0; padding:18px;
+      border-radius:16px;
+      border:1px solid rgba(212,175,55,.5);
+      background:
+        radial-gradient(400px 120px at 20% 0%, rgba(212,175,55,.2), transparent 60%),
+        radial-gradient(400px 120px at 80% 0%, rgba(212,175,55,.2), transparent 60%),
+        #fffef6;
+      box-shadow:0 14px 34px rgba(212,175,55,.18);
+      text-align:center;
+    }
+    .cta .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      padding:12px 18px;border-radius:12px;border:1px solid var(--gold);
+      color:#1e1a08;background: linear-gradient(180deg, var(--gold) 0%, #f3d777 30%, #f7e7a8 70%, var(--gold) 100%);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.6), 0 10px 22px rgba(212,175,55,.35);
+      cursor:pointer; font-weight:700;
+      transition:transform .12s ease, box-shadow .12s ease, filter .12s ease;
+    }
+    .cta .btn:hover{ transform: translateY(-1px); filter:saturate(1.05); }
+    .cta .btn:active{ transform: translateY(0); box-shadow:0 6px 14px rgba(212,175,55,.3); }
+
+    /* Footer */
+    footer{
+      text-align:center; color:#7a6829; font-size:13px; padding:18px 12px 36px;
+    }
+  </style>
+</head>
+<body data-current-page="catalogue.html">
+
+<!-- host page -->
+<div id="navbar-placeholder"></div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script><!-- [file:1] -->
+<script type="module">
+  async function loadNavbar() {
+    const mount = document.getElementById('navbar-placeholder');
+    if (!mount) return;
+
+    const resp = await fetch('/navbar.html', { cache: 'no-cache' });  // adjust path
+    const html = await resp.text();
+    mount.innerHTML = html;  // inline scripts inside navbar.html will NOT run
+
+    // 1) Wire offcanvas drawer navigation (works even if other handlers call preventDefault)
+    const drawer = document.getElementById('navDrawer');
+    const links = mount.querySelectorAll('.drawer-menu .drawer-link, .nav-list .nav-link');
+    links.forEach(a => {
+      a.addEventListener('click', (e) => {
+        const url = a.getAttribute('href');
+        if (!url || url === '#') return;        // ignore placeholders
+        e.preventDefault();                      // stop any global preventDefault
+        try {
+          if (drawer && window.bootstrap) {
+            const inst = bootstrap.Offcanvas.getOrCreateInstance(drawer);
+            inst.hide();
+          }
+        } catch(_) {}
+        setTimeout(() => { window.location.assign(url); }, 20);
+      }, { capture: true });
+    });
+
+    // 2) Recompute active state for both desktop and drawer menus
+    const page = document.body.getAttribute('data-current-page')
+               || location.pathname.split('/').pop() || 'index.html';
+    links.forEach(a => {
+      a.classList.remove('active'); a.removeAttribute('aria-current');
+      const href = a.getAttribute('href');
+      const isHome = page === 'index.html' && (href === '/' || href === '#' || href === 'index.html');
+      if (href === page || isHome) { a.classList.add('active'); a.setAttribute('aria-current','page'); }
+    });
+  }
+  loadNavbar();
+</script>
+
+
+  <!-- Hero -->
+  <section class="hero" style="margin-top: 40px;">
+    <div class="shine"></div>
+    <div class="hero-card">
+      <div class="brand">Follow Me</div>
+      <h1>Catalogue</h1>
+      <p>Timeless designs, playful comfort, and crafted quality for every little royal.</p>
+      <div class="divider"></div>
+    </div>
+  </section>
+
+
+  <!-- Filters -->
+  <section class="py-3 px-3">
+    <div class="container-fluid">
+      <div class="filters row g-3 align-items-end">
+        <div class="col-12 col-md-4">
+          <label class="form-label mb-2">Gender</label>
+          <div class="d-flex gap-3 flex-wrap">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="gender" id="genderAll" value="all" checked />
+              <label class="form-check-label" for="genderAll">All</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="gender" id="genderBoys" value="boys" />
+              <label class="form-check-label" for="genderBoys">Boys</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="gender" id="genderGirls" value="girls" />
+              <label class="form-check-label" for="genderGirls">Girls</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-3">
+          <label for="sizeSelect" class="form-label">Size</label>
+          <select class="form-select" id="sizeSelect">
+            <option value="all" selected>All sizes</option>
+            <option value="s">S</option>
+            <option value="m">M</option>
+            <option value="l">L</option>
+            <option value="xl">XL</option>
+          </select>
+        </div>
+
+        <div class="col-12 col-md-5">
+          <label class="form-label">Price range (₹)</label>
+          <div class="d-flex align-items-center gap-3">
+            <input type="range" class="form-range" id="priceMin" min="0" max="2000" step="50" value="0" />
+            <input type="range" class="form-range" id="priceMax" min="0" max="2000" step="50" value="2000" />
+          </div>
+          <div class="d-flex justify-content-between mt-1 small">
+            <span>Min: ₹<span id="minVal">0</span></span>
+            <span>Max: ₹<span id="maxVal">2000</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products -->
+<section class="py-4">
+  <div class="container-fluid">
+    <div id="productGrid" class="card-container-grid">
+
+      <!-- Product Card Start -->
+      <div class="product-card" data-gender="boys" data-sizes="xs,s,m,l,xl" data-price="399"
+        data-colors='{
+          "purple":"https://images.unsplash.com/photo-1544441893-675973e31985?q=80&w=1200&auto=format&fit=crop",
+          "black":"https://images.unsplash.com/photo-1537832816519-689ad163238b?q=80&w=1200&auto=format&fit=crop"
+        }'>
+        <span class="badge bg-success badge-top">New</span>
+
+        <div class="product-media">
+          <img class="product-img"
+            src="https://images.unsplash.com/photo-1544441893-675973e31985?q=80&w=1200&auto=format&fit=crop"
+            alt="Graphic Tee" />
+        </div>
+
+        <div class="p-3 d-flex flex-column product-body">
+          <div class="d-flex justify-content-between align-items-center">
+            <h4><span class="fw-bold">₹<span class="product-price">399</span></span></h4>
+          </div>
+
+          <h6 class="product-title text-muted small mb-1">Graphic Tee (Purple)</h6>
+          <p class="text-muted small mb-1">Gender: Boys</p>
+
+          <div class="small">
+            <span class="text-muted me-2">Size</span>
+            <span class="me-2">XS</span>
+            <span class="me-2">S</span>
+            <span class="me-2">M</span>
+            <span class="me-2">L</span>
+            <span class="me-2">XL</span>
+          </div>
+
+          <div class="pt-2">
+            <div class="form-label small mb-1">Colors</div>
+            <div class="d-flex align-items-center gap-3">
+              <label class="color-swatch" data-color="purple" style="--swatch:#7E3FF2;">
+                <input type="radio" class="color-option" value="purple" checked />
+                <span class="dot"></span>
+              </label>
+              <label class="color-swatch" data-color="black" style="--swatch:#1E1E1E;">
+                <input type="radio" class="color-option" value="black" />
+                <span class="dot"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="pt-3">
+            <button class="btn btn-success w-100 buy-btn">
+              <i class="bi bi-bag-check"></i> Buy
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Product Card End -->
+      <div class="product-card" data-gender="boys" data-sizes="xs,s,m,l,xl" data-price="399"
+        data-colors='{
+          "purple":"https://images.unsplash.com/photo-1544441893-675973e31985?q=80&w=1200&auto=format&fit=crop",
+          "black":"https://images.unsplash.com/photo-1537832816519-689ad163238b?q=80&w=1200&auto=format&fit=crop"
+        }'>
+        <span class="badge bg-success badge-top">New</span>
+
+        <div class="product-media">
+          <img class="product-img"
+            src="https://images.unsplash.com/photo-1544441893-675973e31985?q=80&w=1200&auto=format&fit=crop"
+            alt="Graphic Tee" />
+        </div>
+
+        <div class="p-3 d-flex flex-column product-body">
+          <div class="d-flex justify-content-between align-items-center">
+            <h4><span class="fw-bold">₹<span class="product-price">399</span></span></h4>
+          </div>
+
+          <h6 class="product-title text-muted small mb-1">Graphic Tee (Purple)</h6>
+          <p class="text-muted small mb-1">Gender: Boys</p>
+
+          <div class="small">
+            <span class="text-muted me-2">Size</span>
+            <span class="me-2">XS</span>
+            <span class="me-2">S</span>
+            <span class="me-2">M</span>
+            <span class="me-2">L</span>
+            <span class="me-2">XL</span>
+          </div>
+
+          <div class="pt-2">
+            <div class="form-label small mb-1">Colors</div>
+            <div class="d-flex align-items-center gap-3">
+              <label class="color-swatch" data-color="purple" style="--swatch:#7E3FF2;">
+                <input type="radio" class="color-option" value="purple" checked />
+                <span class="dot"></span>
+              </label>
+              <label class="color-swatch" data-color="black" style="--swatch:#1E1E1E;">
+                <input type="radio" class="color-option" value="black" />
+                <span class="dot"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="pt-3">
+            <button class="btn btn-success w-100 buy-btn">
+              <i class="bi bi-bag-check"></i> Buy
+            </button>
+          </div>
+        </div>
+      </div>
+            <div class="product-card" data-gender="boys" data-sizes="xs,s,m,l,xl" data-price="399"
+        data-colors='{
+          "purple":"https://images.unsplash.com/photo-1544441893-675973e31985?q=80&w=1200&auto=format&fit=crop",
+          "black":"https://images.unsplash.com/photo-1537832816519-689ad163238b?q=80&w=1200&auto=format&fit=crop"
+        }'>
+        <span class="badge bg-success badge-top">New</span>
+
+        <div class="product-media">
+          <img class="product-img"
+            src="https://images.unsplash.com/photo-1544441893-675973e31985?q=80&w=1200&auto=format&fit=crop"
+            alt="Graphic Tee" />
+        </div>
+
+        <div class="p-3 d-flex flex-column product-body">
+          <div class="d-flex justify-content-between align-items-center">
+            <h4><span class="fw-bold">₹<span class="product-price">399</span></span></h4>
+          </div>
+
+          <h6 class="product-title text-muted small mb-1">Graphic Tee (Purple)</h6>
+          <p class="text-muted small mb-1">Gender: Boys</p>
+
+          <div class="small">
+            <span class="text-muted me-2">Size</span>
+            <span class="me-2">XS</span>
+            <span class="me-2">S</span>
+            <span class="me-2">M</span>
+            <span class="me-2">L</span>
+            <span class="me-2">XL</span>
+          </div>
+
+          <div class="pt-2">
+            <div class="form-label small mb-1">Colors</div>
+            <div class="d-flex align-items-center gap-3">
+              <label class="color-swatch" data-color="purple" style="--swatch:#7E3FF2;">
+                <input type="radio" class="color-option" value="purple" checked />
+                <span class="dot"></span>
+              </label>
+              <label class="color-swatch" data-color="black" style="--swatch:#1E1E1E;">
+                <input type="radio" class="color-option" value="black" />
+                <span class="dot"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="pt-3">
+            <button class="btn btn-success w-100 buy-btn">
+              <i class="bi bi-bag-check"></i> Buy
+            </button>
+          </div>
+        </div>
+      </div>
+            <div class="product-card" data-gender="boys" data-sizes="xs,s,m,l,xl" data-price="399"
+        data-colors='{
+          "purple":"https://images.unsplash.com/photo-1544441893-675973e31985?q=80&w=1200&auto=format&fit=crop",
+          "black":"https://images.unsplash.com/photo-1537832816519-689ad163238b?q=80&w=1200&auto=format&fit=crop"
+        }'>
+        <span class="badge bg-success badge-top">New</span>
+
+        <div class="product-media">
+          <img class="product-img"
+            src="https://images.unsplash.com/photo-1544441893-675973e31985?q=80&w=1200&auto=format&fit=crop"
+            alt="Graphic Tee" />
+        </div>
+
+        <div class="p-3 d-flex flex-column product-body">
+          <div class="d-flex justify-content-between align-items-center">
+            <h4><span class="fw-bold">₹<span class="product-price">399</span></span></h4>
+          </div>
+
+          <h6 class="product-title text-muted small mb-1">Graphic Tee (Purple)</h6>
+          <p class="text-muted small mb-1">Gender: Boys</p>
+
+          <div class="small">
+            <span class="text-muted me-2">Size</span>
+            <span class="me-2">XS</span>
+            <span class="me-2">S</span>
+            <span class="me-2">M</span>
+            <span class="me-2">L</span>
+            <span class="me-2">XL</span>
+          </div>
+
+          <div class="pt-2">
+            <div class="form-label small mb-1">Colors</div>
+            <div class="d-flex align-items-center gap-3">
+              <label class="color-swatch" data-color="purple" style="--swatch:#7E3FF2;">
+                <input type="radio" class="color-option" value="purple" checked />
+                <span class="dot"></span>
+              </label>
+              <label class="color-swatch" data-color="black" style="--swatch:#1E1E1E;">
+                <input type="radio" class="color-option" value="black" />
+                <span class="dot"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="pt-3">
+            <button class="btn btn-success w-100 buy-btn">
+              <i class="bi bi-bag-check"></i> Buy
+            </button>
+          </div>
+        </div>
+      </div>
+            <div class="product-card" data-gender="boys" data-sizes="xs,s,m,l,xl" data-price="399"
+        data-colors='{
+          "purple":"https://images.unsplash.com/photo-1544441893-675973e31985?q=80&w=1200&auto=format&fit=crop",
+          "black":"https://images.unsplash.com/photo-1537832816519-689ad163238b?q=80&w=1200&auto=format&fit=crop"
+        }'>
+        <span class="badge bg-success badge-top">New</span>
+
+        <div class="product-media">
+          <img class="product-img"
+            src="https://images.unsplash.com/photo-1544441893-675973e31985?q=80&w=1200&auto=format&fit=crop"
+            alt="Graphic Tee" />
+        </div>
+
+        <div class="p-3 d-flex flex-column product-body">
+          <div class="d-flex justify-content-between align-items-center">
+            <h4><span class="fw-bold">₹<span class="product-price">399</span></span></h4>
+          </div>
+
+          <h6 class="product-title text-muted small mb-1">Graphic Tee (Purple)</h6>
+          <p class="text-muted small mb-1">Gender: Boys</p>
+
+          <div class="small">
+            <span class="text-muted me-2">Size</span>
+            <span class="me-2">XS</span>
+            <span class="me-2">S</span>
+            <span class="me-2">M</span>
+            <span class="me-2">L</span>
+            <span class="me-2">XL</span>
+          </div>
+
+          <div class="pt-2">
+            <div class="form-label small mb-1">Colors</div>
+            <div class="d-flex align-items-center gap-3">
+              <label class="color-swatch" data-color="purple" style="--swatch:#7E3FF2;">
+                <input type="radio" class="color-option" value="purple" checked />
+                <span class="dot"></span>
+              </label>
+              <label class="color-swatch" data-color="black" style="--swatch:#1E1E1E;">
+                <input type="radio" class="color-option" value="black" />
+                <span class="dot"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="pt-3">
+            <button class="btn btn-success w-100 buy-btn">
+              <i class="bi bi-bag-check"></i> Buy
+            </button>
+          </div>
+        </div>
+      </div>
+            <div class="product-card" data-gender="boys" data-sizes="xs,s,m,l,xl" data-price="399"
+        data-colors='{
+          "purple":"https://images.unsplash.com/photo-1544441893-675973e31985?q=80&w=1200&auto=format&fit=crop",
+          "black":"https://images.unsplash.com/photo-1537832816519-689ad163238b?q=80&w=1200&auto=format&fit=crop"
+        }'>
+        <span class="badge bg-success badge-top">New</span>
+
+        <div class="product-media">
+          <img class="product-img"
+            src="https://images.unsplash.com/photo-1544441893-675973e31985?q=80&w=1200&auto=format&fit=crop"
+            alt="Graphic Tee" />
+        </div>
+
+        <div class="p-3 d-flex flex-column product-body">
+          <div class="d-flex justify-content-between align-items-center">
+            <h4><span class="fw-bold">₹<span class="product-price">399</span></span></h4>
+          </div>
+
+          <h6 class="product-title text-muted small mb-1">Graphic Tee (Purple)</h6>
+          <p class="text-muted small mb-1">Gender: Boys</p>
+
+          <div class="small">
+            <span class="text-muted me-2">Size</span>
+            <span class="me-2">XS</span>
+            <span class="me-2">S</span>
+            <span class="me-2">M</span>
+            <span class="me-2">L</span>
+            <span class="me-2">XL</span>
+          </div>
+
+          <div class="pt-2">
+            <div class="form-label small mb-1">Colors</div>
+            <div class="d-flex align-items-center gap-3">
+              <label class="color-swatch" data-color="purple" style="--swatch:#7E3FF2;">
+                <input type="radio" class="color-option" value="purple" checked />
+                <span class="dot"></span>
+              </label>
+              <label class="color-swatch" data-color="black" style="--swatch:#1E1E1E;">
+                <input type="radio" class="color-option" value="black" />
+                <span class="dot"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="pt-3">
+            <button class="btn btn-success w-100 buy-btn">
+              <i class="bi bi-bag-check"></i> Buy
+            </button>
+          </div>
+        </div>
+      </div>
+            <div class="product-card" data-gender="boys" data-sizes="xs,s,m,l,xl" data-price="399"
+        data-colors='{
+          "purple":"https://images.unsplash.com/photo-1544441893-675973e31985?q=80&w=1200&auto=format&fit=crop",
+          "black":"https://images.unsplash.com/photo-1537832816519-689ad163238b?q=80&w=1200&auto=format&fit=crop"
+        }'>
+        <span class="badge bg-success badge-top">New</span>
+
+        <div class="product-media">
+          <img class="product-img"
+            src="https://images.unsplash.com/photo-1544441893-675973e31985?q=80&w=1200&auto=format&fit=crop"
+            alt="Graphic Tee" />
+        </div>
+
+        <div class="p-3 d-flex flex-column product-body">
+          <div class="d-flex justify-content-between align-items-center">
+            <h4><span class="fw-bold">₹<span class="product-price">399</span></span></h4>
+          </div>
+
+          <h6 class="product-title text-muted small mb-1">Graphic Tee (Purple)</h6>
+          <p class="text-muted small mb-1">Gender: Boys</p>
+
+          <div class="small">
+            <span class="text-muted me-2">Size</span>
+            <span class="me-2">XS</span>
+            <span class="me-2">S</span>
+            <span class="me-2">M</span>
+            <span class="me-2">L</span>
+            <span class="me-2">XL</span>
+          </div>
+
+          <div class="pt-2">
+            <div class="form-label small mb-1">Colors</div>
+            <div class="d-flex align-items-center gap-3">
+              <label class="color-swatch" data-color="purple" style="--swatch:#7E3FF2;">
+                <input type="radio" class="color-option" value="purple" checked />
+                <span class="dot"></span>
+              </label>
+              <label class="color-swatch" data-color="black" style="--swatch:#1E1E1E;">
+                <input type="radio" class="color-option" value="black" />
+                <span class="dot"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="pt-3">
+            <button class="btn btn-success w-100 buy-btn">
+              <i class="bi bi-bag-check"></i> Buy
+            </button>
+          </div>
+        </div>
+      </div>
+            <div class="product-card" data-gender="boys" data-sizes="xs,s,m,l,xl" data-price="399"
+        data-colors='{
+          "purple":"https://images.unsplash.com/photo-1544441893-675973e31985?q=80&w=1200&auto=format&fit=crop",
+          "black":"https://images.unsplash.com/photo-1537832816519-689ad163238b?q=80&w=1200&auto=format&fit=crop"
+        }'>
+        <span class="badge bg-success badge-top">New</span>
+
+        <div class="product-media">
+          <img class="product-img"
+            src="https://images.unsplash.com/photo-1544441893-675973e31985?q=80&w=1200&auto=format&fit=crop"
+            alt="Graphic Tee" />
+        </div>
+
+        <div class="p-3 d-flex flex-column product-body">
+          <div class="d-flex justify-content-between align-items-center">
+            <h4><span class="fw-bold">₹<span class="product-price">399</span></span></h4>
+          </div>
+
+          <h6 class="product-title text-muted small mb-1">Graphic Tee (Purple)</h6>
+          <p class="text-muted small mb-1">Gender: Boys</p>
+
+          <div class="small">
+            <span class="text-muted me-2">Size</span>
+            <span class="me-2">XS</span>
+            <span class="me-2">S</span>
+            <span class="me-2">M</span>
+            <span class="me-2">L</span>
+            <span class="me-2">XL</span>
+          </div>
+
+          <div class="pt-2">
+            <div class="form-label small mb-1">Colors</div>
+            <div class="d-flex align-items-center gap-3">
+              <label class="color-swatch" data-color="purple" style="--swatch:#7E3FF2;">
+                <input type="radio" class="color-option" value="purple" checked />
+                <span class="dot"></span>
+              </label>
+              <label class="color-swatch" data-color="black" style="--swatch:#1E1E1E;">
+                <input type="radio" class="color-option" value="black" />
+                <span class="dot"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="pt-3">
+            <button class="btn btn-success w-100 buy-btn">
+              <i class="bi bi-bag-check"></i> Buy
+            </button>
+          </div>
+        </div>
+      </div>
+            <div class="product-card" data-gender="boys" data-sizes="xs,s,m,l,xl" data-price="399"
+        data-colors='{
+          "purple":"https://images.unsplash.com/photo-1544441893-675973e31985?q=80&w=1200&auto=format&fit=crop",
+          "black":"https://images.unsplash.com/photo-1537832816519-689ad163238b?q=80&w=1200&auto=format&fit=crop"
+        }'>
+        <span class="badge bg-success badge-top">New</span>
+
+        <div class="product-media">
+          <img class="product-img"
+            src="https://images.unsplash.com/photo-1544441893-675973e31985?q=80&w=1200&auto=format&fit=crop"
+            alt="Graphic Tee" />
+        </div>
+
+        <div class="p-3 d-flex flex-column product-body">
+          <div class="d-flex justify-content-between align-items-center">
+            <h4><span class="fw-bold">₹<span class="product-price">399</span></span></h4>
+          </div>
+
+          <h6 class="product-title text-muted small mb-1">Graphic Tee (Purple)</h6>
+          <p class="text-muted small mb-1">Gender: Boys</p>
+
+          <div class="small">
+            <span class="text-muted me-2">Size</span>
+            <span class="me-2">XS</span>
+            <span class="me-2">S</span>
+            <span class="me-2">M</span>
+            <span class="me-2">L</span>
+            <span class="me-2">XL</span>
+          </div>
+
+          <div class="pt-2">
+            <div class="form-label small mb-1">Colors</div>
+            <div class="d-flex align-items-center gap-3">
+              <label class="color-swatch" data-color="purple" style="--swatch:#7E3FF2;">
+                <input type="radio" class="color-option" value="purple" checked />
+                <span class="dot"></span>
+              </label>
+              <label class="color-swatch" data-color="black" style="--swatch:#1E1E1E;">
+                <input type="radio" class="color-option" value="black" />
+                <span class="dot"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="pt-3">
+            <button class="btn btn-success w-100 buy-btn">
+              <i class="bi bi-bag-check"></i> Buy
+            </button>
+          </div>
+        </div>
+      </div>
+            <div class="product-card" data-gender="boys" data-sizes="xs,s,m,l,xl" data-price="399"
+        data-colors='{
+          "purple":"https://images.unsplash.com/photo-1544441893-675973e31985?q=80&w=1200&auto=format&fit=crop",
+          "black":"https://images.unsplash.com/photo-1537832816519-689ad163238b?q=80&w=1200&auto=format&fit=crop"
+        }'>
+        <span class="badge bg-success badge-top">New</span>
+
+        <div class="product-media">
+          <img class="product-img"
+            src="https://images.unsplash.com/photo-1544441893-675973e31985?q=80&w=1200&auto=format&fit=crop"
+            alt="Graphic Tee" />
+        </div>
+
+        <div class="p-3 d-flex flex-column product-body">
+          <div class="d-flex justify-content-between align-items-center">
+            <h4><span class="fw-bold">₹<span class="product-price">399</span></span></h4>
+          </div>
+
+          <h6 class="product-title text-muted small mb-1">Graphic Tee (Purple)</h6>
+          <p class="text-muted small mb-1">Gender: Boys</p>
+
+          <div class="small">
+            <span class="text-muted me-2">Size</span>
+            <span class="me-2">XS</span>
+            <span class="me-2">S</span>
+            <span class="me-2">M</span>
+            <span class="me-2">L</span>
+            <span class="me-2">XL</span>
+          </div>
+
+          <div class="pt-2">
+            <div class="form-label small mb-1">Colors</div>
+            <div class="d-flex align-items-center gap-3">
+              <label class="color-swatch" data-color="purple" style="--swatch:#7E3FF2;">
+                <input type="radio" class="color-option" value="purple" checked />
+                <span class="dot"></span>
+              </label>
+              <label class="color-swatch" data-color="black" style="--swatch:#1E1E1E;">
+                <input type="radio" class="color-option" value="black" />
+                <span class="dot"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="pt-3">
+            <button class="btn btn-success w-100 buy-btn">
+              <i class="bi bi-bag-check"></i> Buy
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Duplicate the above card 5 more times -->
+      <!-- You can copy-paste or generate these dynamically with JavaScript -->
+
+      <!-- Example: just copy the above block and paste it 5 more times -->
+
+    </div>
+
+    <div id="noResults" class="text-center text-muted mt-4" style="display:none;">
+      No products match the selected filters.
+    </div>
+  </div>
+</section>
+
+  
+
+  <script>
+    (function initColorSwatches() {
+      const cols = document.querySelectorAll('#productGrid [data-gender]');
+      cols.forEach(col => {
+        if (!col.dataset.code) {
+          col.dataset.code = 'FM-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).slice(2,6).toUpperCase();
+        }
+        const code = col.dataset.code;
+
+        let colorMap = {};
+        try {
+          const raw = (col.dataset.colors || '').replace(/'/g, '"');
+          colorMap = raw ? JSON.parse(raw) : {};
+        } catch (e) { colorMap = {}; }
+
+        const card = col.querySelector('.product-card');
+        const img = card.querySelector('.product-img');
+        const title = card.querySelector('.product-title');
+        const radios = card.querySelectorAll('.color-option');
+
+        radios.forEach(r => {
+          r.name = `color-${code}`;
+          r.addEventListener('change', () => {
+            const key = r.value.toLowerCase();
+            const url = colorMap[key];
+            if (url) {
+              img.src = url;
+            }
+            if (title) {
+              const label = key.charAt(0).toUpperCase() + key.slice(1);
+              if (/\(.+\)$/.test(title.textContent)) {
+                title.textContent = title.textContent.replace(/\(.+\)$/, `(${label})`);
+              } else {
+                title.textContent = `${title.textContent} (${label})`;
+              }
+            }
+          });
+        });
+      });
+    })();
+  </script>
+
+<script>
+(function initColorSwatches(){
+  document.querySelectorAll('#productGrid .product-card').forEach((card, idx)=>{
+    // Unique radio group name
+    const group = 'color-' + (card.dataset.code || ('FM-' + idx));
+
+    // Parse colors map from the card's dataset (already on .product-card)
+    let colorMap = {};
+    try{
+      const raw = (card.dataset.colors || '').replace(/'/g, '"');
+      colorMap = raw ? JSON.parse(raw) : {};
+    }catch(e){ colorMap = {}; }
+
+    // Elements inside this card
+    const img   = card.querySelector('.product-img');
+    const title = card.querySelector('.product-title');
+    const radios= card.querySelectorAll('.color-option');
+
+    radios.forEach(r=>{
+      r.name = group;
+      r.addEventListener('change', ()=>{
+        const key = (r.value || '').toLowerCase();
+        const url = colorMap[key];
+        if(url && img){ img.src = url; }
+        if(title){
+          const label = key.charAt(0).toUpperCase() + key.slice(1);
+          const base  = title.textContent.replace(/\s*\(.+\)\s*$/,'');
+          title.textContent = base + ' (' + label + ')';
+        }
+      });
+    });
+  });
+})();
+</script>
+
+
+
+    <div id="footer-placeholder"></div>
+
+  <!-- global scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script><!-- [file:1] -->
+
+  <!-- loader script for navbar + footer -->
+  <script type="module">
+    async function inject(id, url) {
+      const mount = document.getElementById(id);
+      if (!mount) return;
+      const resp = await fetch(url, { cache: 'no-cache' }); // adjust path if needed
+      mount.innerHTML = await resp.text();
+    }
+
+    inject('footer-placeholder', '/footer.html');   // footer partial
+  </script>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // 1) Required: international number digits only (no +)
+    const WA_NUMBER = '919623266520';
+
+    // 2) Cache shared inputs safely (optional)
+    const sizeSelect = document.getElementById('sizeSelect');
+
+    // 3) Find all cards and wire their own Buy button
+    const cards = document.querySelectorAll('#productGrid .product-card');
+
+    cards.forEach((card, idx) => {
+      // Unique code per card
+      if (!card.dataset.code) {
+        card.dataset.code =
+          'FM-' + Date.now().toString(36).toUpperCase() + '-' +
+          Math.random().toString(36).slice(2,6).toUpperCase();
+      }
+
+      const titleEl = card.querySelector('.product-title');
+      const imgEl   = card.querySelector('.product-img');
+      const buyBtn  = card.querySelector('.buy-btn');
+
+      if (!buyBtn) return;
+
+      // 4) Synchronous click handler so popup blockers allow window.open
+      buyBtn.addEventListener('click', () => {
+        const chosenSize = (sizeSelect && sizeSelect.value && sizeSelect.value !== 'all')
+          ? sizeSelect.value.toUpperCase() : 'N/A';
+
+        const msg = [
+          'New Order Request',
+          'Article Code: ' + (card.dataset.code || ''),
+          'Title: ' + (titleEl ? titleEl.textContent.trim() : 'Product'),
+          'Gender: ' + (card.dataset.gender || ''),
+          'Chosen Size: ' + chosenSize,
+          'Available Sizes: ' + String(card.dataset.sizes || '').toUpperCase(),
+          'Price: ₹' + (card.dataset.price || ''),
+          'Image: ' + (imgEl ? imgEl.src : '')
+        ].join('\n');
+
+        const waUrl = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg);
+        window.open(waUrl, '_blank', 'noopener,noreferrer');
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

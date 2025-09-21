@@ -1,0 +1,122 @@
+<!-- /partials/footer.html -->
+<footer class="simple-gold-footer center-footer">
+  <div class="fw-wrap">
+    <!-- Brand + tagline -->
+    <div class="fw-brand center-block">
+      <span class="fw-mark"></span>
+      <span class="fw-script">Follow Me</span>
+      <p class="fw-tag">Comfortable, timeless kids wear for play and celebration.</p>
+    </div>
+
+    <!-- Columns (centered) -->
+    <div class="fw-cols center-grid">
+      <div class="fw-col">
+        <h6>Quick Links</h6>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="catalogue.html">Shop</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="fw-col">
+        <h6>Customer Care</h6>
+        <ul>
+          <li><a href="#">Size Guide</a></li>
+          <li><a href="#">Shipping & Delivery</a></li>
+          <li><a href="#">Returns & Exchanges</a></li>
+          <li><a href="#">FAQs</a></li>
+        </ul>
+      </div>
+
+      <div class="fw-col">
+        <h6>Contact</h6>
+        <ul class="fw-contacts">
+          <li><span class="dot"></span> Bhiwandi, Maharashtra</li>
+          <li><span class="dot"></span> Mon–Sat, 10:00–19:00</li>
+          <li><span class="dot"></span> hello@followme.kids</li>
+          <li><span class="dot"></span> +91 96232 66520</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom -->
+    <div class="fw-bottom center-block">
+      <div class="fw-social">
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+      </div>
+      <p class="fw-copy">© 2025 Follow Me. All rights reserved.</p>
+      <ul class="fw-legal">
+        <li><a href="#">Terms</a></li>
+        <li><a href="#">Privacy</a></li>
+        <li><a href="#">Returns</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<style>
+  :root{ --gold:#d4af37; --gold-deep:#b9931e; --ink:#1f1f1f; }
+
+  .simple-gold-footer{
+    background: linear-gradient(180deg, #fff9e6 0%, #fff2cc 60%, #ffeeb8 100%);
+    border-top:1px solid rgba(212,175,55,.45);
+    color:#2b2710;
+    text-align:center;
+  }
+  .fw-wrap{ width:min(1100px,94%); margin:0 auto; padding:0px 0 16px; }
+
+  /* Brand */
+  .fw-brand{ margin-bottom:10px; }
+  .fw-mark{
+    width:34px; height:34px; border-radius:8px; display:inline-block;
+    border:1px solid rgba(212,175,55,.6);
+    background: radial-gradient(circle at 30% 30%, #fff 10%, #fef6d8 40%, #f3e2a2 70%);
+    box-shadow:0 6px 14px rgba(212,175,55,.28);
+    vertical-align:middle; margin-right:8px;
+  }
+  .fw-script{
+    font-family:"Great Vibes",cursive;
+    font-size:28px; color:var(--gold-deep);
+    text-shadow:0 1px 6px rgba(212,175,55,.25);
+    vertical-align:middle;
+  }
+  .fw-tag{ font-size: 16px; margin:6px 0 0; color:#6f5b23; }
+
+  /* Centered columns */
+  .fw-cols{
+    display:grid; gap:12px; margin-top:12px;
+    grid-template-columns: 1fr; justify-items:center;
+  }
+  @media(min-width:860px){
+    .fw-cols{ grid-template-columns: repeat(3, minmax(220px, 1fr)); }
+  }
+  .fw-col{ max-width: 360px; }
+
+  .fw-col h6{ margin:0 0 8px; font-size:15px; font-weight:800; color:#3a340f; }
+  .fw-col ul{ list-style:none; margin:0; padding:0; display:grid; gap:6px; }
+  .fw-col a{ font-size:16px; text-decoration:none; color:#2b2710; font-weight:600; }
+  .fw-col a:hover{ color:#1e1a08; text-decoration:underline; }
+
+  .fw-contacts .dot{
+    width:8px; height:8px; border-radius:50%; display:inline-block;
+    background:var(--gold); margin-right:8px; box-shadow:0 0 0 3px rgba(212,175,55,.2);
+  }
+
+  /* Bottom */
+  .fw-bottom{ margin-top:14px; padding-top:12px; border-top:1px solid rgba(212,175,55,.45); }
+  .fw-social{ display:flex; gap:8px; justify-content:center; margin-bottom:8px; }
+  .fw-social a{
+    width:36px; height:36px; border-radius:10px; display:inline-flex; align-items:center; justify-content:center;
+    border:1px solid rgba(212,175,55,.45); color:#2b2710; background:#fff7d9;
+  }
+  .fw-social a:hover{ background:#fff3c6; }
+
+  .fw-copy{ margin:4px 0; color:#6f5b23; font-size:13px; }
+  .fw-legal{ list-style:none; margin:6px 0 0; padding:0; display:flex; gap:12px; justify-content:center; }
+  .fw-legal a{ text-decoration:none; color:#2b2710; font-weight:700; }
+  .fw-legal a:hover{ color:var(--gold-deep); }
+</style>
