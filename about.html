@@ -217,6 +217,8 @@
       text-align:center; color:#7a6829; font-size:13px; padding:18px 12px 36px;
     }
   </style>
+  <!-- Content Security Policy: restricts sources for scripts, styles, images, etc. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://images.unsplash.com; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; connect-src 'self';">
 </head>
 <body data-current-page="about.html">
 
@@ -228,7 +230,7 @@
     const mount = document.getElementById('navbar-placeholder');
     if (!mount) return;
 
-    const resp = await fetch('/navbar.html', { cache: 'no-cache' });  // adjust path
+  const resp = await fetch('navbar.html', { cache: 'no-cache' });
     const html = await resp.text();
     mount.innerHTML = html;  // inline scripts inside navbar.html will NOT run
 
@@ -410,7 +412,7 @@
       mount.innerHTML = await resp.text();
     }
    // if using the navbar partial too
-    inject('footer-placeholder', '/footer.html');   // footer partial
+  inject('footer-placeholder', 'footer.html');   // footer partial
   </script>
 </body>
 </html>
