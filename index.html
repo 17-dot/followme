@@ -671,8 +671,8 @@
 .carousel-btn.next{ right: 4px; }
 
 /* Responsive product card height from earlier */
-.product-card{
-  min-height: clamp(420px, 7vh, 820px); /* was 360px,70vh,820px */
+/* .product-card{
+  min-height: clamp(420px, 7vh, 820px); 
   border-radius: 0.75rem;
   overflow: hidden;
   background: #fff;
@@ -693,8 +693,49 @@
 }
 .product-body{
   flex: 1 1 auto;
-  min-height: clamp(210px, 38vh, 480px); /* was 160px,32vh,420px */
+  min-height: clamp(210px, 38vh, 480px); 
+} */
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;        /* allow full height inside card-item */
+  border-radius: 0.75rem;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(0,0,0,.08);
+  margin-bottom: 30px;
 }
+
+/* Product image section */
+.product-media {
+  width: 100%;
+  aspect-ratio: 4 / 5;   /* keeps consistent ratio */
+  position: relative;
+  flex-shrink: 0;        /* image doesn’t shrink */
+}
+
+.product-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Body grows as needed */
+.product-body {
+  flex: 1 1 auto;        /* expands to fill */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* pushes Buy button to bottom */
+  padding: 1rem;
+}
+
+/* Ensure Buy button stays visible */
+.buy-btn {
+  margin-top: auto;       /* pushes button down */
+}
+
 .badge-top{
   position: absolute;
   top: .5rem;
