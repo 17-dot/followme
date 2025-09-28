@@ -234,7 +234,7 @@
     const mount = document.getElementById('navbar-placeholder');
     if (!mount) return;
 
-    const resp = await fetch('/navbar.html', { cache: 'no-cache' });  // adjust path
+    const resp = await fetch('navbar.html', { cache: 'no-cache' });  // adjust path
     const html = await resp.text();
     mount.innerHTML = html;  // inline scripts inside navbar.html will NOT run
 
@@ -470,7 +470,7 @@
       mount.innerHTML = await resp.text();
     }
  // if using the navbar partial too
-    inject('footer-placeholder', '/footer.html');   // footer partial
+    inject('footer-placeholder', 'footer.html');   // footer partial
   </script>
   
 </body>
