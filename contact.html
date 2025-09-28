@@ -227,6 +227,7 @@
 <body data-current-page="contact.html">
 
 <!-- host page -->
+<!-- host page -->
 <div id="navbar-placeholder"></div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script><!-- [file:1] -->
 <script type="module">
@@ -234,7 +235,7 @@
     const mount = document.getElementById('navbar-placeholder');
     if (!mount) return;
 
-    const resp = await fetch('navbar.html', { cache: 'no-cache' });  // adjust path
+  const resp = await fetch('navbar.html', { cache: 'no-cache' });
     const html = await resp.text();
     mount.innerHTML = html;  // inline scripts inside navbar.html will NOT run
 
@@ -456,7 +457,7 @@
     resetBtn?.addEventListener('click', () => form?.reset());
   </script>
 
-    <div id="footer-placeholder"></div>
+  <div id="footer-placeholder"></div>
 
   <!-- global scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script><!-- [file:1] -->
@@ -469,8 +470,8 @@
       const resp = await fetch(url, { cache: 'no-cache' }); // adjust path if needed
       mount.innerHTML = await resp.text();
     }
- // if using the navbar partial too
-    inject('footer-placeholder', 'footer.html');   // footer partial
+   // if using the navbar partial too
+  inject('footer-placeholder', 'footer.html');   // footer partial
   </script>
   
 </body>

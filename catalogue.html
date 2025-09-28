@@ -353,6 +353,7 @@
 <body data-current-page="catalogue.html">
 
 <!-- host page -->
+<!-- host page -->
 <div id="navbar-placeholder"></div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script><!-- [file:1] -->
 <script type="module">
@@ -360,7 +361,7 @@
     const mount = document.getElementById('navbar-placeholder');
     if (!mount) return;
 
-    const resp = await fetch('/navbar.html', { cache: 'no-cache' });  // adjust path
+  const resp = await fetch('navbar.html', { cache: 'no-cache' });
     const html = await resp.text();
     mount.innerHTML = html;  // inline scripts inside navbar.html will NOT run
 
@@ -467,7 +468,7 @@
           "purple":"./images/fboy2.jpg",
           "black":"./images/fboy2.jpg"
         }'>
-        <span class="badge bg-success badge-top">New</span>
+        <span class="badge badge-top">New</span>
 
         <div class="product-media">
           <img class="product-img"
@@ -519,7 +520,7 @@
           "purple":"./images/fboy1.jpg",
           "black":"./images/fboy2.jpg"
         }'>
-        <span class="badge bg-success badge-top">New</span>
+        <span class="badge  badge-top">New</span>
 
         <div class="product-media">
           <img class="product-img"
@@ -570,7 +571,7 @@
           "purple":"./images/fgirl2.jpg",
           "black":"./images/fgirl2.jpg"
         }'>
-        <span class="badge bg-success badge-top">New</span>
+        <span class="badge  badge-top">New</span>
 
         <div class="product-media">
           <img class="product-img"
@@ -618,7 +619,7 @@
           "purple":"./images/fgirl3.jpg",
           "black":"./images/fgirl3.jpg"
         }'>
-        <span class="badge bg-success badge-top">New</span>
+        <span class="badge  badge-top">New</span>
 
         <div class="product-media">
           <img class="product-img"
@@ -669,7 +670,7 @@
           "purple":"./images/fboy4.jpg",
           "black":"./images/fboy4.jpg"
         }'>
-        <span class="badge bg-success badge-top">New</span>
+        <span class="badge  badge-top">New</span>
 
         <div class="product-media">
           <img class="product-img"
@@ -720,7 +721,7 @@
           "purple":"./images/fboy1.jpg",
           "black":"./images/fboy2.jpg"
         }'>
-        <span class="badge bg-success badge-top">New</span>
+        <span class="badge  badge-top">New</span>
 
         <div class="product-media">
           <img class="product-img"
@@ -771,7 +772,7 @@
           "purple":"./images/fgirl2.jpg",
           "black":"./images/fgirl2.jpg"
         }'>
-        <span class="badge bg-success badge-top">New</span>
+        <span class="badge  badge-top">New</span>
 
         <div class="product-media">
           <img class="product-img"
@@ -822,7 +823,7 @@
           "purple":"./images/fgirl3.jpg",
           "black":"./images/fgirl3.jpg"
         }'>
-        <span class="badge bg-success badge-top">New</span>
+        <span class="badge  badge-top">New</span>
 
         <div class="product-media">
           <img class="product-img"
@@ -873,7 +874,7 @@
           "purple":"./images/fboy4.jpg",
           "black":"./images/fboy4.jpg"
         }'>
-        <span class="badge bg-success badge-top">New</span>
+        <span class="badge  badge-top">New</span>
 
         <div class="product-media">
           <img class="product-img"
@@ -1074,25 +1075,6 @@
 })();
 </script>
 
-
-
-    <div id="footer-placeholder"></div>
-
-  <!-- global scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script><!-- [file:1] -->
-
-  <!-- loader script for navbar + footer -->
-  <script type="module">
-    async function inject(id, url) {
-      const mount = document.getElementById(id);
-      if (!mount) return;
-      const resp = await fetch(url, { cache: 'no-cache' }); // adjust path if needed
-      mount.innerHTML = await resp.text();
-    }
-
-    inject('footer-placeholder', '/footer.html');   // footer partial
-  </script>
-
   <script>
   document.addEventListener('DOMContentLoaded', () => {
     // 1) Required: international number digits only (no +)
@@ -1141,5 +1123,21 @@
   });
 </script>
 
+  <div id="footer-placeholder"></div>
+
+  <!-- global scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script><!-- [file:1] -->
+
+  <!-- loader script for navbar + footer -->
+  <script type="module">
+    async function inject(id, url) {
+      const mount = document.getElementById(id);
+      if (!mount) return;
+      const resp = await fetch(url, { cache: 'no-cache' }); // adjust path if needed
+      mount.innerHTML = await resp.text();
+    }
+   // if using the navbar partial too
+  inject('footer-placeholder', 'footer.html');   // footer partial
+  </script>
 </body>
 </html>
