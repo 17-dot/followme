@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Shopping Bhiwandi - Home</title>
+  <title>Follow Me</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Great+Vibes&display=swap" rel="stylesheet" />
@@ -62,7 +62,7 @@
 
 
   <!-- Banner -->
-<section class="position-relative" style="background:linear-gradient(102deg,#2ed596 60%,#7cf2cf 100%); min-height:320px; margin-top: 84px; margin-bottom: 20px;">
+<section class="position-relative" style="background:linear-gradient(102deg,#2ed596 60%,#7cf2cf 100%); min-height:320px; margin-top: 108px; margin-bottom: -30px;">
   <!-- Banner Image (customize src as needed) -->
   <img src="./images/hhhhhihihi.png"
        class="position-absolute top-0 end-0 h-100 d-none d-md-block"
@@ -364,586 +364,257 @@
   });
 </script>
 
-
-
-
-
-  <!-- latest -->
-<style>
-/* Scroller track */
-/* Scroller track */
-.card-scroller{
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  overscroll-behavior-x: contain;
-  -webkit-overflow-scrolling: touch; /* iOS momentum */
-  scrollbar-width: none; /* Firefox */
-}
-.card-scroller::-webkit-scrollbar{ display:none; } /* WebKit */
-
-/* Each item snaps cleanly */
-.card-item{
-  scroll-snap-align: start;
-  /* Responsive width:
-     - On very small screens ~2 per view
-     - On desktop ~6 per view
-     Tweak min/max as preferred */
-  width: clamp(220px, 48vw, 320px);
-}
-@media (min-width: 992px){ /* lg and up ≈ 6 per row */
-  .card-item{
-    width: clamp(220px, 16.66vw, 280px);
-  }
-}
-
-/* Keep even spacing without edge gaps */
-.card-scroller{
-  padding-left: 0;
-  padding-right: 0;
-}
-.card-scroller > .card-item:first-child{ margin-left: 16px; }
-.card-scroller > .card-item:last-child{ margin-right: 16px; }
-
-/* Arrow buttons (positioned over track) */
-.carousel-btn{
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 40px; height: 40px;
-  display: grid; place-items: center;
-  z-index: 3;
-}
-.carousel-btn.prev{ left: 4px; }
-.carousel-btn.next{ right: 4px; }
-
-/* Responsive product card height from earlier */
-.product-card{
-  min-height: clamp(420px, 76vh, 880px); /* was 360px,70vh,820px */
-  border-radius: 0.75rem;
-  overflow: hidden;
-  background: #fff;
-  box-shadow: 0 8px 24px rgba(0,0,0,.08);
-  margin-bottom: 30px;
-}
-.product-media{
-  min-height: clamp(180px, 28vh, 360px);
-  max-height: clamp(220px, 32vh, 420px);
-  aspect-ratio: 4 / 3;
-  position: relative;
-}
-.product-img{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-.product-body{
-  flex: 1 1 auto;
-  min-height: clamp(210px, 38vh, 480px); /* was 160px,32vh,420px */
-}
-.badge-top{
-  position: absolute;
-  top: .5rem;
-  left: .5rem;
-  z-index: 2;
-}
-</style>
-
-  <style>
-  /* Circular color radios styled as swatches */
-  .color-swatch {
-    position: relative;
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-  }
-  .color-swatch input {
-    position: absolute;
-    opacity: 0;
-    pointer-events: none;
-  }
-  .color-swatch .dot {
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    background: var(--swatch, #000);
-    display: inline-block;
-    box-shadow: inset 0 0 0 2px rgba(255,255,255,0.9), 0 0 0 1px rgba(0,0,0,0.15);
-    transition: box-shadow .15s ease, transform .15s ease;
-  }
-  .color-swatch input:checked + .dot {
-    box-shadow:
-      inset 0 0 0 6px rgba(255,255,255,0.9),
-      0 0 0 2px var(--swatch, #000),
-      0 2px 6px rgba(0,0,0,0.25);
-    transform: scale(1.02);
-  }
-</style>
-<!-- Latest Articles -->
-<section class="container-fluid ">
-  <!-- Top centered heading -->
-  <div class="row">
-    <div class="col-12">
-    <h2 class="text-center fw-bold mb-4 position-relative" style="z-index:2;">
-      Latest Articles
-    </h2>
-    </div>
-  </div>
-
-  <!-- Carousel wrapper -->
-  <div class="position-relative">
-
-    <!-- Left/Right arrows (hidden on mobile, visible md+) -->
-    <button class="carousel-btn prev btn btn-light rounded-circle shadow d-none d-md-flex"
-            aria-label="Previous" type="button">
-      ‹
-    </button>
-    <button class="carousel-btn next btn btn-light rounded-circle shadow d-none d-md-flex"
-            aria-label="Next" type="button">
-      ›
-    </button>
-
-    <!-- Horizontal scroller: no gutters to remove side space -->
-    <div class="row g-0">
-      <div class="col-12">
-        <div class="card-scroller d-flex gap-3 px-2" id="latestScroller" tabindex="0" aria-label="Latest products">
-
-          <!-- Card item -->
-          <div class="card-item flex-0-0-auto"
-               data-gender="boys"
-               data-sizes="xs,s,m,l,xl"
-               data-price="399">
-            <div class="product-card position-relative d-flex flex-column">
-              <span class="badge bg-success badge-top">New</span>
-
-              <div class="product-media">
-                <img class="product-img"
-                     src="https://images.unsplash.com/photo-1544441893-675973e31985?q=80&w=1200&auto=format&fit=crop"
-                     alt="Graphic Tee" />
+    <!-- Section 3: Values & Impact -->
+    <section class="card section" style="margin-top:18px;">
+      <div class="section-head">
+        <span class="pill">Values & Impact</span>
+      </div>
+      <div class="grid-2">
+        <div>
+          <h2>Designed with Heart</h2>
+          <p>We’re proud to partner with local artisans and family‑run workshops, supporting livelihoods while preserving craft.</p>
+          <p>Packaging is kept minimal and reusable where possible, and we continually refine our process to reduce waste and improve quality.</p>
+          <div class="bullets">
+            <div class="bullet">
+              <span class="dot"></span>
+              <div>
+                <strong>Community first</strong><br/>
+                <span class="mini">Fair practices and long‑term partnerships with makers.</span>
               </div>
-
-              <div class="p-3 d-flex flex-column product-body">
-                <div class="d-flex justify-content-between align-items-center">
-                  <h4><span class="fw-bold">₹<span class="product-price">399</span></span></h4>
-                </div>
-
-                <!-- Ensure a product-title exists so scripts can read/update -->
-                <h6 class="product-title text-muted small mb-1">Graphic Tee (Purple)</h6>
-                <p class="text-muted small mb-1">Gender: Boys</p>
-
-                <!-- Clickable sizes -->
-                <div class="small ">
-                  <span class="text-muted ">Size</span>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="XS">XS</button>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="S">S</button>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="M">M</button>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="L">L</button>
-
-                </div>
-
-                <div class="">
-                  <div class="">
-                    <div class="form-label small mb-1">Colors</div>
-                    <div class="d-flex align-items-center gap-3">
-                      <label class="color-swatch" data-color="purple" style="--swatch:#7E3FF2;">
-                        <input type="radio" class="color-option" value="purple" checked />
-                        <span class="dot"></span>
-                      </label>
-                      <label class="color-swatch" data-color="black" style="--swatch:#1E1E1E;">
-                        <input type="radio" class="color-option" value="black" />
-                        <span class="dot"></span>
-                      </label>
-                    </div>
-                  </div>
-
-                  <div class="pt-3">
-                    <button class="btn btn-success w-100 buy-btn">
-                      <i class="bi bi-bag-check"></i> Buy
-                    </button>
-                  </div>
-                </div>
+            </div>
+            <div class="bullet">
+              <span class="dot"></span>
+              <div>
+                <strong>Mindful materials</strong><br/>
+                <span class="mini">Responsible sourcing and classic styles that outlast trends.</span>
+              </div>
+            </div>
+            <div class="bullet">
+              <span class="dot"></span>
+              <div>
+                <strong>Care & repair</strong><br/>
+                <span class="mini">Tips to keep clothes fresh, and easy fixes for longer life.</span>
               </div>
             </div>
           </div>
-          <!-- /Card item -->
-
-          <!-- Duplicate .card-item for more cards -->
-          <div class="card-item flex-0-0-auto"
-               data-gender="boys"
-               data-sizes="xs,s,m,l,xl"
-               data-price="399">
-            <div class="product-card position-relative d-flex flex-column">
-              <span class="badge bg-success badge-top">New</span>
-
-              <div class="product-media">
-                <img class="product-img"
-                     src="https://images.unsplash.com/photo-1544441893-675973e31985?q=80&w=1200&auto=format&fit=crop"
-                     alt="Graphic Tee" />
-              </div>
-
-              <div class="p-3 d-flex flex-column product-body">
-                <div class="d-flex justify-content-between align-items-center">
-                  <h4><span class="fw-bold">₹<span class="product-price">399</span></span></h4>
-                </div>
-
-                <!-- Ensure a product-title exists so scripts can read/update -->
-                <h6 class="product-title text-muted small mb-1">Graphic Tee (Purple)</h6>
-                <p class="text-muted small mb-1">Gender: Boys</p>
-
-                <!-- Clickable sizes -->
-                <div class="small ">
-                  <span class="text-muted ">Size</span>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="XS">XS</button>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="S">S</button>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="M">M</button>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="L">L</button>
-
-                </div>
-
-                <div class="">
-                  <div class="">
-                    <div class="form-label small mb-1">Colors</div>
-                    <div class="d-flex align-items-center gap-3">
-                      <label class="color-swatch" data-color="purple" style="--swatch:#7E3FF2;">
-                        <input type="radio" class="color-option" value="purple" checked />
-                        <span class="dot"></span>
-                      </label>
-                      <label class="color-swatch" data-color="black" style="--swatch:#1E1E1E;">
-                        <input type="radio" class="color-option" value="black" />
-                        <span class="dot"></span>
-                      </label>
-                    </div>
-                  </div>
-
-                  <div class="pt-3">
-                    <button class="btn btn-success w-100 buy-btn">
-                      <i class="bi bi-bag-check"></i> Buy
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-                    <div class="card-item flex-0-0-auto"
-               data-gender="boys"
-               data-sizes="xs,s,m,l,xl"
-               data-price="399">
-            <div class="product-card position-relative d-flex flex-column">
-              <span class="badge bg-success badge-top">New</span>
-
-              <div class="product-media">
-                <img class="product-img"
-                     src="https://images.unsplash.com/photo-1544441893-675973e31985?q=80&w=1200&auto=format&fit=crop"
-                     alt="Graphic Tee" />
-              </div>
-
-              <div class="p-3 d-flex flex-column product-body">
-                <div class="d-flex justify-content-between align-items-center">
-                  <h4><span class="fw-bold">₹<span class="product-price">399</span></span></h4>
-                </div>
-
-                <!-- Ensure a product-title exists so scripts can read/update -->
-                <h6 class="product-title text-muted small mb-1">Graphic Tee (Purple)</h6>
-                <p class="text-muted small mb-1">Gender: Boys</p>
-
-                <!-- Clickable sizes -->
-                <div class="small ">
-                  <span class="text-muted ">Size</span>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="XS">XS</button>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="S">S</button>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="M">M</button>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="L">L</button>
-
-                </div>
-
-                <div class="">
-                  <div class="">
-                    <div class="form-label small mb-1">Colors</div>
-                    <div class="d-flex align-items-center gap-3">
-                      <label class="color-swatch" data-color="purple" style="--swatch:#7E3FF2;">
-                        <input type="radio" class="color-option" value="purple" checked />
-                        <span class="dot"></span>
-                      </label>
-                      <label class="color-swatch" data-color="black" style="--swatch:#1E1E1E;">
-                        <input type="radio" class="color-option" value="black" />
-                        <span class="dot"></span>
-                      </label>
-                    </div>
-                  </div>
-
-                  <div class="pt-3">
-                    <button class="btn btn-success w-100 buy-btn">
-                      <i class="bi bi-bag-check"></i> Buy
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-                    <div class="card-item flex-0-0-auto"
-               data-gender="boys"
-               data-sizes="xs,s,m,l,xl"
-               data-price="399">
-            <div class="product-card position-relative d-flex flex-column">
-              <span class="badge bg-success badge-top">New</span>
-
-              <div class="product-media">
-                <img class="product-img"
-                     src="https://images.unsplash.com/photo-1544441893-675973e31985?q=80&w=1200&auto=format&fit=crop"
-                     alt="Graphic Tee" />
-              </div>
-
-              <div class="p-3 d-flex flex-column product-body">
-                <div class="d-flex justify-content-between align-items-center">
-                  <h4><span class="fw-bold">₹<span class="product-price">399</span></span></h4>
-                </div>
-
-                <!-- Ensure a product-title exists so scripts can read/update -->
-                <h6 class="product-title text-muted small mb-1">Graphic Tee (Purple)</h6>
-                <p class="text-muted small mb-1">Gender: Boys</p>
-
-                <!-- Clickable sizes -->
-                <div class="small ">
-                  <span class="text-muted ">Size</span>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="XS">XS</button>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="S">S</button>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="M">M</button>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="L">L</button>
-
-                </div>
-
-                <div class="">
-                  <div class="">
-                    <div class="form-label small mb-1">Colors</div>
-                    <div class="d-flex align-items-center gap-3">
-                      <label class="color-swatch" data-color="purple" style="--swatch:#7E3FF2;">
-                        <input type="radio" class="color-option" value="purple" checked />
-                        <span class="dot"></span>
-                      </label>
-                      <label class="color-swatch" data-color="black" style="--swatch:#1E1E1E;">
-                        <input type="radio" class="color-option" value="black" />
-                        <span class="dot"></span>
-                      </label>
-                    </div>
-                  </div>
-
-                  <div class="pt-3">
-                    <button class="btn btn-success w-100 buy-btn">
-                      <i class="bi bi-bag-check"></i> Buy
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-                    <div class="card-item flex-0-0-auto"
-               data-gender="boys"
-               data-sizes="xs,s,m,l,xl"
-               data-price="399">
-            <div class="product-card position-relative d-flex flex-column">
-              <span class="badge bg-success badge-top">New</span>
-
-              <div class="product-media">
-                <img class="product-img"
-                     src="https://images.unsplash.com/photo-1544441893-675973e31985?q=80&w=1200&auto=format&fit=crop"
-                     alt="Graphic Tee" />
-              </div>
-
-              <div class="p-3 d-flex flex-column product-body">
-                <div class="d-flex justify-content-between align-items-center">
-                  <h4><span class="fw-bold">₹<span class="product-price">399</span></span></h4>
-                </div>
-
-                <!-- Ensure a product-title exists so scripts can read/update -->
-                <h6 class="product-title text-muted small mb-1">Graphic Tee (Purple)</h6>
-                <p class="text-muted small mb-1">Gender: Boys</p>
-
-                <!-- Clickable sizes -->
-                <div class="small ">
-                  <span class="text-muted ">Size</span>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="XS">XS</button>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="S">S</button>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="M">M</button>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="L">L</button>
-
-                </div>
-
-                <div class="">
-                  <div class="">
-                    <div class="form-label small mb-1">Colors</div>
-                    <div class="d-flex align-items-center gap-3">
-                      <label class="color-swatch" data-color="purple" style="--swatch:#7E3FF2;">
-                        <input type="radio" class="color-option" value="purple" checked />
-                        <span class="dot"></span>
-                      </label>
-                      <label class="color-swatch" data-color="black" style="--swatch:#1E1E1E;">
-                        <input type="radio" class="color-option" value="black" />
-                        <span class="dot"></span>
-                      </label>
-                    </div>
-                  </div>
-
-                  <div class="pt-3">
-                    <button class="btn btn-success w-100 buy-btn">
-                      <i class="bi bi-bag-check"></i> Buy
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-                    <div class="card-item flex-0-0-auto"
-               data-gender="boys"
-               data-sizes="xs,s,m,l,xl"
-               data-price="399">
-            <div class="product-card position-relative d-flex flex-column">
-              <span class="badge bg-success badge-top">New</span>
-
-              <div class="product-media">
-                <img class="product-img"
-                     src="https://images.unsplash.com/photo-1544441893-675973e31985?q=80&w=1200&auto=format&fit=crop"
-                     alt="Graphic Tee" />
-              </div>
-
-              <div class="p-3 d-flex flex-column product-body">
-                <div class="d-flex justify-content-between align-items-center">
-                  <h4><span class="fw-bold">₹<span class="product-price">399</span></span></h4>
-                </div>
-
-                <!-- Ensure a product-title exists so scripts can read/update -->
-                <h6 class="product-title text-muted small mb-1">Graphic Tee (Purple)</h6>
-                <p class="text-muted small mb-1">Gender: Boys</p>
-
-                <!-- Clickable sizes -->
-                <div class="small ">
-                  <span class="text-muted ">Size</span>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="XS">XS</button>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="S">S</button>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="M">M</button>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="L">L</button>
-
-                </div>
-
-                <div class="">
-                  <div class="">
-                    <div class="form-label small mb-1">Colors</div>
-                    <div class="d-flex align-items-center gap-3">
-                      <label class="color-swatch" data-color="purple" style="--swatch:#7E3FF2;">
-                        <input type="radio" class="color-option" value="purple" checked />
-                        <span class="dot"></span>
-                      </label>
-                      <label class="color-swatch" data-color="black" style="--swatch:#1E1E1E;">
-                        <input type="radio" class="color-option" value="black" />
-                        <span class="dot"></span>
-                      </label>
-                    </div>
-                  </div>
-
-                  <div class="pt-3">
-                    <button class="btn btn-success w-100 buy-btn">
-                      <i class="bi bi-bag-check"></i> Buy
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-                    <div class="card-item flex-0-0-auto"
-               data-gender="boys"
-               data-sizes="xs,s,m,l,xl"
-               data-price="399">
-            <div class="product-card position-relative d-flex flex-column">
-              <span class="badge bg-success badge-top">New</span>
-
-              <div class="product-media">
-                <img class="product-img"
-                     src="https://images.unsplash.com/photo-1544441893-675973e31985?q=80&w=1200&auto=format&fit=crop"
-                     alt="Graphic Tee" />
-              </div>
-
-              <div class="p-3 d-flex flex-column product-body">
-                <div class="d-flex justify-content-between align-items-center">
-                  <h4><span class="fw-bold">₹<span class="product-price">399</span></span></h4>
-                </div>
-
-                <!-- Ensure a product-title exists so scripts can read/update -->
-                <h6 class="product-title text-muted small mb-1">Graphic Tee (Purple)</h6>
-                <p class="text-muted small mb-1">Gender: Boys</p>
-
-                <!-- Clickable sizes -->
-                <div class="small ">
-                  <span class="text-muted ">Size</span>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="XS">XS</button>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="S">S</button>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="M">M</button>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="L">L</button>
-
-                </div>
-
-                <div class="">
-                  <div class="">
-                    <div class="form-label small mb-1">Colors</div>
-                    <div class="d-flex align-items-center gap-3">
-                      <label class="color-swatch" data-color="purple" style="--swatch:#7E3FF2;">
-                        <input type="radio" class="color-option" value="purple" checked />
-                        <span class="dot"></span>
-                      </label>
-                      <label class="color-swatch" data-color="black" style="--swatch:#1E1E1E;">
-                        <input type="radio" class="color-option" value="black" />
-                        <span class="dot"></span>
-                      </label>
-                    </div>
-                  </div>
-
-                  <div class="pt-3">
-                    <button class="btn btn-success w-100 buy-btn">
-                      <i class="bi bi-bag-check"></i> Buy
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
+        </div>
+        <div class="media" aria-hidden="true">
+          <img src="https://images.unsplash.com/photo-1604335399105-a0c6f3ab7616?q=80&w=1400&auto=format&fit=crop" alt="Community and values in kids fashion" />
         </div>
       </div>
-    </div>
-  </div>
-</section>
 
-<script>
-  (function(){
-    const scroller = document.getElementById('latestScroller');
-    const prev = document.querySelector('.carousel-btn.prev');
-    const next = document.querySelector('.carousel-btn.next');
+      <!-- Call to action band -->
+      <div class="cta">
+        <p style="margin:0 0 10px;">Want to know more, customize an outfit, or plan a special look?</p>
+        <button class="btn" onclick="window.location.href='contact.html'">Explore Contact Options</button>
+      </div>
+    </section>
 
-    function itemAdvance(){
-      const item = scroller.querySelector('.card-item');
-      if(!item) return 300;
-      const rect = item.getBoundingClientRect();
-      // Gap approximated as 12px; adjust if you change .gap
-      return rect.width + 12;
+      <style>
+    :root{
+      --gold:#d4af37;
+      --gold-deep:#b9931e;
+      --gold-soft:#f6e7b4;
+      --white:#ffffff;
+      --bg:#fff9ef;
+      --text:#2a2a2a;
+      --ink:#1f1f1f;
+    }
+    *{box-sizing:border-box}
+    html,body{
+      margin:0; padding:0; color:var(--text);
+      font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      background:linear-gradient(180deg,var(--bg),#fff);
     }
 
-    function scrollByItems(dir){
-      scroller.scrollBy({ left: dir * itemAdvance(), behavior: 'smooth' });
+    /* Hero */
+    .hero{
+      position:relative;
+      min-height:52vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:72px 20px 40px;
+      background:
+        radial-gradient(1200px 420px at 10% 0%, rgba(212,175,55,0.18), transparent 60%),
+        radial-gradient(1200px 420px at 90% 0%, rgba(212,175,55,0.18), transparent 60%),
+        linear-gradient(180deg,#fff, #fffaf0 60%, #fff);
+      overflow:hidden;
+    }
+    .hero .shine{
+      position:absolute;
+      inset:-25% -15%;
+      background:conic-gradient(from 0deg, rgba(212,175,55,.14), transparent 30%, rgba(212,175,55,.14) 60%, transparent 100%);
+      filter:blur(40px);
+      animation:spin 18s linear infinite;
+      pointer-events:none;
+    }
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    .hero-card{
+      position:relative;
+      width:min(960px, 94%);
+      margin:auto;
+      padding:38px 28px;
+      border-radius:22px;
+      background:rgba(255,255,255,0.58);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border:1px solid rgba(212,175,55,0.4);
+      box-shadow:0 22px 64px rgba(212,175,55,0.18), 0 12px 24px rgba(0,0,0,0.06);
+      text-align:center;
+    }
+    .brand{
+      font-family:"Great Vibes",cursive;
+      font-size:44px;
+      color:var(--gold-deep);
+      margin:0 0 6px;
+      letter-spacing:1px;
+      text-shadow:0 2px 12px rgba(212,175,55,.35);
+    }
+    .hero h1{
+      font-size:clamp(30px, 4.6vw, 48px);
+      margin:6px 0 10px;
+      color:var(--ink);
+    }
+    .hero p{
+      margin:0;color:#5b4a1a;font-weight:400;
+    }
+    .divider{
+      width:90px;height:4px;border-radius:4px;
+      background:linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin:18px auto 0;
     }
 
-    prev?.addEventListener('click', () => scrollByItems(-1));
-    next?.addEventListener('click', () => scrollByItems(1));
+    /* Section container */
+    .container{
+      width:min(1100px, 94%);
+      margin: -24px auto 70px;
+    }
 
-    // Keyboard support (focus the scroller and use arrows)
-    scroller.addEventListener('keydown', (e) => {
-      if(e.key === 'ArrowLeft'){ e.preventDefault(); scrollByItems(-1); }
-      if(e.key === 'ArrowRight'){ e.preventDefault(); scrollByItems(1); }
-    });
-  })();
-</script>
+    /* Shared card style */
+    .card{
+      background:#fff;
+      border:1px solid rgba(212,175,55,0.38);
+      border-radius:0px;
+      box-shadow:0 12px 34px rgba(212,175,55,0.18), 0 8px 20px rgba(0,0,0,0.05);
+      overflow:hidden;
+      margin-bottom: 20px;
+    }
+    .section{
+      padding:22px;
+    }
+    .section-head{
+      display:flex;align-items:center;gap:12px;margin-bottom:8px;
+    }
+    .pill{
+      display:inline-flex;align-items:center;justify-content:center;
+      height:28px; padding:0 12px; border-radius:999px;
+      background:linear-gradient(180deg, var(--gold) 0%, #f3d777 50%, var(--gold) 100%);
+      color:#1e1a08; font-weight:700; font-size:13px;
+      border:1px solid rgba(212,175,55,.8);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.6), 0 6px 16px rgba(212,175,55,.25);
+    }
+    .section h2{
+      margin:8px 0 10px; font-size:clamp(22px, 2.6vw, 28px); color:#3a340f;
+    }
+    .section p{
+      margin:8px 0 12px; color:#6f5b23; line-height:1.7;
+    }
+
+    /* Grids */
+    .grid-2{
+      display:grid; grid-template-columns:1fr; gap:18px; align-items:center;
+    }
+    @media(min-width:900px){
+      .grid-2{ grid-template-columns:1.2fr .8fr; gap:24px; }
+    }
+    .media{
+      border-radius:14px; overflow:hidden;
+      border:1px solid rgba(212,175,55,.35);
+      box-shadow:0 10px 26px rgba(212,175,55,.18);
+      background:
+        linear-gradient(180deg,#fff,#fff8e6);
+      min-height:220px;
+      display:grid;place-items:center;
+      padding:18px;
+    }
+    .media img{
+      width:100%; height:auto; display:block; border-radius:10px;
+      filter:saturate(1.02) contrast(1.02);
+    }
+
+    /* Icon bullets */
+    .bullets{display:grid; gap:10px; margin-top:8px;}
+    .bullet{
+      display:flex; gap:12px; align-items:flex-start;
+      padding:10px 8px; border-bottom:1px dashed rgba(212,175,55,.35);
+    }
+    .bullet:last-child{border-bottom:none}
+    .dot{
+      width:10px;height:10px;border-radius:50%;
+      background:var(--gold); margin-top:6px;
+      box-shadow:0 0 0 3px rgba(212,175,55,.2);
+    }
+
+    /* Values - cards */
+    .values{
+      display:grid; grid-template-columns:1fr; gap:16px; margin-top:8px;
+    }
+    @media(min-width:900px){
+      .values{ grid-template-columns:1fr 1fr 1fr; }
+    }
+    .value-card{
+      background:#fffef8; border:1px solid rgba(212,175,55,.38); border-radius:16px;
+      padding:16px; box-shadow:0 12px 28px rgba(212,175,55,.16);
+      transition:transform .12s ease, box-shadow .12s ease;
+    }
+    .value-card:hover{
+      transform:translateY(-2px);
+      box-shadow:0 18px 36px rgba(212,175,55,.22);
+    }
+    .value-title{
+      display:flex; align-items:center; gap:10px; color:#3a340f; font-weight:700; margin:0 0 6px;
+    }
+    .tag{
+      display:inline-flex; align-items:center; justify-content:center;
+      font-size:12px; padding:0 10px; height:24px; border-radius:999px;
+      border:1px solid rgba(212,175,55,.8);
+      background:linear-gradient(180deg,#fffef5,#fff3c9);
+      color:#4a3f14; font-weight:600;
+    }
+    .mini{
+      font-size:13px; color:#6f5b23; margin:0;
+    }
+
+    /* CTA band */
+    .cta{
+      margin:26px 0 0; padding:18px;
+      border-radius:16px;
+      border:1px solid rgba(212,175,55,.5);
+      background:
+        radial-gradient(400px 120px at 20% 0%, rgba(212,175,55,.2), transparent 60%),
+        radial-gradient(400px 120px at 80% 0%, rgba(212,175,55,.2), transparent 60%),
+        #fffef6;
+      box-shadow:0 14px 34px rgba(212,175,55,.18);
+      text-align:center;
+    }
+    .cta .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      padding:12px 18px;border-radius:12px;border:1px solid var(--gold);
+      color:#1e1a08;background: linear-gradient(180deg, var(--gold) 0%, #f3d777 30%, #f7e7a8 70%, var(--gold) 100%);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.6), 0 10px 22px rgba(212,175,55,.35);
+      cursor:pointer; font-weight:700;
+      transition:transform .12s ease, box-shadow .12s ease, filter .12s ease;
+    }
+    .cta .btn:hover{ transform: translateY(-1px); filter:saturate(1.05); }
+    .cta .btn:active{ transform: translateY(0); box-shadow:0 6px 14px rgba(212,175,55,.3); }
+
+    /* Footer */
+    footer{
+      text-align:center; color:#7a6829; font-size:13px; padding:18px 12px 36px;
+    }
+  </style>
 
 
 
@@ -1008,7 +679,7 @@
 .product-media{
   min-height: clamp(180px, 28vh, 360px);
   max-height: clamp(220px, 32vh, 420px);
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 4 / 5;
   position: relative;
 }
 .product-img{
@@ -1029,7 +700,9 @@
 }
 </style>
 
-  <style>
+
+
+<style>
   /* Circular color radios styled as swatches */
   .color-swatch {
     position: relative;
@@ -1063,13 +736,24 @@
     transform: scale(1.02);
   }
 </style>
-<!--boys-->
+<!-- Image Modal -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content bg-transparent border-0">
+      <div class="modal-body p-0 text-center">
+        <img id="modalImage" src="" class="img-fluid rounded shadow" alt="Preview">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--latest-->
 <section class="container-fluid ">
   <!-- Top centered heading -->
   <div class="row">
     <div class="col-12">
     <h2 class="text-center fw-bold mb-4 position-relative" style="z-index:2;">
-      Boys
+      Latest 
     </h2>
     </div>
   </div>
@@ -1094,7 +778,7 @@
 
           <!-- Card item -->
           <div class="card-item flex-0-0-auto"
-               data-gender="boys"
+               data-gender="boys girls"
                data-sizes="xs,s,m,l,xl"
                data-price="399">
             <div class="product-card position-relative d-flex flex-column">
@@ -1102,7 +786,7 @@
 
               <div class="product-media">
                 <img class="product-img"
-                     src="https://images.unsplash.com/photo-1544441893-675973e31985?q=80&w=1200&auto=format&fit=crop"
+                     src="/images/fbg2.jpg"
                      alt="Graphic Tee" />
               </div>
 
@@ -1151,7 +835,7 @@
           </div>
           <!-- /Card item -->
           <div class="card-item flex-0-0-auto"
-               data-gender="boys"
+               data-gender="boys girl"
                data-sizes="xs,s,m,l,xl"
                data-price="399">
             <div class="product-card position-relative d-flex flex-column">
@@ -1159,7 +843,7 @@
 
               <div class="product-media">
                 <img class="product-img"
-                     src="https://images.unsplash.com/photo-1544441893-675973e31985?q=80&w=1200&auto=format&fit=crop"
+                     src="/images/fbg1.jpg"
                      alt="Graphic Tee" />
               </div>
 
@@ -1207,7 +891,7 @@
             </div>
           </div>
                     <div class="card-item flex-0-0-auto"
-               data-gender="boys"
+               data-gender="boys girls"
                data-sizes="xs,s,m,l,xl"
                data-price="399">
             <div class="product-card position-relative d-flex flex-column">
@@ -1215,7 +899,7 @@
 
               <div class="product-media">
                 <img class="product-img"
-                     src="https://images.unsplash.com/photo-1544441893-675973e31985?q=80&w=1200&auto=format&fit=crop"
+                     src="/images/fbg3.jpg"
                      alt="Graphic Tee" />
               </div>
 
@@ -1263,7 +947,7 @@
             </div>
           </div>
                     <div class="card-item flex-0-0-auto"
-               data-gender="boys"
+               data-gender="boys girls"
                data-sizes="xs,s,m,l,xl"
                data-price="399">
             <div class="product-card position-relative d-flex flex-column">
@@ -1271,7 +955,64 @@
 
               <div class="product-media">
                 <img class="product-img"
-                     src="https://images.unsplash.com/photo-1544441893-675973e31985?q=80&w=1200&auto=format&fit=crop"
+                     src="/images/fbg2.jpg"
+                     alt="Graphic Tee" />
+              </div>
+
+              <div class="p-3 d-flex flex-column product-body">
+                <div class="d-flex justify-content-between align-items-center">
+                  <h4><span class="fw-bold">₹<span class="product-price">399</span></span></h4>
+                </div>
+
+                <!-- Ensure a product-title exists so scripts can read/update -->
+                <h6 class="product-title text-muted small mb-1">Graphic Tee (Purple)</h6>
+                <p class="text-muted small mb-1">Gender: Boys</p>
+
+                <!-- Clickable sizes -->
+                <div class="small ">
+                  <span class="text-muted ">Size</span>
+                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="XS">XS</button>
+                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="S">S</button>
+                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="M">M</button>
+                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="L">L</button>
+
+                </div>
+
+                <div class="">
+                  <div class="">
+                    <div class="form-label small mb-1">Colors</div>
+                    <div class="d-flex align-items-center gap-3">
+                      <label class="color-swatch" data-color="purple" style="--swatch:#7E3FF2;">
+                        <input type="radio" class="color-option" value="purple" checked />
+                        <span class="dot"></span>
+                      </label>
+                      <label class="color-swatch" data-color="black" style="--swatch:#1E1E1E;">
+                        <input type="radio" class="color-option" value="black" />
+                        <span class="dot"></span>
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="pt-3">
+                    <button class="btn btn-success w-100 buy-btn">
+                      <i class="bi bi-bag-check"></i> Buy
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /Card item -->
+          <div class="card-item flex-0-0-auto"
+               data-gender="boys girl"
+               data-sizes="xs,s,m,l,xl"
+               data-price="399">
+            <div class="product-card position-relative d-flex flex-column">
+              <span class="badge bg-success badge-top">New</span>
+
+              <div class="product-media">
+                <img class="product-img"
+                     src="/images/fbg1.jpg"
                      alt="Graphic Tee" />
               </div>
 
@@ -1319,7 +1060,7 @@
             </div>
           </div>
                     <div class="card-item flex-0-0-auto"
-               data-gender="boys"
+               data-gender="boys girls"
                data-sizes="xs,s,m,l,xl"
                data-price="399">
             <div class="product-card position-relative d-flex flex-column">
@@ -1327,7 +1068,7 @@
 
               <div class="product-media">
                 <img class="product-img"
-                     src="https://images.unsplash.com/photo-1544441893-675973e31985?q=80&w=1200&auto=format&fit=crop"
+                     src="/images/fbg3.jpg"
                      alt="Graphic Tee" />
               </div>
 
@@ -1375,7 +1116,7 @@
             </div>
           </div>
                     <div class="card-item flex-0-0-auto"
-               data-gender="boys"
+               data-gender="boys girls"
                data-sizes="xs,s,m,l,xl"
                data-price="399">
             <div class="product-card position-relative d-flex flex-column">
@@ -1383,7 +1124,64 @@
 
               <div class="product-media">
                 <img class="product-img"
-                     src="https://images.unsplash.com/photo-1544441893-675973e31985?q=80&w=1200&auto=format&fit=crop"
+                     src="/images/fbg2.jpg"
+                     alt="Graphic Tee" />
+              </div>
+
+              <div class="p-3 d-flex flex-column product-body">
+                <div class="d-flex justify-content-between align-items-center">
+                  <h4><span class="fw-bold">₹<span class="product-price">399</span></span></h4>
+                </div>
+
+                <!-- Ensure a product-title exists so scripts can read/update -->
+                <h6 class="product-title text-muted small mb-1">Graphic Tee (Purple)</h6>
+                <p class="text-muted small mb-1">Gender: Boys</p>
+
+                <!-- Clickable sizes -->
+                <div class="small ">
+                  <span class="text-muted ">Size</span>
+                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="XS">XS</button>
+                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="S">S</button>
+                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="M">M</button>
+                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="L">L</button>
+
+                </div>
+
+                <div class="">
+                  <div class="">
+                    <div class="form-label small mb-1">Colors</div>
+                    <div class="d-flex align-items-center gap-3">
+                      <label class="color-swatch" data-color="purple" style="--swatch:#7E3FF2;">
+                        <input type="radio" class="color-option" value="purple" checked />
+                        <span class="dot"></span>
+                      </label>
+                      <label class="color-swatch" data-color="black" style="--swatch:#1E1E1E;">
+                        <input type="radio" class="color-option" value="black" />
+                        <span class="dot"></span>
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="pt-3">
+                    <button class="btn btn-success w-100 buy-btn">
+                      <i class="bi bi-bag-check"></i> Buy
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /Card item -->
+          <div class="card-item flex-0-0-auto"
+               data-gender="boys girl"
+               data-sizes="xs,s,m,l,xl"
+               data-price="399">
+            <div class="product-card position-relative d-flex flex-column">
+              <span class="badge bg-success badge-top">New</span>
+
+              <div class="product-media">
+                <img class="product-img"
+                     src="/images/fbg1.jpg"
                      alt="Graphic Tee" />
               </div>
 
@@ -1431,7 +1229,7 @@
             </div>
           </div>
                     <div class="card-item flex-0-0-auto"
-               data-gender="boys"
+               data-gender="boys girls"
                data-sizes="xs,s,m,l,xl"
                data-price="399">
             <div class="product-card position-relative d-flex flex-column">
@@ -1439,7 +1237,7 @@
 
               <div class="product-media">
                 <img class="product-img"
-                     src="https://images.unsplash.com/photo-1544441893-675973e31985?q=80&w=1200&auto=format&fit=crop"
+                     src="/images/fbg3.jpg"
                      alt="Graphic Tee" />
               </div>
 
@@ -1486,6 +1284,7 @@
               </div>
             </div>
           </div>
+
 
 
         </div>
@@ -1494,14 +1293,35 @@
   </div>
 </section>
 
+<script>
+  document.querySelectorAll('.product-img').forEach(img => {
+    img.addEventListener('click', function () {
+      const modalImage = document.getElementById('modalImage');
+      modalImage.src = this.src; // Set clicked image in modal
+      const imageModal = new bootstrap.Modal(document.getElementById('imageModal'));
+      imageModal.show();
+    });
+  });
+</script>
 
+
+<!-- Image Modal -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content bg-transparent border-0">
+      <div class="modal-body p-0 text-center">
+        <img id="modalImage" src="" class="img-fluid rounded shadow" alt="Preview">
+      </div>
+    </div>
+  </div>
+</div>
 <!--latsttsts-->
 <section class="container-fluid ">
   <!-- Top centered heading -->
   <div class="row">
     <div class="col-12">
     <h2 class="text-center fw-bold mb-4 position-relative" style="z-index:2;">
-      Girls
+      Boys & Girls
     </h2>
     </div>
   </div>
@@ -1534,7 +1354,7 @@
 
               <div class="product-media">
                 <img class="product-img"
-                     src="https://images.unsplash.com/photo-1544441893-675973e31985?q=80&w=1200&auto=format&fit=crop"
+                     src="./images/fboy1.jpg"
                      alt="Graphic Tee" />
               </div>
 
@@ -1584,7 +1404,7 @@
           <!-- /Card item -->
 
           <div class="card-item flex-0-0-auto"
-               data-gender="boys"
+               data-gender="girls"
                data-sizes="xs,s,m,l,xl"
                data-price="399">
             <div class="product-card position-relative d-flex flex-column">
@@ -1592,7 +1412,7 @@
 
               <div class="product-media">
                 <img class="product-img"
-                     src="https://images.unsplash.com/photo-1544441893-675973e31985?q=80&w=1200&auto=format&fit=crop"
+                     src="./images/fgirl1.jpg"
                      alt="Graphic Tee" />
               </div>
 
@@ -1648,7 +1468,63 @@
 
               <div class="product-media">
                 <img class="product-img"
-                     src="https://images.unsplash.com/photo-1544441893-675973e31985?q=80&w=1200&auto=format&fit=crop"
+                     src="./images/fboy2.jpg"
+                     alt="Graphic Tee" />
+              </div>
+
+              <div class="p-3 d-flex flex-column product-body">
+                <div class="d-flex justify-content-between align-items-center">
+                  <h4><span class="fw-bold">₹<span class="product-price">399</span></span></h4>
+                </div>
+
+                <!-- Ensure a product-title exists so scripts can read/update -->
+                <h6 class="product-title text-muted small mb-1">Graphic Tee (Purple)</h6>
+                <p class="text-muted small mb-1">Gender: Boys</p>
+
+                <!-- Clickable sizes -->
+                <div class="small ">
+                  <span class="text-muted ">Size</span>
+                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="XS">XS</button>
+                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="S">S</button>
+                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="M">M</button>
+                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="L">L</button>
+
+                </div>
+
+                <div class="">
+                  <div class="">
+                    <div class="form-label small mb-1">Colors</div>
+                    <div class="d-flex align-items-center gap-3">
+                      <label class="color-swatch" data-color="purple" style="--swatch:#7E3FF2;">
+                        <input type="radio" class="color-option" value="purple" checked />
+                        <span class="dot"></span>
+                      </label>
+                      <label class="color-swatch" data-color="black" style="--swatch:#1E1E1E;">
+                        <input type="radio" class="color-option" value="black" />
+                        <span class="dot"></span>
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="pt-3">
+                    <button class="btn btn-success w-100 buy-btn">
+                      <i class="bi bi-bag-check"></i> Buy
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+                    <div class="card-item flex-0-0-auto"
+               data-gender="girls"
+               data-sizes="xs,s,m,l,xl"
+               data-price="399">
+            <div class="product-card position-relative d-flex flex-column">
+              <span class="badge bg-success badge-top">New</span>
+
+              <div class="product-media">
+                <img class="product-img"
+                     src="./images/fgirl2.jpg"
                      alt="Graphic Tee" />
               </div>
 
@@ -1704,7 +1580,63 @@
 
               <div class="product-media">
                 <img class="product-img"
-                     src="https://images.unsplash.com/photo-1544441893-675973e31985?q=80&w=1200&auto=format&fit=crop"
+                     src="./images/fboy3.jpg"
+                     alt="Graphic Tee" />
+              </div>
+
+              <div class="p-3 d-flex flex-column product-body">
+                <div class="d-flex justify-content-between align-items-center">
+                  <h4><span class="fw-bold">₹<span class="product-price">399</span></span></h4>
+                </div>
+
+                <!-- Ensure a product-title exists so scripts can read/update -->
+                <h6 class="product-title text-muted small mb-1">Graphic Tee (Purple)</h6>
+                <p class="text-muted small mb-1">Gender: Boys</p>
+
+                <!-- Clickable sizes -->
+                <div class="small ">
+                  <span class="text-muted ">Size</span>
+                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="XS">XS</button>
+                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="S">S</button>
+                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="M">M</button>
+                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="L">L</button>
+
+                </div>
+
+                <div class="">
+                  <div class="">
+                    <div class="form-label small mb-1">Colors</div>
+                    <div class="d-flex align-items-center gap-3">
+                      <label class="color-swatch" data-color="purple" style="--swatch:#7E3FF2;">
+                        <input type="radio" class="color-option" value="purple" checked />
+                        <span class="dot"></span>
+                      </label>
+                      <label class="color-swatch" data-color="black" style="--swatch:#1E1E1E;">
+                        <input type="radio" class="color-option" value="black" />
+                        <span class="dot"></span>
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="pt-3">
+                    <button class="btn btn-success w-100 buy-btn">
+                      <i class="bi bi-bag-check"></i> Buy
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+                    <div class="card-item flex-0-0-auto"
+               data-gender="girls"
+               data-sizes="xs,s,m,l,xl"
+               data-price="399">
+            <div class="product-card position-relative d-flex flex-column">
+              <span class="badge bg-success badge-top">New</span>
+
+              <div class="product-media">
+                <img class="product-img"
+                     src="./images/fgirl3.jpg"
                      alt="Graphic Tee" />
               </div>
 
@@ -1760,119 +1692,7 @@
 
               <div class="product-media">
                 <img class="product-img"
-                     src="https://images.unsplash.com/photo-1544441893-675973e31985?q=80&w=1200&auto=format&fit=crop"
-                     alt="Graphic Tee" />
-              </div>
-
-              <div class="p-3 d-flex flex-column product-body">
-                <div class="d-flex justify-content-between align-items-center">
-                  <h4><span class="fw-bold">₹<span class="product-price">399</span></span></h4>
-                </div>
-
-                <!-- Ensure a product-title exists so scripts can read/update -->
-                <h6 class="product-title text-muted small mb-1">Graphic Tee (Purple)</h6>
-                <p class="text-muted small mb-1">Gender: Boys</p>
-
-                <!-- Clickable sizes -->
-                <div class="small ">
-                  <span class="text-muted ">Size</span>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="XS">XS</button>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="S">S</button>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="M">M</button>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="L">L</button>
-
-                </div>
-
-                <div class="">
-                  <div class="">
-                    <div class="form-label small mb-1">Colors</div>
-                    <div class="d-flex align-items-center gap-3">
-                      <label class="color-swatch" data-color="purple" style="--swatch:#7E3FF2;">
-                        <input type="radio" class="color-option" value="purple" checked />
-                        <span class="dot"></span>
-                      </label>
-                      <label class="color-swatch" data-color="black" style="--swatch:#1E1E1E;">
-                        <input type="radio" class="color-option" value="black" />
-                        <span class="dot"></span>
-                      </label>
-                    </div>
-                  </div>
-
-                  <div class="pt-3">
-                    <button class="btn btn-success w-100 buy-btn">
-                      <i class="bi bi-bag-check"></i> Buy
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-                    <div class="card-item flex-0-0-auto"
-               data-gender="boys"
-               data-sizes="xs,s,m,l,xl"
-               data-price="399">
-            <div class="product-card position-relative d-flex flex-column">
-              <span class="badge bg-success badge-top">New</span>
-
-              <div class="product-media">
-                <img class="product-img"
-                     src="https://images.unsplash.com/photo-1544441893-675973e31985?q=80&w=1200&auto=format&fit=crop"
-                     alt="Graphic Tee" />
-              </div>
-
-              <div class="p-3 d-flex flex-column product-body">
-                <div class="d-flex justify-content-between align-items-center">
-                  <h4><span class="fw-bold">₹<span class="product-price">399</span></span></h4>
-                </div>
-
-                <!-- Ensure a product-title exists so scripts can read/update -->
-                <h6 class="product-title text-muted small mb-1">Graphic Tee (Purple)</h6>
-                <p class="text-muted small mb-1">Gender: Boys</p>
-
-                <!-- Clickable sizes -->
-                <div class="small ">
-                  <span class="text-muted ">Size</span>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="XS">XS</button>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="S">S</button>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="M">M</button>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="L">L</button>
-
-                </div>
-
-                <div class="">
-                  <div class="">
-                    <div class="form-label small mb-1">Colors</div>
-                    <div class="d-flex align-items-center gap-3">
-                      <label class="color-swatch" data-color="purple" style="--swatch:#7E3FF2;">
-                        <input type="radio" class="color-option" value="purple" checked />
-                        <span class="dot"></span>
-                      </label>
-                      <label class="color-swatch" data-color="black" style="--swatch:#1E1E1E;">
-                        <input type="radio" class="color-option" value="black" />
-                        <span class="dot"></span>
-                      </label>
-                    </div>
-                  </div>
-
-                  <div class="pt-3">
-                    <button class="btn btn-success w-100 buy-btn">
-                      <i class="bi bi-bag-check"></i> Buy
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-                    <div class="card-item flex-0-0-auto"
-               data-gender="boys"
-               data-sizes="xs,s,m,l,xl"
-               data-price="399">
-            <div class="product-card position-relative d-flex flex-column">
-              <span class="badge bg-success badge-top">New</span>
-
-              <div class="product-media">
-                <img class="product-img"
-                     src="https://images.unsplash.com/photo-1544441893-675973e31985?q=80&w=1200&auto=format&fit=crop"
+                     src="./images/fboy4.jpg"
                      alt="Graphic Tee" />
               </div>
 
@@ -1925,6 +1745,19 @@
     </div>
   </div>
 </section>
+
+<script>
+  document.querySelectorAll('.product-img').forEach(img => {
+    img.addEventListener('click', function () {
+      const modalImage = document.getElementById('modalImage');
+      modalImage.src = this.src; // Set clicked image in modal
+      const imageModal = new bootstrap.Modal(document.getElementById('imageModal'));
+      imageModal.show();
+    });
+  });
+</script>
+
+
 
 <!-- Styles for active size chip -->
 <style>
