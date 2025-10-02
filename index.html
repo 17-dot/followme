@@ -1989,7 +1989,7 @@
 })();
 </script> -->
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" referrerpolicy="no-referrer"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" referrerpolicy="no-referrer"></script>
 <script>
 (function(){
   const UPI_VPA = 'akayaz14u@okaxis';   // merchant UPI VPA
@@ -2012,7 +2012,7 @@
   }
 
   let bsModal = null;
-  let lastUpiUrl = '';
+  let lastUpiUrl =`upi://pay?pa=akayaz14u@okaxis&pn=Hotel%20Mezbaan&am=${amount}&cu=INR&tn=Payment%20for%20${encodeURIComponent(currentItem)}&tr=ORDER${Date.now()}&mode=02`;;
   let currentPayload = null;
 
   // Build UPI deeplink
@@ -2150,7 +2150,7 @@
     wireBuyButtons(sectionRoot || document);
   };
 })();
-</script>
+</script> -->
 
 <!-- <script>
 (function(){
@@ -2318,6 +2318,141 @@
   };
 })();
 </script> -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" referrerpolicy="no-referrer"></script>
+<script>
+(function(){
+  const UPI_VPA = 'akayaz14u@okaxis';   // merchant UPI VPA
+  const UPI_PN  = 'Hotel Mezbaan';      // merchant name
+  const UPI_MC  = '5311';               // merchant category
+  const DEFAULT_WA_NUMBER = '919623266520';
+
+  const modalEl    = document.getElementById('qrPayModal');
+  const amountSpan = document.getElementById('qrpay-amount');
+  const qrcodeWrap = document.getElementById('qrpay-qrcode');
+  const payBtn     = document.getElementById('qrpay-pay-btn');
+  const waBtn      = document.getElementById('qrpay-wa-btn');
+  const closeBtn   = modalEl?.querySelector('.close');
+
+  let currentPayload = null;
+  let lastUpiUrl = '';
+
+  if (modalEl) {
+    modalEl.addEventListener('show.bs.modal', () => {
+      if (modalEl.parentElement !== document.body) document.body.appendChild(modalEl);
+    });
+  }
+
+  // Extract product info from card
+  function readCard(card) {
+    const title = card.querySelector('.product-title')?.textContent.trim() || 'Product';
+    const priceText = card.querySelector('.product-price')?.textContent.trim() || '';
+    const priceNumber = (priceText.match(/\d+(\.\d+)?/)||[])[0] || '';
+    const img   = card.querySelector('.product-img')?.getAttribute('src') || '';
+    const wrap  = card.closest('.card-item') || card;
+    const gender = wrap?.getAttribute('data-gender') || '';
+    const sizes  = wrap?.getAttribute('data-sizes') || '';
+    const chosenSizeBtn = card.querySelector('.size-chip.active') || card.querySelector('.size-chip[aria-pressed="true"]');
+    const size = chosenSizeBtn?.dataset.size || chosenSizeBtn?.textContent?.trim() || '';
+    const chosenColor = card.querySelector('.color-option:checked')?.value
+                     || card.querySelector('.color-swatch[data-color]')?.getAttribute('data-color') || '';
+    if (wrap && !wrap.dataset.code) {
+      wrap.dataset.code = 'FM-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).slice(2,6).toUpperCase();
+    }
+    const articleCode = (wrap && wrap.dataset.code) || '';
+    return { title, amount: priceNumber, img, gender, sizes, size, color: chosenColor, articleCode };
+  }
+
+  // Generate UPI URL & QR code
+  function generateUPIQR(payload) {
+    const amount = payload.amount;
+    lastUpiUrl = `upi://pay?pa=${UPI_VPA}&pn=${encodeURIComponent(UPI_PN)}&am=${amount}&cu=INR&tn=${encodeURIComponent('Payment for ' + payload.title)}&tr=${payload.articleCode || 'ORDER'+Date.now()}&mode=02`;
+
+    if (qrcodeWrap) {
+      qrcodeWrap.innerHTML = '';
+      new QRCode(qrcodeWrap, {
+        text: lastUpiUrl,
+        width: Math.min(window.innerWidth * 0.7, 220),
+        height: Math.min(window.innerWidth * 0.7, 220),
+        colorDark: "#000000",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.H
+      });
+    }
+  }
+
+  // Open modal
+  function openPayModal(payload) {
+    currentPayload = payload;
+    if (amountSpan) amountSpan.textContent = payload.amount;
+    generateUPIQR(payload);
+    if (modalEl) modalEl.style.display = 'block';
+  }
+
+  // Close modal
+  function closeModal() {
+    if (modalEl) modalEl.style.display = 'none';
+    if (qrcodeWrap) qrcodeWrap.innerHTML = '';
+  }
+
+  closeBtn?.addEventListener('click', closeModal);
+  window.addEventListener('click', function(e){
+    if (e.target === modalEl) closeModal();
+  });
+
+  // Wire buy buttons
+  function wireBuyButtons(scope=document) {
+    scope.querySelectorAll('.buy-btn').forEach(btn => {
+      if (btn._qrpayBound) return;
+      btn._qrpayBound = true;
+      btn.addEventListener('click', function(e){
+        e.preventDefault();
+        const card = e.currentTarget.closest('.product-card') || e.currentTarget.closest('.card-item');
+        if (!card) return;
+        const data = readCard(card);
+        if (!data.amount) return;
+        openPayModal(data);
+      });
+    });
+  }
+
+  // Pay button → open UPI app
+  payBtn?.addEventListener('click', function(){
+    if (lastUpiUrl) {
+      window.location.href = lastUpiUrl;
+    }
+  });
+
+  // WhatsApp share
+  waBtn?.addEventListener('click', function(){
+    if (!currentPayload) return;
+    const phoneDigits = DEFAULT_WA_NUMBER;
+    const msg = [
+      'New Order Request',
+      `Article Code: ${currentPayload.articleCode || '-'}`,
+      `Title: ${currentPayload.title}`,
+      `Gender: ${currentPayload.gender || 'N/A'}`,
+      `Chosen Size: ${currentPayload.size || 'N/A'}`,
+      `Price: ₹${currentPayload.amount}`,
+      `Color: ${currentPayload.color || 'default'}`,
+      `Image: ${currentPayload.img || ''}`
+    ].join('\n');
+    window.open(`https://wa.me/${phoneDigits}?text=${encodeURIComponent(msg)}`, '_blank');
+    closeModal();
+  });
+
+  // Initialize buttons on DOM load
+  document.addEventListener('DOMContentLoaded', function(){
+    document.querySelectorAll('.card-scroller, .products, .section, body').forEach(el => wireBuyButtons(el));
+  });
+
+  // External API for dynamic sections
+  window.initQrPayForSection = function(sectionRoot){
+    wireBuyButtons(sectionRoot || document);
+  };
+
+})();
+</script>
 
 <script>
   document.querySelectorAll('.product-img').forEach(img => {
