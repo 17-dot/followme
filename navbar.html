@@ -7,7 +7,9 @@
   <div class="container-fluid px-3 px-lg-4 py-2 nav-row">
     <!-- Brand -->
     <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
-      <span class="brand-mark"></span>
+
+  <img src="./images/followmemelogo-removebg-preview.png" alt="Follow Me Logo" class="navbar-logo">
+
       <span class="brand-script">Follow Me</span>
     </a>
 
@@ -140,13 +142,43 @@
 }
 
 /* Brand */
-.brand-mark {
+/* .brand-mark {
   width: 30px;
   height: 30px;
   border-radius: 8px;
   border: 1px solid rgba(212,175,55,0.6);
   background: radial-gradient(circle at 30% 30%, #fff 10%, #fef6d8 40%, #f3e2a2 70%);
   box-shadow: 0 6px 14px rgba(212,175,55,.28);
+} */
+
+.brand-mark {
+  width: 40px;   /* a slightly bigger square if logo is small */
+  height: 40px;
+  border-radius: 8px;
+  border: 1px solid rgba(212,175,55,0.6);
+  background: radial-gradient(circle at 30% 30%, #fff 10%, #fef6d8 40%, #f3e2a2 70%);
+  box-shadow: 0 6px 14px rgba(212,175,55,.28);
+  overflow: hidden; /* ensures image does not overflow */
+}
+
+
+.brand-mark img {
+  width: 10%;
+  height: 10%;
+  object-fit: cover; /* fills the square without stretching */
+  display: block;
+  border-radius: inherit; /* keeps the rounded corners */
+}
+
+.navbar-logo {
+  height: 45px; /* adjust to fit navbar */
+  width: auto;  /* maintains aspect ratio */
+  display: block;
+}
+
+
+.navbar-brand {
+    align-items: center; /* flex align center */
 }
 .brand-script {
   font-family: "Great Vibes", cursive;
