@@ -1820,7 +1820,7 @@
 (function () { 
   // Config 
   const UPI_VPA = 'akayaz14u@okaxis'; // Payee VPA
-  const UPI_PN = 'Hotel Mezbaan'; // Payee name
+  const UPI_PN = 'Follow Me Kids Wear'; // Payee name
   const UPI_MC = '5311'; // MCC (optional)
   const DEFAULT_WA_NUMBER = '919623266520'; // WhatsApp number for fallback
 
@@ -1904,7 +1904,7 @@
       pn: UPI_PN, // Payee name
       am: amt, // Amount
       cu: 'INR', // Currency
-      tn: `Payment for ${payload.title}`, // Note
+      tn: `Payment for ${payload.title} , Code ${payload.articleCode}`, // Note
       tr: txnId, // Ref ID
       mc: UPI_MC // MCC optional
     };
