@@ -931,6 +931,227 @@
   </div>
 </section>
 
+<!-- Universal QR Pay Modal -->
+<div id="qrPayModal" class="modal fade" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" style="background:#0c0b09;border:1px solid #cda45e;color:#fff;">
+      <div class="modal-header" style="border-bottom:1px solid rgba(205,164,94,.35)">
+        <h5 class="modal-title">Scan QR to Pay</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <div id="qrpay-qrcode" class="d-flex justify-content-center align-items-center"></div>
+        <p class="mt-3 mb-1">Amount: ₹ <span id="qrpay-amount" style="color:#cda45e;font-weight:700;"></span></p>
+        <p class="small text-warning mb-3">Use any UPI app (GPay, PhonePe, Paytm, etc.).</p>
+        <div class="d-grid gap-2">
+          <button id="qrpay-pay-btn" class="btn btn-success">Pay in UPI / GPay</button>
+          <!-- <a id="qrpay-pay-btn" href="intent://upi/pay?pa=akayaz14u@okaxis&pn=Hotel%20Mezbaan&am=399&cu=INR&tn=Order&tr=ORDER12345&mc=5311&url=https%3A%2F%2F17-dot.github.io#Intent;scheme=upi;package=com.google.android.apps.nbu.paisa.user;S.browser_fallback_url=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.google.android.apps.nbu.paisa.user;end;"
+   class="btn btn-primary">Pay in GPay</a> -->
+          <button id="qrpay-wa-btn" class="btn btn-outline-light">Proceed to WhatsApp</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Include QRCode library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" referrerpolicy="no-referrer"></script>
+
+<!-- Main Script: Modal + UPI/GPay + WhatsApp for #productGrid cards -->
+<!-- Buy → opens modal (no auto navigation) -->
+<!-- Pay in UPI/GPay → opens GPay with amount prefilled via UPI deep link -->
+<!-- WhatsApp → sends structured order message -->
+<script>
+/* Modal + UPI/GPay + WhatsApp for #productGrid cards - Buy → opens modal (no auto navigation) - Pay in UPI/GPay → opens GPay with amount prefilled via UPI deep link - WhatsApp → sends structured order message */
+(function () { 
+  // Config 
+  const UPI_VPA = 'akayaz14u@okaxis'; // Payee VPA[3] 
+  const UPI_PN = 'Hotel Mezbaan'; // Payee name[3] 
+  const UPI_MC = '5311'; // Optional MCC[3] 
+  const DEFAULT_WA_NUMBER = '919623266520'; // WhatsApp phone (digits only) 
+
+  // Elements 
+  const modalEl = document.getElementById('qrPayModal'); 
+  const amountSpan = document.getElementById('qrpay-amount'); 
+  const qrcodeWrap = document.getElementById('qrpay-qrcode'); 
+  const payBtn = document.getElementById('qrpay-pay-btn'); 
+  const waBtn = document.getElementById('qrpay-wa-btn'); 
+
+  // Section root 
+  const gridRoot = document.getElementById('productGrid'); 
+
+  // State 
+  let currentPayload = null; 
+  let lastUpiUrl = ''; 
+  let lastParamsObj = null; 
+
+  // Platform 
+  const ua = navigator.userAgent || ''; 
+  const isAndroid = /Android/i.test(ua); 
+  const isIOS = /iPhone|iPad|iPod/i.test(ua); 
+
+  // Helpers 
+  function uniqueTxnId(prefix='ORDER'){ 
+    return prefix + Date.now(); 
+  } 
+  //[1] 
+  function buildUpiUrl(params) { 
+    const qs = new URLSearchParams(params).toString(); 
+    return `upi://pay?${qs}`; // generic deeplink[2][3] 
+  } 
+
+  // Explicit Android Google Pay intent with fallback to Play Store if app missing[1] 
+  function buildGPayAndroidIntent(params) { 
+    const qs = new URLSearchParams(params).toString(); 
+    const fallback = encodeURIComponent('https://play.google.com/store/apps/details?id=com.google.android.apps.nbu.paisa.user'); 
+    return `intent://pay?${qs}#Intent;scheme=upi;package=com.google.android.apps.nbu.paisa.user;S.browser_fallback_url=${fallback};end;`; 
+  } 
+
+  // iOS: try gpay://, then fallback to generic upi:// if not handled by any app[2] 
+  function buildGPayIOSUrl(params) { 
+    const qs = new URLSearchParams(params).toString(); 
+    return `gpay://upi/pay?${qs}`; 
+  } 
+
+  // Extract product info from a product-card inside #productGrid 
+  function readCard(card) { 
+    // Prefer data-price for canonical amount; fallback to visible .product-price text 
+    const dataPrice = card.getAttribute('data-price') || ''; 
+    const priceText = card.querySelector('.product-price')?.textContent.trim() || ''; 
+    const priceMatch = priceText.match(/\d+(\.\d+)?/); 
+    const priceNumber = dataPrice || (priceMatch ? priceMatch : ''); 
+    const title = card.querySelector('.product-title')?.textContent.trim() || 'Product'; 
+    const img = card.querySelector('.product-img')?.getAttribute('src') || ''; 
+    const gender = card.getAttribute('data-gender') || ''; 
+    const sizes = (card.getAttribute('data-sizes') || '').toUpperCase(); 
+    // Chosen size not explicitly interactable in this markup, so mark as N/A 
+    const size = 'N/A'; 
+    const chosenColor = card.querySelector('.color-option:checked')?.value || card.querySelector('.color-swatch[data-color]')?.getAttribute('data-color') || ''; 
+    // Ensure a stable article code for each card 
+    if (!card.dataset.code) { 
+      card.dataset.code = 'FM-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).slice(2,6).toUpperCase(); 
+    } 
+    const articleCode = card.dataset.code; 
+    return { 
+      title, 
+      amount: priceNumber, 
+      img, 
+      gender, 
+      sizes, 
+      size, 
+      color: chosenColor, 
+      articleCode 
+    }; 
+  } 
+
+  // Build UPI deep link + QR in modal; do not navigate here[2][3] 
+  function generateUPIArtifacts(payload) { 
+    const txnId = payload.articleCode || uniqueTxnId('ORDER'); 
+    const amt = String(payload.amount || '').trim(); // must be a string; decimal allowed [3] 
+    const params = { 
+      pa: UPI_VPA, // payee VPA[3] 
+      pn: UPI_PN, // payee name[3] 
+      am: amt, // amount[3] 
+      cu: 'INR', // currency[3] 
+      tn: `Payment for ${payload.title}`, // note[3] 
+      tr: txnId, // merchant ref ID[3] 
+      mc: UPI_MC // optional MCC[3] 
+    }; 
+    lastParamsObj = params; 
+    lastUpiUrl = buildUpiUrl(params); 
+    if (qrcodeWrap) { 
+      qrcodeWrap.innerHTML = ''; 
+      new QRCode(qrcodeWrap, { 
+        text: lastUpiUrl, 
+        width: Math.min(window.innerWidth * 0.7, 220), 
+        height: Math.min(window.innerWidth * 0.7, 220), 
+        colorDark: '#000000', 
+        colorLight: '#ffffff', 
+        correctLevel: QRCode.CorrectLevel.H 
+      }); 
+    } 
+  } 
+
+  // Open the modal only 
+  function openPayModal(payload) { 
+    currentPayload = payload; 
+    if (amountSpan) amountSpan.textContent = payload.amount; 
+    generateUPIArtifacts(payload); 
+    if (modalEl && window.bootstrap?.Modal) { 
+      const bsModal = new bootstrap.Modal(modalEl); 
+      bsModal.show(); // open modal first[4] 
+    } 
+  } 
+
+  // Wire Buy buttons inside #productGrid to open modal (no auto navigation) 
+  function wireGridBuyButtons() { 
+    if (!gridRoot) return; 
+    gridRoot.querySelectorAll('.product-card .buy-btn').forEach(btn => { 
+      if (btn._qrpayBound) return; 
+      btn._qrpayBound = true; 
+      btn.addEventListener('click', function (e) { 
+        e.preventDefault(); 
+        const card = e.currentTarget.closest('.product-card'); 
+        if (!card) return; 
+        const data = readCard(card); 
+        if (!data.amount) return; 
+        openPayModal(data); 
+      }); 
+    }); 
+  } 
+
+  // Pay in UPI / GPay: now open app with amount prefilled 
+  payBtn?.addEventListener('click', function () { 
+    if (!lastParamsObj) return; 
+    if (isAndroid) { 
+      const intentUrl = buildGPayAndroidIntent(lastParamsObj); 
+      window.location.href = intentUrl; // explicit GPay intent[1] 
+    } else if (isIOS) { 
+      const gpayUrl = buildGPayIOSUrl(lastParamsObj); 
+      window.location.href = gpayUrl; // best-effort[2] 
+      setTimeout(() => { 
+        try { 
+          window.location.href = lastUpiUrl; 
+        } catch(_) {} 
+      }, 1200); // fallback to generic UPI 
+    } else { 
+      alert('Please scan the QR code using your UPI app to pay.'); 
+    } 
+  }); 
+
+  // WhatsApp: use the provided message format 
+  waBtn?.addEventListener('click', function () { 
+    if (!currentPayload) return; 
+    // If a global sizeSelect exists as in the provided snippet, use it; otherwise N/A 
+    const sizeSelect = document.getElementById('sizeSelect'); 
+    const chosenSize = (sizeSelect && sizeSelect.value && sizeSelect.value !== 'all') ? sizeSelect.value.toUpperCase() : 'N/A'; 
+    const msg = [ 
+      'New Order Request', 
+      'Article Code: ' + (currentPayload.articleCode || ''), 
+      'Title: ' + (currentPayload.title || 'Product'), 
+      'Gender: ' + (currentPayload.gender || ''), 
+      'Chosen Size: ' + chosenSize, 
+      'Available Sizes: ' + String(currentPayload.sizes || '').toUpperCase(), 
+      'Price: ₹' + (currentPayload.amount || ''), 
+      'Image: ' + (currentPayload.img || '') 
+    ].join('\n'); 
+    const waUrl = 'https://wa.me/' + DEFAULT_WA_NUMBER + '?text=' + encodeURIComponent(msg); 
+    window.open(waUrl, '_blank', 'noopener,noreferrer'); 
+  }); 
+
+  // Init on DOM ready 
+  document.addEventListener('DOMContentLoaded', function () { 
+    wireGridBuyButtons(); // bind inside the new Products grid[4] 
+  }); 
+
+  // Optional: if new cards are injected later 
+  window.initQrPayForProductGrid = function () { 
+    wireGridBuyButtons(); 
+  }; 
+})(); 
+</script>
+
+
   
 <script>
   // Run after DOM is ready
@@ -1073,7 +1294,8 @@
 })();
 </script>
 
-  <script>
+<!--whatsaoo-->
+  <!-- <script>
   document.addEventListener('DOMContentLoaded', () => {
     // 1) Required: international number digits only (no +)
     const WA_NUMBER = '919623266520';
@@ -1119,7 +1341,7 @@
       });
     });
   });
-</script>
+</script> -->
 
   <div id="footer-placeholder"></div>
 
