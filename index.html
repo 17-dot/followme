@@ -1810,7 +1810,7 @@
   </div>
 </div>
 <!-- QRCode.js library (once) -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" referrerpolicy="no-referrer"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" referrerpolicy="no-referrer"></script>
 <script>
 (function(){
   const UPI_VPA = 'akayaz14u@okaxis';   // merchant UPI VPA
@@ -1945,6 +1945,169 @@
     openViaAnchor(gpayUrl);
     setTimeout(() => openViaAnchor(intentUrl), 200);
     setTimeout(() => openViaAnchor(lastUpiUrl), 400);
+  });
+
+  // WhatsApp order share
+  waBtn?.addEventListener('click', () => {
+    if (!currentPayload) return;
+    if (typeof window.sendWhatsappForCloth === 'function') {
+      window.sendWhatsappForCloth({
+        title: currentPayload.title,
+        amount: currentPayload.amount,
+        size: currentPayload.size || 'N/A',
+        color: currentPayload.color || 'default',
+        gender: currentPayload.gender || 'N/A',
+        img: currentPayload.img || '',
+        articleCode: currentPayload.articleCode || ''
+      });
+    } else {
+      const phoneDigits = (window.PHONE_IN_E164 && /^\d{8,15}$/.test(window.PHONE_IN_E164)) ? window.PHONE_IN_E164 : DEFAULT_WA_NUMBER;
+      const msg = [
+        'New Order Request',
+        `Article Code: ${currentPayload.articleCode || '-'}`,
+        `Title: ${currentPayload.title}`,
+        `Gender: ${currentPayload.gender || 'N/A'}`,
+        `Chosen Size: ${currentPayload.size || 'N/A'}`,
+        `Price: ₹${currentPayload.amount}`,
+        `Color: ${currentPayload.color || 'default'}`,
+        `Image: ${currentPayload.img || ''}`
+      ].join('\n');
+      location.href = `https://wa.me/${phoneDigits}?text=${encodeURIComponent(msg)}`;
+    }
+    if (bsModal) bsModal.hide();
+  });
+
+  // Init buy button bindings
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.card-scroller, .products, .section, body').forEach(el => wireBuyButtons(el));
+  });
+
+  // External API
+  window.initQrPayForSection = function(sectionRoot){
+    wireBuyButtons(sectionRoot || document);
+  };
+})();
+</script> -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" referrerpolicy="no-referrer"></script>
+<script>
+(function(){
+  const UPI_VPA = 'akayaz14u@okaxis';   // merchant UPI VPA
+  const UPI_PN  = 'Hotel Mezbaan';      // merchant name
+  const UPI_MC  = '5311';               // merchant category
+  const UPI_REF_URL = location.origin;  // must be HTTPS in production
+
+  const DEFAULT_WA_NUMBER = '919623266520';
+
+  const modalEl    = document.getElementById('qrPayModal');
+  const amountSpan = document.getElementById('qrpay-amount');
+  const qrcodeWrap = document.getElementById('qrpay-qrcode');
+  const payBtn     = document.getElementById('qrpay-pay-btn');
+  const waBtn      = document.getElementById('qrpay-wa-btn');
+
+  if (modalEl) {
+    modalEl.addEventListener('show.bs.modal', () => {
+      if (modalEl.parentElement !== document.body) document.body.appendChild(modalEl);
+    });
+  }
+
+  let bsModal = null;
+  let lastUpiUrl = '';
+  let currentPayload = null;
+
+  // Build UPI deeplink
+  function buildUpiUrl({amount, itemName, orderRef}) {
+    const params = new URLSearchParams({
+      pa: UPI_VPA,
+      pn: UPI_PN,
+      am: String(amount || ''),
+      cu: 'INR',
+      tn: `Payment for ${itemName || 'Order'}`,
+      tr: orderRef || `ORDER${Date.now()}`
+    });
+    if (UPI_MC) params.set('mc', UPI_MC);
+    if (UPI_REF_URL) params.set('url', UPI_REF_URL);
+    return `upi://pay?${params.toString()}`;
+  }
+
+  // Render QR code fallback
+  function renderQr(text) {
+    if (!qrcodeWrap) return;
+    qrcodeWrap.innerHTML = '';
+    new QRCode(qrcodeWrap, {
+      text,
+      width: Math.min(window.innerWidth * 0.6, 220),
+      height: Math.min(window.innerWidth * 0.6, 220),
+      colorDark: '#000',
+      colorLight: '#fff',
+      correctLevel: QRCode.CorrectLevel.H
+    });
+  }
+
+  // Extract product info from card
+  function readCard(card) {
+    const title = card.querySelector('.product-title')?.textContent.trim() || 'Product';
+    const priceText = card.querySelector('.product-price')?.textContent.trim() || '';
+    const priceNumber = (priceText.match(/\d+(\.\d+)?/)||[])[0] || '';
+    const img   = card.querySelector('.product-img')?.getAttribute('src') || '';
+    const wrap  = card.closest('.card-item') || card;
+    const gender = wrap?.getAttribute('data-gender') || '';
+    const sizes  = wrap?.getAttribute('data-sizes') || '';
+    const chosenSizeBtn = card.querySelector('.size-chip.active') || card.querySelector('.size-chip[aria-pressed="true"]');
+    const size = chosenSizeBtn?.dataset.size || chosenSizeBtn?.textContent?.trim() || '';
+    const chosenColor = card.querySelector('.color-option:checked')?.value
+                     || card.querySelector('.color-swatch[data-color]')?.getAttribute('data-color') || '';
+    if (wrap && !wrap.dataset.code) {
+      wrap.dataset.code = 'FM-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).slice(2,6).toUpperCase();
+    }
+    const articleCode = (wrap && wrap.dataset.code) || '';
+    return { title, amount: priceNumber, img, gender, sizes, size, color: chosenColor, articleCode };
+  }
+
+  // Open modal with QR + prebuilt URL
+  function openPayModal(payload) {
+    currentPayload = payload;
+    if (amountSpan) amountSpan.textContent = payload.amount;
+    lastUpiUrl = buildUpiUrl({
+      amount: payload.amount,
+      itemName: payload.title,
+      orderRef: payload.articleCode || `ORDER${Date.now()}`
+    });
+    renderQr(lastUpiUrl);
+    if (!bsModal && modalEl) bsModal = new bootstrap.Modal(modalEl);
+    if (bsModal) bsModal.show();
+  }
+
+  // Wire buy buttons
+  function wireBuyButtons(scope=document) {
+    scope.querySelectorAll('.buy-btn').forEach(btn => {
+      if (btn._qrpayBound) return;
+      btn._qrpayBound = true;
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const card = e.currentTarget.closest('.product-card') || e.currentTarget.closest('.card-item') || e.currentTarget.closest('.product');
+        if (!card) return;
+        const data = readCard(card);
+        if (!data.amount) return;
+        openPayModal(data);
+      });
+    });
+  }
+
+  // GPay / UPI payment button
+  payBtn?.addEventListener('click', () => {
+    if (!lastUpiUrl) return;
+
+    // Open UPI payment directly (works for GPay and other UPI apps)
+    const a = document.createElement('a');
+    a.href = lastUpiUrl;           // upi://pay?pa=...&am=...
+    a.target = '_self';
+    a.rel = 'noopener noreferrer';
+    a.style.display = 'none';
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(() => a.remove(), 1000);
   });
 
   // WhatsApp order share
