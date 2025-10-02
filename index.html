@@ -2127,7 +2127,7 @@
 </script> -->
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" referrerpolicy="no-referrer"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" referrerpolicy="no-referrer"></script>
 
 <script>
 (function() {
@@ -2253,6 +2253,248 @@
     wireBuyButtons(sectionRoot || document);
   };
 
+})();
+</script> -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" referrerpolicy="no-referrer"></script>
+
+<script>
+/*
+  Force-open GPay with prefilled amount (Android intent) + iOS best-effort + QR fallback
+
+  Required elements (ids):
+  - qrPayModal (Bootstrap modal container)
+  - qrpay-amount  (span/div to show amount)
+  - qrpay-qrcode  (div for QR)
+  - qrpay-pay-btn (button to trigger direct open)
+  - qrpay-wa-btn  (button for WhatsApp order message)
+
+  Product card structure expectations:
+  - .buy-btn inside a .product-card or .card-item
+  - .product-title, .product-price, .product-img optional
+  - Optional data attributes on .card-item: data-gender, data-sizes
+*/
+(function() {
+  // =========================
+  // Configuration
+  // =========================
+  const UPI_VPA = 'akayaz14u@okaxis';        // Merchant UPI VPA
+  const UPI_PN  = 'Hotel Mezbaan';           // Merchant Name
+  const UPI_MC  = '5311';                    // Merchant Category Code (optional but recommended)
+  const DEFAULT_WA_NUMBER = '919623266520';  // WhatsApp number for order messages
+
+  // =========================
+  // DOM Elements
+  // =========================
+  const modalEl     = document.getElementById('qrPayModal');
+  const amountSpan  = document.getElementById('qrpay-amount');
+  const qrcodeWrap  = document.getElementById('qrpay-qrcode');
+  const payBtn      = document.getElementById('qrpay-pay-btn');
+  const waBtn       = document.getElementById('qrpay-wa-btn');
+
+  // =========================
+  // State
+  // =========================
+  let currentPayload = null;      // The selected product/order info
+  let lastUpiUrl = '';            // Generic upi:// deep link (for QR and fallback)
+  let lastIntentParams = '';      // Querystring used for Android intent/gpay URLs
+
+  // =========================
+  // Platform detection
+  // =========================
+  const ua = navigator.userAgent || '';
+  const isAndroid = /Android/i.test(ua);
+  const isIOS = /iPhone|iPad|iPod/i.test(ua);
+  const isMobile = /Android|iPhone|iPad|iPod/i.test(ua);
+
+  // =========================
+  // Utilities
+  // =========================
+  function uniqueTxnId(prefix = 'ORDER') {
+    return `${prefix}${Date.now()}`;
+  }
+
+  function buildUpiUrl(params) {
+    const q = new URLSearchParams(params).toString();
+    return `upi://pay?${q}`;
+  }
+
+  // Explicit Google Pay Android intent with Play Store fallback if GPay is not installed
+  function buildGPayAndroidIntent(params) {
+    const query = new URLSearchParams(params).toString();
+    const fallback = encodeURIComponent('https://play.google.com/store/apps/details?id=com.google.android.apps.nbu.paisa.user');
+    return `intent://pay?${query}#Intent;scheme=upi;package=com.google.android.apps.nbu.paisa.user;S.browser_fallback_url=${fallback};end;`;
+  }
+
+  // iOS best-effort open via gpay://, else fallback to upi://
+  function buildGPayIOSUrl(params) {
+    const query = new URLSearchParams(params).toString();
+    return `gpay://upi/pay?${query}`;
+  }
+
+  // =========================
+  // Product card extraction
+  // =========================
+  function readCard(card) {
+    const title = card.querySelector('.product-title')?.textContent.trim() || 'Product';
+    const priceText = card.querySelector('.product-price')?.textContent.trim() || '';
+    const priceNumber = (priceText.match(/\d+(\.\d+)?/) || []) || '';
+    const img = card.querySelector('.product-img')?.getAttribute('src') || '';
+    const wrap = card.closest('.card-item') || card;
+
+    const gender = wrap?.getAttribute('data-gender') || '';
+    const sizes  = wrap?.getAttribute('data-sizes') || '';
+
+    const chosenSizeBtn = card.querySelector('.size-chip.active') || card.querySelector('.size-chip[aria-pressed="true"]');
+    const size = chosenSizeBtn?.dataset.size || chosenSizeBtn?.textContent?.trim() || '';
+
+    const chosenColor = card.querySelector('.color-option:checked')?.value
+                     || card.querySelector('.color-swatch[data-color]')?.getAttribute('data-color') || '';
+
+    if (wrap && !wrap.dataset.code) {
+      wrap.dataset.code = 'FM-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).slice(2,6).toUpperCase();
+    }
+
+    const articleCode = wrap?.dataset.code || '';
+    return { title, amount: priceNumber, img, gender, sizes, size, color: chosenColor, articleCode };
+  }
+
+  // =========================
+  // QR and Deep Link generation
+  // =========================
+  function generateUPIArtifacts(payload) {
+    const txnId = payload.articleCode || uniqueTxnId('ORDER');
+    const params = {
+      pa: UPI_VPA,
+      pn: UPI_PN,
+      am: payload.amount,
+      cu: 'INR',
+      tn: `Payment for ${payload.title}`,
+      tr: txnId,
+      mc: UPI_MC
+    };
+
+    lastIntentParams = new URLSearchParams(params).toString();
+    lastUpiUrl = buildUpiUrl(params);
+
+    if (qrcodeWrap) {
+      qrcodeWrap.innerHTML = '';
+      new QRCode(qrcodeWrap, {
+        text: lastUpiUrl,
+        width: Math.min(window.innerWidth * 0.7, 220),
+        height: Math.min(window.innerWidth * 0.7, 220),
+        colorDark: "#000000",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.H
+      });
+    }
+  }
+
+  // =========================
+  // Payment modal & force-open
+  // =========================
+  function openPayModal(payload) {
+    currentPayload = payload;
+    if (amountSpan) amountSpan.textContent = payload.amount;
+
+    generateUPIArtifacts(payload);
+
+    if (modalEl && window.bootstrap?.Modal) {
+      const bsModal = new bootstrap.Modal(modalEl);
+      bsModal.show();
+    }
+
+    // “Force” direct navigation attempt to Google Pay (Android) immediately
+    tryDirectOpenGPay();
+  }
+
+  function tryDirectOpenGPay() {
+    if (!lastIntentParams) return;
+
+    if (isAndroid) {
+      // Android explicit intent to Google Pay with Play Store fallback
+      const gpayIntent = buildGPayAndroidIntent(Object.fromEntries(new URLSearchParams(lastIntentParams)));
+      setTimeout(() => { window.location.href = gpayIntent; }, 50);
+      return;
+    }
+
+    if (isIOS) {
+      // iOS best-effort with gpay://, then fallback to generic upi://
+      const gpayUrl = buildGPayIOSUrl(Object.fromEntries(new URLSearchParams(lastIntentParams)));
+      setTimeout(() => { window.location.href = gpayUrl; }, 50);
+      setTimeout(() => {
+        try { window.location.href = lastUpiUrl; } catch(_) {}
+      }, 1200);
+      return;
+    }
+
+    // Desktop stays on QR
+  }
+
+  // =========================
+  // Wire Buy buttons
+  // =========================
+  function wireBuyButtons(scope = document) {
+    scope.querySelectorAll('.buy-btn').forEach(btn => {
+      if (btn._qrpayBound) return;
+      btn._qrpayBound = true;
+
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const card = e.currentTarget.closest('.product-card') || e.currentTarget.closest('.card-item');
+        if (!card) return;
+        const data = readCard(card);
+        if (!data.amount) return;
+        openPayModal(data);
+      });
+    });
+  }
+
+  // =========================
+  // Button handlers
+  // =========================
+  payBtn?.addEventListener('click', function() {
+    if (!lastIntentParams) return;
+
+    if (isAndroid) {
+      const gpayUrl = buildGPayAndroidIntent(Object.fromEntries(new URLSearchParams(lastIntentParams)));
+      window.location.href = gpayUrl;
+    } else if (isIOS) {
+      const gpayUrl = buildGPayIOSUrl(Object.fromEntries(new URLSearchParams(lastIntentParams)));
+      window.location.href = gpayUrl;
+      setTimeout(() => { try { window.location.href = lastUpiUrl; } catch(_) {} }, 1200);
+    } else {
+      alert('Please scan the QR code using your UPI app to pay.');
+    }
+  });
+
+  waBtn?.addEventListener('click', function() {
+    if (!currentPayload) return;
+    const msg = [
+      'New Order Request',
+      `Article Code: ${currentPayload.articleCode || '-'}`,
+      `Title: ${currentPayload.title}`,
+      `Gender: ${currentPayload.gender || 'N/A'}`,
+      `Chosen Size: ${currentPayload.size || 'N/A'}`,
+      `Price: ₹${currentPayload.amount}`,
+      `Color: ${currentPayload.color || 'default'}`,
+      `Image: ${currentPayload.img || ''}`
+    ].join('\n');
+    window.open(`https://wa.me/${DEFAULT_WA_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
+  });
+
+  // =========================
+  // Auto-init
+  // =========================
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.card-scroller, .products, .section, body')
+      .forEach(el => wireBuyButtons(el));
+  });
+
+  // Expose init for dynamically added sections
+  window.initQrPayForSection = function(sectionRoot) {
+    wireBuyButtons(sectionRoot || document);
+  };
 })();
 </script>
 
