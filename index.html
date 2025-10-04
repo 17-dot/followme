@@ -781,11 +781,134 @@
   }
 </style>
 <!-- Image Modal -->
-<div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
+ <style>
+  /* Title trailing dot */
+.modal-product-details .detail-dot{
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(0,0,0,.45);
+  display: inline-block;
+  transform: translateY(-2px);
+}
+
+/* Size chips to match outline-primary small buttons */
+.modal-product-details .size-chip{
+  padding: .125rem .5rem;
+  font-size: .875rem;
+  line-height: 1.25rem;
+  border-radius: .375rem;
+}
+
+   /* Modal look aligned with cards */
+#productPreviewModal .modal-content{
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(0,0,0,.12);
+}
+#productPreviewModal .carousel-item{
+  background: #000; /* letterbox background */
+}
+#productPreviewModal .carousel-item img{
+  width: 100%;
+  height: auto;
+  max-height: min(72vh, 70dvh);
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+  background: #000;
+}
+@media (max-width: 576px){
+  #productPreviewModal .carousel-item img{
+    max-height: min(70vh, 70dvh);
+  }
+}
+
+/* Improve swipe alongside vertical content */
+#previewCarousel .carousel-inner{
+  touch-action: pan-y pinch-zoom; /* keep horizontal swipe responsive */
+}
+ </style>
+<!-- <div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content bg-transparent border-0">
       <div class="modal-body p-0 text-center">
         <img id="modalImage" src="" class="img-fluid rounded shadow" alt="Preview">
+      </div>
+    </div>
+  </div>
+</div> -->
+<!-- Product Preview Modal -->
+<div class="modal fade" id="productPreviewModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-fullscreen-sm-down modal-lg">
+    <div class="modal-content border-0 rounded-3 shadow-lg overflow-hidden">
+      <!-- Header: close -->
+      <div class="modal-header border-0">
+        <h5 class="modal-title small text-muted">Preview</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <!-- Body: image carousel + details -->
+      <div class="modal-body p-0">
+        <!-- Carousel -->
+        <div id="previewCarousel" class="carousel slide" data-bs-touch="true" data-bs-interval="false">
+          <div class="carousel-inner" id="previewCarouselInner">
+            <!-- slides injected by JS -->
+          </div>
+
+          <!-- Controls -->
+          <button class="carousel-control-prev" type="button" data-bs-target="#previewCarousel" data-bs-slide="prev" aria-label="Previous">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#previewCarousel" data-bs-slide="next" aria-label="Next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          </button>
+        </div>
+
+        <!-- Details -->
+<!-- Details -->
+<!-- Details (match card layout) -->
+<div class="p-3 modal-product-details">
+  <!-- Price -->
+  <div class="d-flex justify-content-between align-items-center">
+    <h4 class="m-0"><span class="fw-bold">₹<span id="previewPrice">0</span></span></h4>
+  </div>
+
+  <!-- Title + small dot separator to the right -->
+  <div class="d-flex align-items-baseline gap-2 mt-2">
+    <h6 id="previewTitle" class="text-muted small mb-0 flex-grow-1">Title</h6>
+    <span class="detail-dot" aria-hidden="true"></span>
+  </div>
+
+  <!-- Gender -->
+  <p class="text-muted small mt-2 mb-2">Gender: <span id="previewGender">-</span></p>
+
+  <!-- Sizes (mirrors card’s chips) -->
+  <div class="small">
+    <span class="text-muted">Size</span>
+    <div id="previewSizes" class="d-inline-flex align-items-center gap-2 ms-2"></div>
+  </div>
+
+  <!-- Colors (same swatches) -->
+  <div class="mt-3">
+    <div class="form-label small mb-1">Colors</div>
+    <div id="previewColors" class="d-flex align-items-center gap-3"></div>
+  </div>
+  <div class="mt-3" id="previewExtra" hidden>
+  <div class="text-muted small mb-1" id="previewDescription"></div>
+  <div class="text-muted small">SKU: <span id="previewSku">-</span></div>
+  <div class="text-muted small">Material: <span id="previewMaterial">-</span></div>
+</div>
+</div>
+      </div>
+
+      <!-- Footer: actions -->
+      <div class="modal-footer border-0 d-grid gap-2 d-sm-flex justify-content-sm-between px-3 pb-3">
+        <button type="button" class="btn btn-success flex-fill me-sm-2" id="previewBuyBtn">
+          <i class="bi bi-bag-check"></i> Buy
+        </button>
+        <a class="btn btn-dark flex-fill" id="previewInstaBtn" target="_blank" rel="noopener">
+          <i class="bi bi-instagram"></i> Insta Reel
+        </a>
       </div>
     </div>
   </div>
@@ -823,8 +946,12 @@
           <div class="card-item flex-0-0-auto"
                data-gender="boys girls"
                data-sizes="xs,s,m,l,xl"
-               data-price="399">
-            <div class="product-card position-relative d-flex flex-column">
+               data-price="399"
+               >
+            <div class="product-card position-relative d-flex flex-column"
+                 data-description="100% cotton, 180 GSM, regular fit"
+     data-sku="TEE-PURPLE-XS"
+     data-material="Cotton">
               <span class="badge bg-success badge-top">New</span>
 
               <div class="product-media">
@@ -1335,7 +1462,7 @@
     </div>
   </div>
 </section>
-<script>
+<!-- <script>
   document.querySelectorAll('.product-img').forEach(img => {
     img.addEventListener('click', function () {
       const modalImage = document.getElementById('modalImage');
@@ -1344,13 +1471,212 @@
       imageModal.show();
     });
   });
+</script> -->
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  if(!(window.bootstrap && bootstrap.Modal)){
+    console.error('Bootstrap bundle not loaded. Include bootstrap.bundle.min.js before this script.');
+    return;
+  }
+
+  (function(){
+    function closest(el, sel){
+      while(el && el.nodeType === 1){
+        if(el.matches(sel)) return el;
+        el = el.parentElement;
+      }
+      return null;
+    }
+
+    const productImgs = document.querySelectorAll('.product-img');
+    const modalEl = document.getElementById('productPreviewModal');
+    const priceEl = document.getElementById('previewPrice');
+    const titleEl = document.getElementById('previewTitle');
+    const genderEl = document.getElementById('previewGender');
+    const colorTextEl = document.getElementById('previewColor');
+    const sizesWrap = document.getElementById('previewSizes');
+    const colorsWrap = document.getElementById('previewColors');
+    const buyBtn = document.getElementById('previewBuyBtn');
+    const instaBtn = document.getElementById('previewInstaBtn');
+    const carouselEl = document.getElementById('previewCarousel');
+    const carouselInner = document.getElementById('previewCarouselInner');
+
+
+
+    if(!modalEl || !carouselEl || !carouselInner){
+      console.error('Modal or carousel elements not found. Check IDs productPreviewModal, previewCarousel, previewCarouselInner.');
+      return;
+    }
+
+    let bsModal = null;
+    let bsCarousel = null;
+
+    function getCardImages(card, activeSrc){
+      const list = (card.getAttribute('data-images') || '')
+        .split(',').map(s => s.trim()).filter(Boolean);
+      if(list.length) return list;
+      if(activeSrc) return [activeSrc];
+      const img = card.querySelector('.product-img');
+      return img ? [img.getAttribute('src')] : [];
+    }
+
+    function buildSlides(srcs, activeSrc){
+      carouselInner.innerHTML = '';
+      srcs.forEach((src, idx) => {
+        const slide = document.createElement('div');
+        const active = (src === activeSrc) || (!activeSrc && idx === 0);
+        slide.className = 'carousel-item' + (active ? ' active' : '');
+        slide.innerHTML = `
+          <div class="w-100 d-flex align-items-center justify-content-center" style="background:#000;">
+            <img src="${src}" alt="Preview ${idx+1}" loading="lazy">
+          </div>
+        `;
+        carouselInner.appendChild(slide);
+      });
+    }
+
+    function enableSwipe(carouselElement){
+      let startX = 0, dx = 0, tracking = false;
+      const threshold = 40;
+      carouselElement.addEventListener('touchstart', e=>{
+        if(e.touches.length !== 1) return;
+        tracking = true; startX = e.touches[0].clientX; dx = 0;
+      }, {passive:true});
+      carouselElement.addEventListener('touchmove', e=>{
+        if(!tracking) return; dx = e.touches[0].clientX - startX;
+      }, {passive:true});
+      carouselElement.addEventListener('touchend', ()=>{
+        if(!tracking) return; tracking = false;
+        if(Math.abs(dx) > 40){
+          const dir = dx > 0 ? 'prev' : 'next';
+          const inst = bootstrap.Carousel.getInstance(carouselElement) || new bootstrap.Carousel(carouselElement);
+          inst[dir]();
+        }
+      }, {passive:true});
+    }
+
+    // Attach clicks or delegate if none found
+    if(productImgs.length === 0){
+      console.warn('No .product-img found at load; using delegated click.');
+      document.addEventListener('click', function(e){
+        const img = e.target.closest('.product-img');
+        if(img) handleClick(img);
+      });
+    }else{
+      productImgs.forEach(img => {
+        img.style.cursor = 'pointer';
+        img.addEventListener('click', function(){ handleClick(this); });
+      });
+    }
+
+    function handleClick(imgEl){
+      const card = closest(imgEl, '.product-card');
+      if(!card) return;
+
+        // Extra fields (now card exists)
+  const extraWrap = document.getElementById('previewExtra');
+  const descEl = document.getElementById('previewDescription');
+  const skuEl = document.getElementById('previewSku');
+  const matEl = document.getElementById('previewMaterial');
+  const desc = card.getAttribute('data-description') || '';
+  const sku  = card.getAttribute('data-sku') || '';
+  const mat  = card.getAttribute('data-material') || '';
+  if(extraWrap){
+    const hasAny = !!(desc || sku || mat);
+    extraWrap.hidden = !hasAny;
+    if(descEl) descEl.textContent = desc || '';
+    if(skuEl)  skuEl.textContent  = sku  || '-';
+    if(matEl)  matEl.textContent  = mat  || '-';
+  }
+
+      const activeSrc = imgEl.getAttribute('src');
+      const srcs = getCardImages(card, activeSrc);
+      if(srcs.length === 0){
+        console.error('No images available for slider. Provide data-images or valid img src.');
+        return;
+      }
+      buildSlides(srcs, activeSrc);
+
+      priceEl && (priceEl.textContent = card.querySelector('.product-price')?.textContent?.trim() || '0');
+      titleEl && (titleEl.textContent = card.querySelector('.product-title')?.textContent?.trim() || 'Title');
+
+      const cardItem = closest(card, '.card-item');
+      genderEl && (genderEl.textContent = cardItem?.getAttribute('data-gender') || '-');
+
+      // Sizes and colors
+      if(sizesWrap) {
+        sizesWrap.innerHTML = '';
+        const cardChips = card.querySelectorAll('.size-chip');
+        cardChips.forEach(chip => {
+          const btn = chip.cloneNode(true);
+          btn.addEventListener('click', ()=>{
+            cardChips.forEach(c => c.classList.remove('active'));
+            card.querySelector(`.size-chip[data-size="${btn.getAttribute('data-size')}"]`)?.classList.add('active');
+            sizesWrap.querySelectorAll('.size-chip').forEach(c => c.classList.remove('active'));
+            btn.classList.add('active');
+          });
+          sizesWrap.appendChild(btn);
+        });
+      }
+      if(colorsWrap) {
+        colorsWrap.innerHTML = '';
+        const checked = card.querySelector('.color-option:checked');
+        if(colorTextEl) colorTextEl.textContent = checked?.value || card.querySelector('.color-option')?.value || '-';
+        card.querySelectorAll('.color-swatch').forEach(swatch => {
+          const clone = swatch.cloneNode(true);
+          const input = clone.querySelector('.color-option');
+          const srcInput = swatch.querySelector('.color-option');
+          if(srcInput && srcInput.checked) input.checked = true;
+          clone.addEventListener('click', ()=>{
+            if(srcInput){
+              srcInput.checked = true;
+              srcInput.dispatchEvent(new Event('change', {bubbles:true}));
+            }
+            if(colorTextEl) colorTextEl.textContent = srcInput?.value || '-';
+            colorsWrap.querySelectorAll('.color-option').forEach(r => r.checked = false);
+            input.checked = true;
+          });
+          colorsWrap.appendChild(clone);
+        });
+      }
+
+      const cardBuyBtn = card.querySelector('.buy-btn');
+      if(buyBtn) buyBtn.onclick = function(){ if(cardBuyBtn){ cardBuyBtn.click(); } };
+
+      const insta = card.getAttribute('data-insta') || imgEl.getAttribute('data-insta') || '';
+      if(insta && instaBtn){
+        instaBtn.href = insta;
+        instaBtn.classList.remove('disabled');
+        instaBtn.setAttribute('aria-disabled','false');
+      }else if(instaBtn){
+        instaBtn.removeAttribute('href');
+        instaBtn.classList.add('disabled');
+        instaBtn.setAttribute('aria-disabled','true');
+      }
+
+      // Show modal + init carousel
+      const modal = bsModal || new bootstrap.Modal(modalEl);
+      bsModal = modal; modal.show();
+      if(bsCarousel) bsCarousel.dispose();
+      bsCarousel = new bootstrap.Carousel(carouselEl, { interval:false, touch:true, wrap:true });
+
+      enableSwipe(carouselEl);
+    }
+
+    modalEl.addEventListener('hidden.bs.modal', ()=>{ carouselInner.innerHTML = ''; });
+  })();
+});
 </script>
 
 
 
 
+
+
+
+
 <!-- Image Modal -->
-<div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
+<!-- <div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content bg-transparent border-0">
       <div class="modal-body p-0 text-center">
@@ -1358,7 +1684,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 <!--latsttsts-->
 <section class="container-fluid " style="margin-bottom: 20px;">
   <!-- Top centered heading -->
