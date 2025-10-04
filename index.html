@@ -415,7 +415,9 @@
       </div>
     </section>
 
-      <style>
+
+
+  <style>
     :root{
       --gold:#d4af37;
       --gold-deep:#b9931e;
@@ -620,9 +622,6 @@
       text-align:center; color:#7a6829; font-size:13px; padding:18px 12px 36px;
     }
   </style>
-
-
-
   <!-- latest -->
 <style>
 /* Scroller track */
@@ -782,62 +781,94 @@
 </style>
 <!-- Image Modal -->
  <style>
-  /* Title trailing dot */
-.modal-product-details .detail-dot{
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: rgba(0,0,0,.45);
-  display: inline-block;
-  transform: translateY(-2px);
+/* ===== Scroller + cards (keep existing styles) ===== */
+.card-scroller{
+  overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth;
+  overscroll-behavior-x: contain; -webkit-overflow-scrolling: touch; scrollbar-width: none;
 }
+.card-scroller::-webkit-scrollbar{ display:none; }
+.card-item{ scroll-snap-align: start; width: clamp(220px, 48vw, 320px); }
+@media (min-width: 992px){ .card-item{ width: clamp(220px, 16.66vw, 280px); } }
+.card-scroller{ padding-left: 0; padding-right: 0; }
+.card-scroller > .card-item:first-child{ margin-left: 16px; }
+.card-scroller > .card-item:last-child{ margin-right: 16px; }
+.carousel-btn{ position: absolute; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; display: grid; place-items: center; z-index: 3; }
+.carousel-btn.prev{ left: 4px; } .carousel-btn.next{ right: 4px; }
 
-/* Size chips to match outline-primary small buttons */
-.modal-product-details .size-chip{
-  padding: .125rem .5rem;
-  font-size: .875rem;
-  line-height: 1.25rem;
-  border-radius: .375rem;
+.product-card{
+  display: flex; flex-direction: column; height: 100%;
+  border-radius: 0.75rem; overflow: hidden; background: #fff;
+  box-shadow: 0 8px 24px rgba(0,0,0,.08); margin-bottom: 30px;
 }
+.product-media{ width: 100%; aspect-ratio: 4 / 5; position: relative; flex-shrink: 0; }
+.product-img{ width: 100%; height: 100%; object-fit: cover; display: block; cursor: pointer; }
+.product-body{ flex: 1 1 auto; display: flex; flex-direction: column; justify-content: space-between; padding: 1rem; }
+.buy-btn{ margin-top: auto; }
+.badge-top{ position: absolute; top: .5rem; left: .5rem; z-index: 2; }
 
-   /* Modal look aligned with cards */
+/* ===== Shared color swatches ===== */
+.color-swatch{ position: relative; width: 22px; height: 22px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; }
+.color-swatch input{ position: absolute; opacity: 0; pointer-events: none; }
+.color-swatch .dot{ width: 22px; height: 22px; border-radius: 50%; background: var(--swatch, #000); display: inline-block; box-shadow: inset 0 0 0 2px rgba(255,255,255,0.9), 0 0 0 1px rgba(0,0,0,0.15); transition: box-shadow .15s ease, transform .15s ease; }
+.color-swatch input:checked + .dot{ box-shadow: inset 0 0 0 6px rgba(255,255,255,0.9), 0 0 0 2px var(--swatch, #000), 0 2px 6px rgba(0,0,0,0.25); transform: scale(1.02); }
+
+/* =====================================================
+   Modal: full viewport, header/body/footer layout
+   ===================================================== */
+#productPreviewModal .modal-dialog{
+  margin: 0 auto; width: 100%; max-width: 900px; height: 100dvh;
+}
 #productPreviewModal .modal-content{
-  background: #fff;
-  box-shadow: 0 8px 24px rgba(0,0,0,.12);
+  height: 100%;
+  background: #fff; border-radius: 0.75rem; overflow: hidden;
+  display: grid; grid-template-rows: auto 1fr auto; box-shadow: 0 8px 24px rgba(0,0,0,.12);
 }
-#productPreviewModal .carousel-item{
-  background: #000; /* letterbox background */
-}
-#productPreviewModal .carousel-item img{
-  width: 100%;
-  height: auto;
-  max-height: min(72vh, 70dvh);
-  object-fit: contain;
-  display: block;
-  margin: 0 auto;
-  background: #000;
-}
-@media (max-width: 576px){
-  #productPreviewModal .carousel-item img{
-    max-height: min(70vh, 70dvh);
-  }
+#productPreviewModal .modal-header, #productPreviewModal .modal-footer{ border: 0; }
+
+/* Main area uses grid: image (top) + details (bottom) */
+#productPreviewModal .modal-body{
+  padding: 0;
+  display: grid;
+  grid-template-rows: minmax(0, 56%) minmax(0, 44%);  /* good default for phones */
+  overflow: hidden;                                    /* body itself never scrolls */
 }
 
-/* Improve swipe alongside vertical content */
-#previewCarousel .carousel-inner{
-  touch-action: pan-y pinch-zoom; /* keep horizontal swipe responsive */
+/* Carousel fills its row */
+#productPreviewModal .carousel{ background:#000; }
+#productPreviewModal .carousel, #productPreviewModal .carousel .carousel-inner, #productPreviewModal .carousel-item{ height: 100%; }
+#productPreviewModal .carousel-item > div{ height: 100%; display: flex; align-items: center; justify-content: center; }
+#productPreviewModal .carousel-item img{ width: 100%; height: 100%; object-fit: contain; background:#000; }
+
+/* Details: scroll independently so nothing is clipped */
+.modal-product-details{
+  padding: 1rem !important;
+  overflow: auto; -webkit-overflow-scrolling: touch;
 }
+.modal-product-details h6, .modal-product-details p{ margin-bottom: .5rem; }
+.modal-product-details .detail-dot{ width: 4px; height: 4px; border-radius: 50%; background: rgba(0,0,0,.45); display: inline-block; transform: translateY(-2px); }
+.modal-product-details .size-chip{ padding: .125rem .5rem; font-size: .875rem; line-height: 1.25rem; border-radius: .375rem; }
+
+/* Buttons always in one row */
+#productPreviewModal .modal-footer{
+  padding: .75rem 1rem; display: grid; grid-template-columns: 1fr 1fr; gap: .75rem;
+  align-items: center; justify-content: center;
+}
+#productPreviewModal #previewBuyBtn, #productPreviewModal #previewInstaBtn{ min-width: 0; }
+
+/* Better touch */
+#previewCarousel .carousel-inner{ touch-action: pan-y pinch-zoom; }
+
+/* Small tweaks for tall/short phones */
+@media (max-width: 576px){
+  #productPreviewModal .modal-body{ grid-template-rows: minmax(0, 54%) minmax(0, 46%); }
+}
+@media (min-width: 768px){
+  #productPreviewModal .modal-body{ grid-template-rows: minmax(0, 60%) minmax(0, 40%); }
+}
+body.modal-open{ overflow: hidden; } /* stop page scroll behind modal */
+
  </style>
-<!-- <div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content bg-transparent border-0">
-      <div class="modal-body p-0 text-center">
-        <img id="modalImage" src="" class="img-fluid rounded shadow" alt="Preview">
-      </div>
-    </div>
-  </div>
-</div> -->
-<!-- Product Preview Modal -->
+
 <div class="modal fade" id="productPreviewModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-fullscreen-sm-down modal-lg">
     <div class="modal-content border-0 rounded-3 shadow-lg overflow-hidden">
@@ -1462,16 +1493,6 @@
     </div>
   </div>
 </section>
-<!-- <script>
-  document.querySelectorAll('.product-img').forEach(img => {
-    img.addEventListener('click', function () {
-      const modalImage = document.getElementById('modalImage');
-      modalImage.src = this.src; // Set clicked image in modal
-      const imageModal = new bootstrap.Modal(document.getElementById('imageModal'));
-      imageModal.show();
-    });
-  });
-</script> -->
 <script>
 document.addEventListener('DOMContentLoaded', function(){
   if(!(window.bootstrap && bootstrap.Modal)){
