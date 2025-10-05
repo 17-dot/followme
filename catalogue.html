@@ -433,10 +433,23 @@
           <label for="sizeSelect" class="form-label">Size</label>
           <select class="form-select" id="sizeSelect">
             <option value="all" selected>All sizes</option>
-            <option value="s">S</option>
-            <option value="m">M</option>
-            <option value="l">L</option>
-            <option value="xl">XL</option>
+            <option value="0-1">0-1</option>
+            <option value="1-2">1-2</option>
+            <option value="2-3">2-3</option>
+            <option value="3-4">3-4</option>
+            <option value="4-5">4-5</option>
+            <option value="5-6">5-6</option>
+            <option value="6-7">6-7</option>
+            <option value="7-8">7-8</option>
+            <option value="8-9">8-9</option>
+            <option value="9-10">9-10</option>
+            <option value="10-11">10-11</option>
+            <option value="11-12">11-12</option>
+            <option value="12-13">12-13</option>
+            <option value="13-14">13-14</option>
+            <option value="14-15">14-15</option>
+
+
           </select>
         </div>
 
@@ -728,8 +741,8 @@ body.modal-open {
         <button type="button" class="btn btn-success flex-fill me-sm-2" id="previewBuyBtn">
           <i class="bi bi-bag-check"></i> Buy
         </button>
-        <a class="btn btn-dark flex-fill" id="previewInstaBtn" target="_blank" rel="noopener">
-          <i class="bi bi-instagram"></i> Insta Reel
+        <a class="btn flex-fill" id="previewInstaBtn" style="background-color: rgb(231, 20, 231);" target="_blank" rel="noopener">
+          <i class="bi bi-instagram"></i> Reel
         </a>
       </div>
     </div>
@@ -742,45 +755,38 @@ body.modal-open {
     <div id="productGrid" class="card-container-grid">
 
       <!-- Product Card Start -->
-      <div class="product-card" data-gender="boys" data-sizes="xs,s,m,l,xl" data-price="399"
-        data-colors='{"purple":["./images/fboy2.jpg","./images/fboy1.jpg"],"black":["./images/fboy1.jpg","./images/fboy2.jpg"]}'
-
-        
-        data-insta="https://www.instagram.com/reel/CxYzAbCdEfG/">
+      <div class="product-card" data-gender="boys" data-sizes="6-7,7-8,8-9,9-10" data-price="1439"
+        data-colors='{
+          "purple":"./images/fmb1.jpg",
+        }'
+        data-insta="https://www.instagram.com/reel/CxYzAbCdEfG/"
+        >
         <span class="badge badge-top">New</span>
 
         <div class="product-media">
           <img class="product-img"
-            src="./images/fboy2.jpg"
+            src="./images/fmb1.jpg"
             alt="Graphic Tee" />
         </div>
 
         <div class="p-3 d-flex flex-column product-body">
           <div class="d-flex justify-content-between align-items-center">
-            <h4><span class="fw-bold">₹<span class="product-price">399</span></span></h4>
+            <h4><span class="fw-bold">₹<span class="product-price">1349</span></span></h4>
           </div>
 
-          <h6 class="product-title text-muted small mb-1">Graphic Tee (Purple)</h6>
+          <h6 class="product-title text-muted small mb-1">Premium Clothes</h6>
           <p class="text-muted small mb-1">Gender: Boys</p>
 
           <div class="small">
             <span class="text-muted me-2">Size</span>
-            <span class="me-2">XS</span>
-            <span class="me-2">S</span>
-            <span class="me-2">M</span>
-            <span class="me-2">L</span>
-            <span class="me-2">XL</span>
+            <span class="me-2">6 - 10 yrs</span>
           </div>
 
           <div class="pt-2">
             <div class="form-label small mb-1">Colors</div>
             <div class="d-flex align-items-center gap-3">
-              <label class="color-swatch" data-color="purple" style="--swatch:#7E3FF2;">
-                <input type="radio" class="color-option" value="purple" checked />
-                <span class="dot"></span>
-              </label>
-              <label class="color-swatch" data-color="black" style="--swatch:#1E1E1E;">
-                <input type="radio" class="color-option" value="black" />
+              <label class="color-swatch" data-color="purple" style="--swatch:#00ff4c;">
+                <input type="radio" class="color-option" value="Green" checked />
                 <span class="dot"></span>
               </label>
             </div>
@@ -793,94 +799,38 @@ body.modal-open {
           </div>
         </div>
       </div>
+
       <!-- Product Card End -->
-      <div class="product-card" data-gender="boys" data-sizes="xs,s,m,l,xl" data-price="1000"
+      <div class="product-card" data-gender="girls" data-sizes="4-5,5-6,6-7,7-8,8-9,9-10,10-11,11-12,12-13,13-14" data-price="1499"
         data-colors='{
-          "purple":"./images/fboy1.jpg",
-          "black":"./images/fboy2.jpg"
+          "Cyan":"./images/fmg1.jpg",
         }'>
         <span class="badge  badge-top">New</span>
 
         <div class="product-media">
           <img class="product-img"
-            src="./images/fboy1.jpg"
+            src="./images/fmg1.jpg"
             alt="Graphic Tee" />
         </div>
 
         <div class="p-3 d-flex flex-column product-body">
           <div class="d-flex justify-content-between align-items-center">
-            <h4><span class="fw-bold">₹<span class="product-price">399</span></span></h4>
+            <h4><span class="fw-bold">₹<span class="product-price">1499</span></span></h4>
           </div>
 
-          <h6 class="product-title text-muted small mb-1">Graphic Tee (Purple)</h6>
-          <p class="text-muted small mb-1">Gender: Boys</p>
-
-          <div class="small">
-            <span class="text-muted me-2">Size</span>
-            <span class="me-2">XS</span>
-            <span class="me-2">S</span>
-            <span class="me-2">M</span>
-            <span class="me-2">L</span>
-            <span class="me-2">XL</span>
-          </div>
-
-          <div class="pt-2">
-            <div class="form-label small mb-1">Colors</div>
-            <div class="d-flex align-items-center gap-3">
-              <label class="color-swatch" data-color="purple" style="--swatch:#7E3FF2;">
-                <input type="radio" class="color-option" value="purple" checked />
-                <span class="dot"></span>
-              </label>
-              <label class="color-swatch" data-color="black" style="--swatch:#1E1E1E;">
-                <input type="radio" class="color-option" value="black" />
-                <span class="dot"></span>
-              </label>
-            </div>
-          </div>
-
-          <div class="pt-3">
-            <button class="btn btn-success w-100 buy-btn">
-              <i class="bi bi-bag-check"></i> Buy
-            </button>
-          </div>
-        </div>
-      </div>
-            <div class="product-card" data-gender="girls" data-sizes="xs,s" data-price="500"
-        data-colors='{
-          "purple":"./images/fgirl2.jpg",
-          "black":"./images/fgirl2.jpg"
-        }'>
-        <span class="badge  badge-top">New</span>
-
-        <div class="product-media">
-          <img class="product-img"
-            src="./images/fgirl2.jpg"
-            alt="Graphic Tee" />
-        </div>
-
-        <div class="p-3 d-flex flex-column product-body">
-          <div class="d-flex justify-content-between align-items-center">
-            <h4><span class="fw-bold">₹<span class="product-price">399</span></span></h4>
-          </div>
-
-          <h6 class="product-title text-muted small mb-1">Graphic Tee (Purple)</h6>
+          <h6 class="product-title text-muted small mb-1">Premium Clothes</h6>
           <p class="text-muted small mb-1">Gender: Girls</p>
 
           <div class="small">
             <span class="text-muted me-2">Size</span>
-            <span class="me-2">XS</span>
-            <span class="me-2">S</span>
+            <span class="me-2">4 - 14 yrs</span>
           </div>
 
           <div class="pt-2">
             <div class="form-label small mb-1">Colors</div>
             <div class="d-flex align-items-center gap-3">
-              <label class="color-swatch" data-color="purple" style="--swatch:#7E3FF2;">
-                <input type="radio" class="color-option" value="purple" checked />
-                <span class="dot"></span>
-              </label>
-              <label class="color-swatch" data-color="black" style="--swatch:#1E1E1E;">
-                <input type="radio" class="color-option" value="black" />
+              <label class="color-swatch" data-color="Cyan" style="--swatch:#26e2e2;">
+                <input type="radio" class="color-option" value="Cyan" checked />
                 <span class="dot"></span>
               </label>
             </div>
@@ -893,16 +843,215 @@ body.modal-open {
           </div>
         </div>
       </div>
-      <div class="product-card" data-gender="girls" data-sizes="xs,s,m,l,xl" data-price="1399"
+
+            <!-- Product Card End -->
+      <div class="product-card" data-gender="girls" data-sizes="4-5,5-6,6-7,7-8,8-9,9-10,10-11,11-12,12-13,13-14" data-price="1499"
         data-colors='{
-          "purple":"./images/fgirl3.jpg",
-          "black":"./images/fgirl3.jpg"
+          "Purple":"./images/fmg2.jpg",
         }'>
         <span class="badge  badge-top">New</span>
 
         <div class="product-media">
           <img class="product-img"
-            src="./images/fgirl3.jpg"
+            src="./images/fmg2.jpg"
+            alt="Graphic Tee" />
+        </div>
+
+        <div class="p-3 d-flex flex-column product-body">
+          <div class="d-flex justify-content-between align-items-center">
+            <h4><span class="fw-bold">₹<span class="product-price">1499</span></span></h4>
+          </div>
+
+          <h6 class="product-title text-muted small mb-1">Premium Clothes</h6>
+          <p class="text-muted small mb-1">Gender: Girls</p>
+
+          <div class="small">
+            <span class="text-muted me-2">Size</span>
+            <span class="me-2">4 - 14 yrs</span>
+          </div>
+
+          <div class="pt-2">
+            <div class="form-label small mb-1">Colors</div>
+            <div class="d-flex align-items-center gap-3">
+              <label class="color-swatch" data-color="Purple" style="--swatch:#8929c0;">
+                <input type="radio" class="color-option" value="Purple" checked />
+                <span class="dot"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="pt-3">
+            <button class="btn btn-success w-100 buy-btn">
+              <i class="bi bi-bag-check"></i> Buy
+            </button>
+          </div>
+        </div>
+      </div>
+
+            <!-- Product Card Start -->
+      <div class="product-card" data-gender="boys" data-sizes="1-2,2-3,3-4,4-5,5-6,6-7,7-8,8-9,9-10" data-price="1439"
+        data-colors='{
+          "Pink":"./images/fmb2.jpg",
+        }'
+        data-insta="https://www.instagram.com/reel/CxYzAbCdEfG/"
+        >
+        <span class="badge badge-top">New</span>
+
+        <div class="product-media">
+          <img class="product-img"
+            src="./images/fmb2.jpg"
+            alt="Graphic Tee" />
+        </div>
+
+        <div class="p-3 d-flex flex-column product-body">
+          <div class="d-flex justify-content-between align-items-center">
+            <h4><span class="fw-bold">₹<span class="product-price">1249</span></span></h4>
+          </div>
+
+          <h6 class="product-title text-muted small mb-1">Premium Clothes</h6>
+          <p class="text-muted small mb-1">Gender: Boys</p>
+
+          <div class="small">
+            <span class="text-muted me-2">Size</span>
+            <span class="me-2">1 - 10 yrs</span>
+          </div>
+
+          <div class="pt-2">
+            <div class="form-label small mb-1">Colors</div>
+            <div class="d-flex align-items-center gap-3">
+              <label class="color-swatch" data-color="Pink" style="--swatch:#cc97f8;">
+                <input type="radio" class="color-option" value="Pink" checked />
+                <span class="dot"></span>
+              </label>
+                            <label class="color-swatch" data-color="Pink" style="--swatch:#ffffff;">
+                <input type="radio" class="color-option" value="White"  />
+                <span class="dot"></span>
+              </label>
+                            <label class="color-swatch" data-color="Pink" style="--swatch:#00ff4c;">
+                <input type="radio" class="color-option" value="Green"  />
+                <span class="dot"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="pt-3">
+            <button class="btn btn-success w-100 buy-btn">
+              <i class="bi bi-bag-check"></i> Buy
+            </button>
+          </div>
+        </div>
+      </div>
+
+                  <!-- Product Card End -->
+      <div class="product-card" data-gender="girls" data-sizes="5-6,6-7,7-8,8-9,9-10" data-price="1499"
+        data-colors='{
+          "Purple":"./images/fmg3.jpg",
+        }'>
+        <span class="badge  badge-top">New</span>
+
+        <div class="product-media">
+          <img class="product-img"
+            src="./images/fmg3.jpg"
+            alt="Graphic Tee" />
+        </div>
+
+        <div class="p-3 d-flex flex-column product-body">
+          <div class="d-flex justify-content-between align-items-center">
+            <h4><span class="fw-bold">₹<span class="product-price">1499</span></span></h4>
+          </div>
+
+          <h6 class="product-title text-muted small mb-1">Premium Clothes</h6>
+          <p class="text-muted small mb-1">Gender: Girls</p>
+
+          <div class="small">
+            <span class="text-muted me-2">Size</span>
+            <span class="me-2">5 - 10 yrs</span>
+          </div>
+
+          <div class="pt-2">
+            <div class="form-label small mb-1">Colors</div>
+            <div class="d-flex align-items-center gap-3">
+              <label class="color-swatch" data-color="Purple" style="--swatch:#000000;">
+                <input type="radio" class="color-option" value="Black" checked />
+                <span class="dot"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="pt-3">
+            <button class="btn btn-success w-100 buy-btn">
+              <i class="bi bi-bag-check"></i> Buy
+            </button>
+          </div>
+        </div>
+      </div>
+
+                  <!-- Product Card Start -->
+      <div class="product-card" data-gender="boys" data-sizes="0-1,1-2,2-3,3-4,4-5,5-6" data-price="1249"
+        data-colors='{
+          "Brown":"./images/fmb3-1.jpg",
+          "Pink":"./images/fmb3-2.jpg",
+          "Blue":"./images/fmb3-3.jpg",
+        }'
+        data-insta="https://www.instagram.com/reel/CxYzAbCdEfG/"
+        >
+        <span class="badge badge-top">New</span>
+
+        <div class="product-media">
+          <img class="product-img"
+            src="./images/fmb3-1.jpg"
+            alt="Graphic Tee" />
+        </div>
+
+        <div class="p-3 d-flex flex-column product-body">
+          <div class="d-flex justify-content-between align-items-center">
+            <h4><span class="fw-bold">₹<span class="product-price">1249</span></span></h4>
+          </div>
+
+          <h6 class="product-title text-muted small mb-1">Premium Clothes</h6>
+          <p class="text-muted small mb-1">Gender: Boys</p>
+
+          <div class="small">
+            <span class="text-muted me-2">Size</span>
+            <span class="me-2">0 - 6 yrs</span>
+          </div>
+
+          <div class="pt-2">
+            <div class="form-label small mb-1">Colors</div>
+            <div class="d-flex align-items-center gap-3">
+              <label class="color-swatch" data-color="Brown" style="--swatch:#8d363d;">
+                <input type="radio" class="color-option" value="Brown" checked />
+                <span class="dot"></span>
+              </label>
+                            <label class="color-swatch" data-color="Pink" style="--swatch:#db619e;">
+                <input type="radio" class="color-option" value="Pink"  />
+                <span class="dot"></span>
+              </label>
+              <label class="color-swatch" data-color="Blue" style="--swatch:#278cdf;">
+                <input type="radio" class="color-option" value="Blue"  />
+                <span class="dot"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="pt-3">
+            <button class="btn btn-success w-100 buy-btn">
+              <i class="bi bi-bag-check"></i> Buy
+            </button>
+          </div>
+        </div>
+      </div>
+
+                        <!-- Product Card End -->
+      <div class="product-card" data-gender="girls" data-sizes="6-7,7-8,8-9,9-10" data-price="1399"
+        data-colors='{
+          "Purple":"./images/fmg4.jpg",
+        }'>
+        <span class="badge  badge-top">New</span>
+
+        <div class="product-media">
+          <img class="product-img"
+            src="./images/fmg4.jpg"
             alt="Graphic Tee" />
         </div>
 
@@ -911,180 +1060,19 @@ body.modal-open {
             <h4><span class="fw-bold">₹<span class="product-price">1399</span></span></h4>
           </div>
 
-          <h6 class="product-title text-muted small mb-1">Graphic Tee (Purple)</h6>
-          <p class="text-muted small mb-1">Gender: girls</p>
-
-          <div class="small">
-            <span class="text-muted me-2">Size</span>
-            <span class="me-2">XS</span>
-            <span class="me-2">S</span>
-            <span class="me-2">M</span>
-            <span class="me-2">L</span>
-            <span class="me-2">XL</span>
-          </div>
-
-          <div class="pt-2">
-            <div class="form-label small mb-1">Colors</div>
-            <div class="d-flex align-items-center gap-3">
-              <label class="color-swatch" data-color="purple" style="--swatch:#7E3FF2;">
-                <input type="radio" class="color-option" value="purple" checked />
-                <span class="dot"></span>
-              </label>
-              <label class="color-swatch" data-color="black" style="--swatch:#1E1E1E;">
-                <input type="radio" class="color-option" value="black" />
-                <span class="dot"></span>
-              </label>
-            </div>
-          </div>
-
-          <div class="pt-3">
-            <button class="btn btn-success w-100 buy-btn">
-              <i class="bi bi-bag-check"></i> Buy
-            </button>
-          </div>
-        </div>
-      </div>
-            <div class="product-card" data-gender="boys" data-sizes="xs,s,m,l,xl" data-price="1800"
-        data-colors='{
-          "purple":"./images/fboy4.jpg",
-          "black":"./images/fboy4.jpg"
-        }'>
-        <span class="badge  badge-top">New</span>
-
-        <div class="product-media">
-          <img class="product-img"
-            src="./images/fboy4.jpg"
-            alt="Graphic Tee" />
-        </div>
-
-        <div class="p-3 d-flex flex-column product-body">
-          <div class="d-flex justify-content-between align-items-center">
-            <h4><span class="fw-bold">₹<span class="product-price">1800</span></span></h4>
-          </div>
-
-          <h6 class="product-title text-muted small mb-1">Graphic Tee (Purple)</h6>
-          <p class="text-muted small mb-1">Gender: Boys</p>
-
-          <div class="small">
-            <span class="text-muted me-2">Size</span>
-            <span class="me-2">XS</span>
-            <span class="me-2">S</span>
-            <span class="me-2">M</span>
-            <span class="me-2">L</span>
-            <span class="me-2">XL</span>
-          </div>
-
-          <div class="pt-2">
-            <div class="form-label small mb-1">Colors</div>
-            <div class="d-flex align-items-center gap-3">
-              <label class="color-swatch" data-color="purple" style="--swatch:#7E3FF2;">
-                <input type="radio" class="color-option" value="purple" checked />
-                <span class="dot"></span>
-              </label>
-              <label class="color-swatch" data-color="black" style="--swatch:#1E1E1E;">
-                <input type="radio" class="color-option" value="black" />
-                <span class="dot"></span>
-              </label>
-            </div>
-          </div>
-
-          <div class="pt-3">
-            <button class="btn btn-success w-100 buy-btn">
-              <i class="bi bi-bag-check"></i> Buy
-            </button>
-          </div>
-        </div>
-      </div>
-            <div class="product-card" data-gender="boys" data-sizes="xs,s,m,l,xl" data-price="1000"
-        data-colors='{
-          "purple":"./images/fboy1.jpg",
-          "black":"./images/fboy2.jpg"
-        }'>
-        <span class="badge  badge-top">New</span>
-
-        <div class="product-media">
-          <img class="product-img"
-            src="./images/fboy1.jpg"
-            alt="Graphic Tee" />
-        </div>
-
-        <div class="p-3 d-flex flex-column product-body">
-          <div class="d-flex justify-content-between align-items-center">
-            <h4><span class="fw-bold">₹<span class="product-price">399</span></span></h4>
-          </div>
-
-          <h6 class="product-title text-muted small mb-1">Graphic Tee (Purple)</h6>
-          <p class="text-muted small mb-1">Gender: Boys</p>
-
-          <div class="small">
-            <span class="text-muted me-2">Size</span>
-            <span class="me-2">XS</span>
-            <span class="me-2">S</span>
-            <span class="me-2">M</span>
-            <span class="me-2">L</span>
-            <span class="me-2">XL</span>
-          </div>
-
-          <div class="pt-2">
-            <div class="form-label small mb-1">Colors</div>
-            <div class="d-flex align-items-center gap-3">
-              <label class="color-swatch" data-color="purple" style="--swatch:#7E3FF2;">
-                <input type="radio" class="color-option" value="purple" checked />
-                <span class="dot"></span>
-              </label>
-              <label class="color-swatch" data-color="black" style="--swatch:#1E1E1E;">
-                <input type="radio" class="color-option" value="black" />
-                <span class="dot"></span>
-              </label>
-            </div>
-          </div>
-
-          <div class="pt-3">
-            <button class="btn btn-success w-100 buy-btn">
-              <i class="bi bi-bag-check"></i> Buy
-            </button>
-          </div>
-        </div>
-      </div>
-            <div class="product-card" data-gender="girls" data-sizes="xs,s,m,l,xl" data-price="500"
-        data-colors='{
-          "purple":"./images/fgirl2.jpg",
-          "black":"./images/fgirl2.jpg"
-        }'>
-        <span class="badge  badge-top">New</span>
-
-        <div class="product-media">
-          <img class="product-img"
-            src="./images/fgirl2.jpg"
-            alt="Graphic Tee" />
-        </div>
-
-        <div class="p-3 d-flex flex-column product-body">
-          <div class="d-flex justify-content-between align-items-center">
-            <h4><span class="fw-bold">₹<span class="product-price">399</span></span></h4>
-          </div>
-
-          <h6 class="product-title text-muted small mb-1">Graphic Tee (Purple)</h6>
+          <h6 class="product-title text-muted small mb-1">Premium Clothes</h6>
           <p class="text-muted small mb-1">Gender: Girls</p>
 
           <div class="small">
             <span class="text-muted me-2">Size</span>
-            <span class="me-2">XS</span>
-            <span class="me-2">S</span>
-            <span class="me-2">M</span>
-            <span class="me-2">L</span>
-            <span class="me-2">XL</span>
+            <span class="me-2">6 - 10 yrs</span>
           </div>
 
           <div class="pt-2">
             <div class="form-label small mb-1">Colors</div>
             <div class="d-flex align-items-center gap-3">
-              <label class="color-swatch" data-color="purple" style="--swatch:#7E3FF2;">
-                <input type="radio" class="color-option" value="purple" checked />
-                <span class="dot"></span>
-              </label>
-              <label class="color-swatch" data-color="black" style="--swatch:#1E1E1E;">
-                <input type="radio" class="color-option" value="black" />
+              <label class="color-swatch" data-color="Purple" style="--swatch:#fffb00;">
+                <input type="radio" class="color-option" value="Yellow" checked />
                 <span class="dot"></span>
               </label>
             </div>
@@ -1097,45 +1085,38 @@ body.modal-open {
           </div>
         </div>
       </div>
-      <div class="product-card" data-gender="girls" data-sizes="xs,s,m,l,xl" data-price="1399"
+
+                              <!-- Product Card End -->
+      <div class="product-card" data-gender="girls" data-sizes="6-7,7-8,8-9,9-10,10-11,11-12,12-13,13-14,14-15" data-price="1549"
         data-colors='{
-          "purple":"./images/fgirl3.jpg",
-          "black":"./images/fgirl3.jpg"
+          "Purple":"./images/fmg5.jpg",
         }'>
         <span class="badge  badge-top">New</span>
 
         <div class="product-media">
           <img class="product-img"
-            src="./images/fgirl3.jpg"
+            src="./images/fmg5.jpg"
             alt="Graphic Tee" />
         </div>
 
         <div class="p-3 d-flex flex-column product-body">
           <div class="d-flex justify-content-between align-items-center">
-            <h4><span class="fw-bold">₹<span class="product-price">1399</span></span></h4>
+            <h4><span class="fw-bold">₹<span class="product-price">1549</span></span></h4>
           </div>
 
-          <h6 class="product-title text-muted small mb-1">Graphic Tee (Purple)</h6>
-          <p class="text-muted small mb-1">Gender: girls</p>
+          <h6 class="product-title text-muted small mb-1">Premium Clothes</h6>
+          <p class="text-muted small mb-1">Gender: Girls</p>
 
           <div class="small">
             <span class="text-muted me-2">Size</span>
-            <span class="me-2">XS</span>
-            <span class="me-2">S</span>
-            <span class="me-2">M</span>
-            <span class="me-2">L</span>
-            <span class="me-2">XL</span>
+            <span class="me-2">6 - 15 yrs</span>
           </div>
 
           <div class="pt-2">
             <div class="form-label small mb-1">Colors</div>
             <div class="d-flex align-items-center gap-3">
-              <label class="color-swatch" data-color="purple" style="--swatch:#7E3FF2;">
-                <input type="radio" class="color-option" value="purple" checked />
-                <span class="dot"></span>
-              </label>
-              <label class="color-swatch" data-color="black" style="--swatch:#1E1E1E;">
-                <input type="radio" class="color-option" value="black" />
+              <label class="color-swatch" data-color="Purple" style="--swatch:#6a93ac;">
+                <input type="radio" class="color-option" value="Grey Cyan" checked />
                 <span class="dot"></span>
               </label>
             </div>
@@ -1148,45 +1129,38 @@ body.modal-open {
           </div>
         </div>
       </div>
-            <div class="product-card" data-gender="boys" data-sizes="xs,s,m,l,xl" data-price="1800"
+
+                                    <!-- Product Card End -->
+      <div class="product-card" data-gender="girls" data-sizes="6-7,7-8,8-9,9-10,10-11,11-12,12-13,13-14,14-15" data-price="1549"
         data-colors='{
-          "purple":"./images/fboy4.jpg",
-          "black":"./images/fboy4.jpg"
+          "Purple":"./images/fmg6.jpg",
         }'>
         <span class="badge  badge-top">New</span>
 
         <div class="product-media">
           <img class="product-img"
-            src="./images/fboy4.jpg"
+            src="./images/fmg6.jpg"
             alt="Graphic Tee" />
         </div>
 
         <div class="p-3 d-flex flex-column product-body">
           <div class="d-flex justify-content-between align-items-center">
-            <h4><span class="fw-bold">₹<span class="product-price">1800</span></span></h4>
+            <h4><span class="fw-bold">₹<span class="product-price">1549</span></span></h4>
           </div>
 
-          <h6 class="product-title text-muted small mb-1">Graphic Tee (Purple)</h6>
-          <p class="text-muted small mb-1">Gender: Boys</p>
+          <h6 class="product-title text-muted small mb-1">Premium Clothes</h6>
+          <p class="text-muted small mb-1">Gender: Girls</p>
 
           <div class="small">
             <span class="text-muted me-2">Size</span>
-            <span class="me-2">XS</span>
-            <span class="me-2">S</span>
-            <span class="me-2">M</span>
-            <span class="me-2">L</span>
-            <span class="me-2">XL</span>
+            <span class="me-2">6 - 15 yrs</span>
           </div>
 
           <div class="pt-2">
             <div class="form-label small mb-1">Colors</div>
             <div class="d-flex align-items-center gap-3">
-              <label class="color-swatch" data-color="purple" style="--swatch:#7E3FF2;">
-                <input type="radio" class="color-option" value="purple" checked />
-                <span class="dot"></span>
-              </label>
-              <label class="color-swatch" data-color="black" style="--swatch:#1E1E1E;">
-                <input type="radio" class="color-option" value="black" />
+              <label class="color-swatch" data-color="Purple" style="--swatch:#921b1b;">
+                <input type="radio" class="color-option" value="Maroon" checked />
                 <span class="dot"></span>
               </label>
             </div>
@@ -1199,6 +1173,183 @@ body.modal-open {
           </div>
         </div>
       </div>
+
+                                    <!-- Product Card End -->
+      <div class="product-card" data-gender="girls" data-sizes="8-9,9-10,10-11,11-12,12-13,13-14,14-15" data-price="1499"
+        data-colors='{
+          "Purple":"./images/fmg7.jpg",
+        }'>
+        <span class="badge  badge-top">New</span>
+
+        <div class="product-media">
+          <img class="product-img"
+            src="./images/fmg7.jpg"
+            alt="Graphic Tee" />
+        </div>
+
+        <div class="p-3 d-flex flex-column product-body">
+          <div class="d-flex justify-content-between align-items-center">
+            <h4><span class="fw-bold">₹<span class="product-price">1499</span></span></h4>
+          </div>
+
+          <h6 class="product-title text-muted small mb-1">Premium Clothes</h6>
+          <p class="text-muted small mb-1">Gender: Girls</p>
+
+          <div class="small">
+            <span class="text-muted me-2">Size</span>
+            <span class="me-2">6 - 15 yrs</span>
+          </div>
+
+          <div class="pt-2">
+            <div class="form-label small mb-1">Colors</div>
+            <div class="d-flex align-items-center gap-3">
+              <label class="color-swatch" data-color="Purple" style="--swatch:#fa5c00;">
+                <input type="radio" class="color-option" value="Orange" checked />
+                <span class="dot"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="pt-3">
+            <button class="btn btn-success w-100 buy-btn">
+              <i class="bi bi-bag-check"></i> Buy
+            </button>
+          </div>
+        </div>
+      </div>
+
+                                          <!-- Product Card End -->
+      <div class="product-card" data-gender="girls" data-sizes="5-6,6-7,7-8,8-9,9-10" data-price="1499"
+        data-colors='{
+          "Purple":"./images/fmg8.jpg",
+        }'>
+        <span class="badge  badge-top">New</span>
+
+        <div class="product-media">
+          <img class="product-img"
+            src="./images/fmg8.jpg"
+            alt="Graphic Tee" />
+        </div>
+
+        <div class="p-3 d-flex flex-column product-body">
+          <div class="d-flex justify-content-between align-items-center">
+            <h4><span class="fw-bold">₹<span class="product-price">1499</span></span></h4>
+          </div>
+
+          <h6 class="product-title text-muted small mb-1">Premium Clothes</h6>
+          <p class="text-muted small mb-1">Gender: Girls</p>
+
+          <div class="small">
+            <span class="text-muted me-2">Size</span>
+            <span class="me-2">5 - 10 yrs</span>
+          </div>
+
+          <div class="pt-2">
+            <div class="form-label small mb-1">Colors</div>
+            <div class="d-flex align-items-center gap-3">
+              <label class="color-swatch" data-color="Purple" style="--swatch:#f1e8b1;">
+                <input type="radio" class="color-option" value="Cream" checked />
+                <span class="dot"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="pt-3">
+            <button class="btn btn-success w-100 buy-btn">
+              <i class="bi bi-bag-check"></i> Buy
+            </button>
+          </div>
+        </div>
+      </div>
+
+                                                <!-- Product Card End -->
+      <div class="product-card" data-gender="girls" data-sizes="5-6,6-7,7-8,8-9,9-10,10-11,11-12" data-price="1499"
+        data-colors='{
+          "Purple":"./images/fmg9.jpg",
+        }'>
+        <span class="badge  badge-top">New</span>
+
+        <div class="product-media">
+          <img class="product-img"
+            src="./images/fmg9.jpg"
+            alt="Graphic Tee" />
+        </div>
+
+        <div class="p-3 d-flex flex-column product-body">
+          <div class="d-flex justify-content-between align-items-center">
+            <h4><span class="fw-bold">₹<span class="product-price">1499</span></span></h4>
+          </div>
+
+          <h6 class="product-title text-muted small mb-1">Premium Clothes</h6>
+          <p class="text-muted small mb-1">Gender: Girls</p>
+
+          <div class="small">
+            <span class="text-muted me-2">Size</span>
+            <span class="me-2">5 - 12 yrs</span>
+          </div>
+
+          <div class="pt-2">
+            <div class="form-label small mb-1">Colors</div>
+            <div class="d-flex align-items-center gap-3">
+              <label class="color-swatch" data-color="Purple" style="--swatch:#0defff;">
+                <input type="radio" class="color-option" value="Cyan" checked />
+                <span class="dot"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="pt-3">
+            <button class="btn btn-success w-100 buy-btn">
+              <i class="bi bi-bag-check"></i> Buy
+            </button>
+          </div>
+        </div>
+      </div>
+
+                                                      <!-- Product Card End -->
+      <div class="product-card" data-gender="girls" data-sizes="5-6,6-7,7-8,8-9,9-10,10-11,11-12,12-13,13-14" data-price="1499"
+        data-colors='{
+          "Purple":"./images/fmg10.jpg",
+        }'>
+        <span class="badge  badge-top">New</span>
+
+        <div class="product-media">
+          <img class="product-img"
+            src="./images/fmg10.jpg"
+            alt="Graphic Tee" />
+        </div>
+
+        <div class="p-3 d-flex flex-column product-body">
+          <div class="d-flex justify-content-between align-items-center">
+            <h4><span class="fw-bold">₹<span class="product-price">1499</span></span></h4>
+          </div>
+
+          <h6 class="product-title text-muted small mb-1">Premium 3 Piece </h6>
+          <p class="text-muted small mb-1">Gender: Girls</p>
+
+          <div class="small">
+            <span class="text-muted me-2">Size</span>
+            <span class="me-2">5 - 14 yrs</span>
+          </div>
+
+          <div class="pt-2">
+            <div class="form-label small mb-1">Colors</div>
+            <div class="d-flex align-items-center gap-3">
+              <label class="color-swatch" data-color="Purple" style="--swatch:#eb2c55;">
+                <input type="radio" class="color-option" value="Dark Pink" checked />
+                <span class="dot"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="pt-3">
+            <button class="btn btn-success w-100 buy-btn">
+              <i class="bi bi-bag-check"></i> Buy
+            </button>
+          </div>
+        </div>
+      </div>
+
       <!-- Duplicate the above card 5 more times -->
       <!-- You can copy-paste or generate these dynamically with JavaScript -->
 
@@ -1609,6 +1760,72 @@ document.addEventListener('DOMContentLoaded', function () {
           colorsWrap.appendChild(clone);
         });
       }
+
+      // Parse color map once per open
+function parseColorsMap(card){
+  const raw = (card.getAttribute('data-colors') || '').replace(/'/g,'"').replace(/,\s*}/g,'}').replace(/,\s*]/g,']');
+  try{
+    const obj = raw ? JSON.parse(raw) : {};
+    const map = {};
+    Object.keys(obj).forEach(k=>{
+      const v = obj[k];
+      map[k.toLowerCase()] = Array.isArray(v) ? v : (v ? [String(v)] : []);
+    });
+    return map;
+  }catch(e){
+    console.warn('Invalid data-colors JSON', e, raw);
+    return {};
+  }
+}
+
+const colorsMap = parseColorsMap(card);
+
+// Initial slides prefer checked color, else first available
+function firstKey(o){ return Object.keys(o).find(k=>o[k] && o[k].length) || ''; }
+let initialColor = (card.querySelector('.color-option:checked')?.value || '').toLowerCase();
+if(!initialColor) initialColor = firstKey(colorsMap);
+let initialImages = (initialColor && colorsMap[initialColor] && colorsMap[initialColor].length) ? colorsMap[initialColor] : null;
+if(initialImages){ buildSlides(initialImages, initialImages[0]); } else { buildSlides(srcs, activeSrc); }
+
+// Colors: clone and wire
+if (colorsWrap) {
+  colorsWrap.innerHTML = '';
+  const cardImg = card.querySelector('.product-img');
+
+  card.querySelectorAll('.color-swatch').forEach(swatch => {
+    const clone = swatch.cloneNode(true);
+    const input = clone.querySelector('.color-option');
+    const srcInput = swatch.querySelector('.color-option');
+    if (srcInput && srcInput.checked) input.checked = true;
+
+    clone.addEventListener('click', () => {
+      // reflect in card
+      if (srcInput) {
+        srcInput.checked = true;
+        srcInput.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+      const chosenKey = (srcInput?.value || input?.value || '').toLowerCase();
+      if (colorTextEl) colorTextEl.textContent = srcInput?.value || '-';
+
+      const imgs = (chosenKey && colorsMap[chosenKey] && colorsMap[chosenKey].length) ? colorsMap[chosenKey] : [];
+      if (imgs.length) {
+        // update card hero
+        if (cardImg) cardImg.setAttribute('src', imgs[0]);
+        // rebuild modal slides and reset to first
+        buildSlides(imgs, imgs[0]);
+        const inst = bootstrap.Carousel.getInstance(carouselEl) || new bootstrap.Carousel(carouselEl, { interval:false, touch:true, wrap:true });
+        inst.to(0);
+      }
+
+      // visual checked state in modal clones
+      colorsWrap.querySelectorAll('.color-option').forEach(r => r.checked = false);
+      if (input) input.checked = true;
+    });
+
+    colorsWrap.appendChild(clone);
+  });
+}
+
       // Map modal Buy to card Buy
       const cardBuyBtn = card.querySelector('.buy-btn');
       if (buyBtn) buyBtn.onclick = function () {
@@ -1706,84 +1923,21 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 </script>
 
-
 <!--color-->
-  <script>
-    (function initColorSwatches() {
-      const cols = document.querySelectorAll('#productGrid [data-gender]');
-      cols.forEach(col => {
-        if (!col.dataset.code) {
-          col.dataset.code = 'FM-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).slice(2,6).toUpperCase();
-        }
-        const code = col.dataset.code;
-
-        let colorMap = {};
-        try {
-          const raw = (col.dataset.colors || '').replace(/'/g, '"');
-          colorMap = raw ? JSON.parse(raw) : {};
-        } catch (e) { colorMap = {}; }
-
-        const card = col.querySelector('.product-card');
-        const img = card.querySelector('.product-img');
-        const title = card.querySelector('.product-title');
-        const radios = card.querySelectorAll('.color-option');
-
-        radios.forEach(r => {
-          r.name = `color-${code}`;
-          r.addEventListener('change', () => {
-            const key = r.value.toLowerCase();
-            const url = colorMap[key];
-            if (url) {
-              img.src = url;
-            }
-            if (title) {
-              const label = key.charAt(0).toUpperCase() + key.slice(1);
-              if (/\(.+\)$/.test(title.textContent)) {
-                title.textContent = title.textContent.replace(/\(.+\)$/, `(${label})`);
-              } else {
-                title.textContent = `${title.textContent} (${label})`;
-              }
-            }
-          });
-        });
-      });
-    })();
-  </script>
-
-<script>
-(function initColorSwatches(){
-  document.querySelectorAll('#productGrid .product-card').forEach((card, idx)=>{
-    // Unique radio group name
-    const group = 'color-' + (card.dataset.code || ('FM-' + idx));
-
-    // Parse colors map from the card's dataset (already on .product-card)
-    let colorMap = {};
-    try{
-      const raw = (card.dataset.colors || '').replace(/'/g, '"');
-      colorMap = raw ? JSON.parse(raw) : {};
-    }catch(e){ colorMap = {}; }
-
-    // Elements inside this card
-    const img   = card.querySelector('.product-img');
-    const title = card.querySelector('.product-title');
-    const radios= card.querySelectorAll('.color-option');
-
-    radios.forEach(r=>{
-      r.name = group;
-      r.addEventListener('change', ()=>{
-        const key = (r.value || '').toLowerCase();
-        const url = colorMap[key];
-        if(url && img){ img.src = url; }
-        if(title){
-          const label = key.charAt(0).toUpperCase() + key.slice(1);
-          const base  = title.textContent.replace(/\s*\(.+\)\s*$/,'');
-          title.textContent = base + ' (' + label + ')';
-        }
-      });
-    });
-  });
-})();
-</script>
+<script> document.addEventListener('DOMContentLoaded', function () {
+    function normalizeColorMap(rawJson) {
+      if (!rawJson) return {}; // Ensure valid JSON (attribute often uses single quotes) 
+      const fixed = rawJson.replace(/'/g, '"').replace(/,\s*}/g, '}').replace(/,\s*]/g, ']'); try { const parsed = JSON.parse(fixed); const norm = {}; Object.keys(parsed).forEach(k => { const v = parsed[k]; 
+        // store as string URL or first of array
+         if (Array.isArray(v)) { norm[k.toLowerCase()] = v || ''; } else { norm[k.toLowerCase()] = v || ''; } }); return norm; } catch (e) { console.warn('Invalid data-colors JSON:', e, rawJson); return {}; } } function updateTitleWithColor(titleEl, colorKey) { if (!titleEl) return; const label = (colorKey || '').trim(); const base = titleEl.textContent.replace(/\s*$$.+$$\s*$/, ''); if (label) { titleEl.textContent = base + ' (' + label.charAt(0).toUpperCase() + label.slice(1) + ')'; } else { titleEl.textContent = base; } } 
+         // Wire all cards in 
+         // #productGrid 
+         document.querySelectorAll('#productGrid .product-card').forEach((card, idx) => { // ensure code for unique radio name 
+         if (!card.dataset.code) { card.dataset.code = 'FM-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).slice(2,6).toUpperCase(); } const group = 'color-' + card.dataset.code; const img = card.querySelector('.product-img'); const title = card.querySelector('.product-title'); const radios = card.querySelectorAll('.color-option'); 
+         // Parse and normalize map
+          const colorMap = normalizeColorMap(card.dataset.colors || ''); // Attach events 
+          radios.forEach(r => { r.name = group; r.addEventListener('change', () => { const keyLower = (r.value || '').toLowerCase(); const url = colorMap[keyLower] || ''; if (url && img) { img.src = url; } updateTitleWithColor(title, keyLower); }); }); // Initial image sync to checked color (if any) 
+          const checked = card.querySelector('.color-option:checked'); if (checked) { const initKey = (checked.value || '').toLowerCase(); const initUrl = colorMap[initKey]; if (initUrl && img) { img.src = initUrl; } updateTitleWithColor(title, initKey); } }); }); </script>
 
 <!--whatsaoo-->
   <!-- <script>

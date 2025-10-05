@@ -202,3 +202,11 @@ Thanks for downloading from TemplatesJungle.com !
     }
   }
 </style>
+
+
+<!-- data-colors='{"purple":["./images/fboy2.jpg","./images/fboy1.jpg"],"black":["./images/fboy1.jpg","./images/fboy2.jpg"]}' -->
+
+
+        data-description="100% cotton, 180 GSM, regular fit"
+        data-sku="TEE-PURPLE-XS"
+        data-material="Cotton"
