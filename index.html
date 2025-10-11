@@ -13,7 +13,7 @@
     <!--Navbar-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
-
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet" />
 
   <!-- Content Security Policy: restricts sources for scripts, styles, images, etc. -->
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://images.unsplash.com; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; connect-src 'self';">
@@ -67,7 +67,11 @@
 
 
   <!-- Banner -->
-<section class="position-relative" style="background:linear-gradient(102deg,#2ed596 60%,#7cf2cf 100%); min-height:320px; margin-top: 113px; margin-bottom: -30px;">
+<section class="position-relative" style="background:
+        radial-gradient(1200px 420px at 10% 0%, rgba(212,175,55,0.18), transparent 60%),
+        radial-gradient(1200px 420px at 90% 0%, rgba(212,175,55,0.18), transparent 60%),
+        linear-gradient(180deg,#fff, #fffaf0 60%, #fff);
+         min-height:350px; margin-top: 113px; margin-bottom: -30px;">
   <!-- Banner Image (customize src as needed) -->
   <img src="./images/hhhhhihihi.png"
        class="position-absolute top-0 end-0 h-100 d-none d-md-block"
@@ -76,17 +80,30 @@
   <div class="container position-relative" style="z-index:2;">
     <div class="row align-items-center" style="min-height:320px;">
       <div class="col-md-7 text-white py-4">
-        <h1 class="display-4 fw-bold mb-3" style="letter-spacing:1px;">
-          Follow Me Boutique
+        <h1 class="display-4 fw-bold mb-3" style='letter-spacing:1px; font-family:"Great Vibes",cursive;
+            font-size:44px;
+            color:var(--gold-deep);
+            margin:0 0 6px;
+            letter-spacing:1px;
+            text-shadow:0 2px 12px rgba(212,175,55,.35);'>
+          Follow Me 
         </h1>
-        <h2 class="fw-bold mb-2" style="font-size:2.5rem;">
+        <h1 class="display-4 fw-bold mb-3" style='letter-spacing:1px; font-family:"Great Vibes",cursive;
+            font-size:44px;
+            color:var(--gold-deep);
+            margin:0 0 6px;
+            letter-spacing:1px;
+            text-shadow:0 2px 12px rgba(212,175,55,.35);'>
+          Kids Wear 
+        </h1>
+        <h2 class="fw-bold mb-2" style="font-size:2.5rem; color: #000;">
           Fashion Hub
         </h2>
-        <p class="fs-5 mb-4" style="max-width:430px;">
+        <p class="fs-5 mb-4" style="max-width:430px; color:#6f5b23">
           All the trendy Men's Apperal and Clothing Within a Single Roof 
         </p>
         <!-- Optional CTA Button -->
-        <a href="#shop" class="btn btn-light btn-lg fw-semibold shadow-sm">Shop Now</a>
+        <a href="catalogue.html" class="btn btn-dark btn-lg fw-semibold shadow-sm">Shop Now</a>
       </div>
 
     </div>
@@ -937,8 +954,8 @@ body.modal-open{ overflow: hidden; } /* stop page scroll behind modal */
         <button type="button" class="btn btn-success flex-fill me-sm-2" id="previewBuyBtn">
           <i class="bi bi-bag-check"></i> Buy
         </button>
-        <a class="btn btn-dark flex-fill" id="previewInstaBtn" target="_blank" rel="noopener">
-          <i class="bi bi-instagram"></i> Insta Reel
+        <a class="btn btn-dark flex-fill" id="previewInstaBtn" style=" color: #ffffff; background-color: rgb(231, 20, 231);" target="_blank" rel="noopener">
+            <i class="bi bi-instagram"></i> Reel
         </a>
       </div>
     </div>
@@ -981,8 +998,10 @@ body.modal-open{ overflow: hidden; } /* stop page scroll behind modal */
                >
             <div class="product-card position-relative d-flex flex-column"
                  data-description="100% cotton, 180 GSM, regular fit"
-     data-sku="TEE-PURPLE-XS"
-     data-material="Cotton">
+                data-sku="TEE-PURPLE-XS"
+                data-material="Cotton"
+                data-images='{"purple":["./images/fbg2.jpg","./images/fmb1.jpg"],"black":["./images/fmb2.jpg"]}'
+                >
               <span class="badge bg-success badge-top">New</span>
 
               <div class="product-media">
@@ -1003,10 +1022,182 @@ body.modal-open{ overflow: hidden; } /* stop page scroll behind modal */
                 <!-- Clickable sizes -->
                 <div class="small ">
                   <span class="text-muted ">Size</span>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="XS">XS</button>
                   <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="S">S</button>
                   <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="M">M</button>
                   <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="L">L</button>
+                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="XL">XL</button>
+
+                </div>
+
+                <div class="">
+                  <div class="">
+                    <div class="form-label small mb-1">Colors</div>
+                    <div class="d-flex align-items-center gap-3">
+                      <label class="color-swatch" data-color="purple" style="--swatch:#7E3FF2;">
+                        <input type="radio" class="color-option" name="color-TEE-PURPLE-XS" value="purple" checked />
+                        <span class="dot"></span>
+                      </label>
+                      <label class="color-swatch" data-color="black" style="--swatch:#1E1E1E;">
+                        <input type="radio" class="color-option" name="color-TEE-PURPLE-XS" value="black" />
+                        <span class="dot"></span>
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="pt-3">
+                    <button class="btn btn-success w-100 buy-btn">
+                      <i class="bi bi-bag-check"></i> Buy
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /Card item -->
+          <div class="card-item flex-0-0-auto"
+               data-gender="boys girl"
+               data-sizes="xs,s,m,l,xl"
+               data-price="399">
+            <div class="product-card position-relative d-flex flex-column">
+              <span class="badge bg-success badge-top">New</span>
+
+              <div class="product-media">
+                <img class="product-img"
+                     src="./images/fbg1.jpg"
+                     alt="Graphic Tee" />
+              </div>
+
+              <div class="p-3 d-flex flex-column product-body">
+                <div class="d-flex justify-content-between align-items-center">
+                  <h4><span class="fw-bold">₹<span class="product-price">399</span></span></h4>
+                </div>
+
+                <!-- Ensure a product-title exists so scripts can read/update -->
+                <h6 class="product-title text-muted small mb-1">Graphic Tee (Purple)</h6>
+                <p class="text-muted small mb-1">Gender: Boys</p>
+
+                <!-- Clickable sizes -->
+                <div class="small ">
+                  <span class="text-muted ">Size</span>
+                 
+                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="S">S</button>
+                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="M">M</button>
+                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="L">L</button>
+                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="XL">XL</button>
+
+                </div>
+
+                <div class="">
+                  <div class="">
+                    <div class="form-label small mb-1">Colors</div>
+                    <div class="d-flex align-items-center gap-3">
+                      <label class="color-swatch" data-color="purple" style="--swatch:#7E3FF2;">
+                        <input type="radio" class="color-option" name="color-TEE-PURPLE-Xl" value="purple" checked />
+                        <span class="dot"></span>
+                      </label>
+                      <label class="color-swatch" data-color="black" style="--swatch:#1E1E1E;">
+                        <input type="radio" class="color-option" name="color-TEE-PURPLE-Xl" value="black" />
+                        <span class="dot"></span>
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="pt-3">
+                    <button class="btn btn-success w-100 buy-btn">
+                      <i class="bi bi-bag-check"></i> Buy
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+                    <div class="card-item flex-0-0-auto"
+               data-gender="boys girls"
+               data-sizes="xs,s,m,l,xl"
+               data-price="399">
+            <div class="product-card position-relative d-flex flex-column">
+              <span class="badge bg-success badge-top">New</span>
+
+              <div class="product-media">
+                <img class="product-img"
+                     src="./images/fbg3.jpg"
+                     alt="Graphic Tee" />
+              </div>
+
+              <div class="p-3 d-flex flex-column product-body">
+                <div class="d-flex justify-content-between align-items-center">
+                  <h4><span class="fw-bold">₹<span class="product-price">399</span></span></h4>
+                </div>
+
+                <!-- Ensure a product-title exists so scripts can read/update -->
+                <h6 class="product-title text-muted small mb-1">Graphic Tee (Purple)</h6>
+                <p class="text-muted small mb-1">Gender: Boys</p>
+
+                <!-- Clickable sizes -->
+                <div class="small ">
+                  <span class="text-muted ">Size</span>
+                  
+                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="S">S</button>
+                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="M">M</button>
+                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="L">L</button>
+                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="XL">XL</button>
+
+                </div>
+
+                <div class="">
+                  <div class="">
+                    <div class="form-label small mb-1">Colors</div>
+                    <div class="d-flex align-items-center gap-3">
+                      <label class="color-swatch" data-color="purple" style="--swatch:#7E3FF2;">
+                        <input type="radio" class="color-option" value="purple" checked />
+                        <span class="dot"></span>
+                      </label>
+                      <label class="color-swatch" data-color="black" style="--swatch:#1E1E1E;">
+                        <input type="radio" class="color-option" value="black" />
+                        <span class="dot"></span>
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="pt-3">
+                    <button class="btn btn-success w-100 buy-btn">
+                      <i class="bi bi-bag-check"></i> Buy
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+                    <div class="card-item flex-0-0-auto"
+               data-gender="boys girls"
+               data-sizes="xs,s,m,l,xl"
+               data-price="399">
+            <div class="product-card position-relative d-flex flex-column">
+              <span class="badge bg-success badge-top">New</span>
+
+              <div class="product-media">
+                <img class="product-img"
+                     src="./images/fbg2.jpg"
+                     alt="Graphic Tee" />
+              </div>
+
+              <div class="p-3 d-flex flex-column product-body">
+                <div class="d-flex justify-content-between align-items-center">
+                  <h4><span class="fw-bold">₹<span class="product-price">399</span></span></h4>
+                </div>
+
+                <!-- Ensure a product-title exists so scripts can read/update -->
+                <h6 class="product-title text-muted small mb-1">Graphic Tee (Purple)</h6>
+                <p class="text-muted small mb-1">Gender: Boys</p>
+
+                <!-- Clickable sizes -->
+                <div class="small ">
+                  <span class="text-muted ">Size</span>
+                  
+                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="S">S</button>
+                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="M">M</button>
+                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="L">L</button>
+                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="XL">XL</button>
 
                 </div>
 
@@ -1060,10 +1251,11 @@ body.modal-open{ overflow: hidden; } /* stop page scroll behind modal */
                 <!-- Clickable sizes -->
                 <div class="small ">
                   <span class="text-muted ">Size</span>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="XS">XS</button>
+                  
                   <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="S">S</button>
                   <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="M">M</button>
                   <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="L">L</button>
+                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="XL">XL</button>
 
                 </div>
 
@@ -1116,10 +1308,11 @@ body.modal-open{ overflow: hidden; } /* stop page scroll behind modal */
                 <!-- Clickable sizes -->
                 <div class="small ">
                   <span class="text-muted ">Size</span>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="XS">XS</button>
+                  
                   <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="S">S</button>
                   <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="M">M</button>
                   <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="L">L</button>
+                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="XL">XL</button>
 
                 </div>
 
@@ -1172,10 +1365,11 @@ body.modal-open{ overflow: hidden; } /* stop page scroll behind modal */
                 <!-- Clickable sizes -->
                 <div class="small ">
                   <span class="text-muted ">Size</span>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="XS">XS</button>
+                  
                   <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="S">S</button>
                   <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="M">M</button>
                   <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="L">L</button>
+                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="XL">XL</button>
 
                 </div>
 
@@ -1229,10 +1423,11 @@ body.modal-open{ overflow: hidden; } /* stop page scroll behind modal */
                 <!-- Clickable sizes -->
                 <div class="small ">
                   <span class="text-muted ">Size</span>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="XS">XS</button>
+                  
                   <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="S">S</button>
                   <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="M">M</button>
                   <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="L">L</button>
+                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="XL">XL</button>
 
                 </div>
 
@@ -1285,179 +1480,11 @@ body.modal-open{ overflow: hidden; } /* stop page scroll behind modal */
                 <!-- Clickable sizes -->
                 <div class="small ">
                   <span class="text-muted ">Size</span>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="XS">XS</button>
+                  
                   <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="S">S</button>
                   <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="M">M</button>
                   <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="L">L</button>
-
-                </div>
-
-                <div class="">
-                  <div class="">
-                    <div class="form-label small mb-1">Colors</div>
-                    <div class="d-flex align-items-center gap-3">
-                      <label class="color-swatch" data-color="purple" style="--swatch:#7E3FF2;">
-                        <input type="radio" class="color-option" value="purple" checked />
-                        <span class="dot"></span>
-                      </label>
-                      <label class="color-swatch" data-color="black" style="--swatch:#1E1E1E;">
-                        <input type="radio" class="color-option" value="black" />
-                        <span class="dot"></span>
-                      </label>
-                    </div>
-                  </div>
-
-                  <div class="pt-3">
-                    <button class="btn btn-success w-100 buy-btn">
-                      <i class="bi bi-bag-check"></i> Buy
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-                    <div class="card-item flex-0-0-auto"
-               data-gender="boys girls"
-               data-sizes="xs,s,m,l,xl"
-               data-price="399">
-            <div class="product-card position-relative d-flex flex-column">
-              <span class="badge bg-success badge-top">New</span>
-
-              <div class="product-media">
-                <img class="product-img"
-                     src="./images/fbg2.jpg"
-                     alt="Graphic Tee" />
-              </div>
-
-              <div class="p-3 d-flex flex-column product-body">
-                <div class="d-flex justify-content-between align-items-center">
-                  <h4><span class="fw-bold">₹<span class="product-price">399</span></span></h4>
-                </div>
-
-                <!-- Ensure a product-title exists so scripts can read/update -->
-                <h6 class="product-title text-muted small mb-1">Graphic Tee (Purple)</h6>
-                <p class="text-muted small mb-1">Gender: Boys</p>
-
-                <!-- Clickable sizes -->
-                <div class="small ">
-                  <span class="text-muted ">Size</span>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="XS">XS</button>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="S">S</button>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="M">M</button>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="L">L</button>
-
-                </div>
-
-                <div class="">
-                  <div class="">
-                    <div class="form-label small mb-1">Colors</div>
-                    <div class="d-flex align-items-center gap-3">
-                      <label class="color-swatch" data-color="purple" style="--swatch:#7E3FF2;">
-                        <input type="radio" class="color-option" value="purple" checked />
-                        <span class="dot"></span>
-                      </label>
-                      <label class="color-swatch" data-color="black" style="--swatch:#1E1E1E;">
-                        <input type="radio" class="color-option" value="black" />
-                        <span class="dot"></span>
-                      </label>
-                    </div>
-                  </div>
-
-                  <div class="pt-3">
-                    <button class="btn btn-success w-100 buy-btn">
-                      <i class="bi bi-bag-check"></i> Buy
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- /Card item -->
-          <div class="card-item flex-0-0-auto"
-               data-gender="boys girl"
-               data-sizes="xs,s,m,l,xl"
-               data-price="399">
-            <div class="product-card position-relative d-flex flex-column">
-              <span class="badge bg-success badge-top">New</span>
-
-              <div class="product-media">
-                <img class="product-img"
-                     src="./images/fbg1.jpg"
-                     alt="Graphic Tee" />
-              </div>
-
-              <div class="p-3 d-flex flex-column product-body">
-                <div class="d-flex justify-content-between align-items-center">
-                  <h4><span class="fw-bold">₹<span class="product-price">399</span></span></h4>
-                </div>
-
-                <!-- Ensure a product-title exists so scripts can read/update -->
-                <h6 class="product-title text-muted small mb-1">Graphic Tee (Purple)</h6>
-                <p class="text-muted small mb-1">Gender: Boys</p>
-
-                <!-- Clickable sizes -->
-                <div class="small ">
-                  <span class="text-muted ">Size</span>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="XS">XS</button>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="S">S</button>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="M">M</button>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="L">L</button>
-
-                </div>
-
-                <div class="">
-                  <div class="">
-                    <div class="form-label small mb-1">Colors</div>
-                    <div class="d-flex align-items-center gap-3">
-                      <label class="color-swatch" data-color="purple" style="--swatch:#7E3FF2;">
-                        <input type="radio" class="color-option" value="purple" checked />
-                        <span class="dot"></span>
-                      </label>
-                      <label class="color-swatch" data-color="black" style="--swatch:#1E1E1E;">
-                        <input type="radio" class="color-option" value="black" />
-                        <span class="dot"></span>
-                      </label>
-                    </div>
-                  </div>
-
-                  <div class="pt-3">
-                    <button class="btn btn-success w-100 buy-btn">
-                      <i class="bi bi-bag-check"></i> Buy
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-                    <div class="card-item flex-0-0-auto"
-               data-gender="boys girls"
-               data-sizes="xs,s,m,l,xl"
-               data-price="399">
-            <div class="product-card position-relative d-flex flex-column">
-              <span class="badge bg-success badge-top">New</span>
-
-              <div class="product-media">
-                <img class="product-img"
-                     src="./images/fbg3.jpg"
-                     alt="Graphic Tee" />
-              </div>
-
-              <div class="p-3 d-flex flex-column product-body">
-                <div class="d-flex justify-content-between align-items-center">
-                  <h4><span class="fw-bold">₹<span class="product-price">399</span></span></h4>
-                </div>
-
-                <!-- Ensure a product-title exists so scripts can read/update -->
-                <h6 class="product-title text-muted small mb-1">Graphic Tee (Purple)</h6>
-                <p class="text-muted small mb-1">Gender: Boys</p>
-
-                <!-- Clickable sizes -->
-                <div class="small ">
-                  <span class="text-muted ">Size</span>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="XS">XS</button>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="S">S</button>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="M">M</button>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="L">L</button>
+                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="XL">XL</button>
 
                 </div>
 
@@ -1493,220 +1520,9 @@ body.modal-open{ overflow: hidden; } /* stop page scroll behind modal */
     </div>
   </div>
 </section>
-<script>
-document.addEventListener('DOMContentLoaded', function(){
-  if(!(window.bootstrap && bootstrap.Modal)){
-    console.error('Bootstrap bundle not loaded. Include bootstrap.bundle.min.js before this script.');
-    return;
-  }
-
-  (function(){
-    function closest(el, sel){
-      while(el && el.nodeType === 1){
-        if(el.matches(sel)) return el;
-        el = el.parentElement;
-      }
-      return null;
-    }
-
-    const productImgs = document.querySelectorAll('.product-img');
-    const modalEl = document.getElementById('productPreviewModal');
-    const priceEl = document.getElementById('previewPrice');
-    const titleEl = document.getElementById('previewTitle');
-    const genderEl = document.getElementById('previewGender');
-    const colorTextEl = document.getElementById('previewColor');
-    const sizesWrap = document.getElementById('previewSizes');
-    const colorsWrap = document.getElementById('previewColors');
-    const buyBtn = document.getElementById('previewBuyBtn');
-    const instaBtn = document.getElementById('previewInstaBtn');
-    const carouselEl = document.getElementById('previewCarousel');
-    const carouselInner = document.getElementById('previewCarouselInner');
-
-
-
-    if(!modalEl || !carouselEl || !carouselInner){
-      console.error('Modal or carousel elements not found. Check IDs productPreviewModal, previewCarousel, previewCarouselInner.');
-      return;
-    }
-
-    let bsModal = null;
-    let bsCarousel = null;
-
-    function getCardImages(card, activeSrc){
-      const list = (card.getAttribute('data-images') || '')
-        .split(',').map(s => s.trim()).filter(Boolean);
-      if(list.length) return list;
-      if(activeSrc) return [activeSrc];
-      const img = card.querySelector('.product-img');
-      return img ? [img.getAttribute('src')] : [];
-    }
-
-    function buildSlides(srcs, activeSrc){
-      carouselInner.innerHTML = '';
-      srcs.forEach((src, idx) => {
-        const slide = document.createElement('div');
-        const active = (src === activeSrc) || (!activeSrc && idx === 0);
-        slide.className = 'carousel-item' + (active ? ' active' : '');
-        slide.innerHTML = `
-          <div class="w-100 d-flex align-items-center justify-content-center" style="background:#000;">
-            <img src="${src}" alt="Preview ${idx+1}" loading="lazy">
-          </div>
-        `;
-        carouselInner.appendChild(slide);
-      });
-    }
-
-    function enableSwipe(carouselElement){
-      let startX = 0, dx = 0, tracking = false;
-      const threshold = 40;
-      carouselElement.addEventListener('touchstart', e=>{
-        if(e.touches.length !== 1) return;
-        tracking = true; startX = e.touches[0].clientX; dx = 0;
-      }, {passive:true});
-      carouselElement.addEventListener('touchmove', e=>{
-        if(!tracking) return; dx = e.touches[0].clientX - startX;
-      }, {passive:true});
-      carouselElement.addEventListener('touchend', ()=>{
-        if(!tracking) return; tracking = false;
-        if(Math.abs(dx) > 40){
-          const dir = dx > 0 ? 'prev' : 'next';
-          const inst = bootstrap.Carousel.getInstance(carouselElement) || new bootstrap.Carousel(carouselElement);
-          inst[dir]();
-        }
-      }, {passive:true});
-    }
-
-    // Attach clicks or delegate if none found
-    if(productImgs.length === 0){
-      console.warn('No .product-img found at load; using delegated click.');
-      document.addEventListener('click', function(e){
-        const img = e.target.closest('.product-img');
-        if(img) handleClick(img);
-      });
-    }else{
-      productImgs.forEach(img => {
-        img.style.cursor = 'pointer';
-        img.addEventListener('click', function(){ handleClick(this); });
-      });
-    }
-
-    function handleClick(imgEl){
-      const card = closest(imgEl, '.product-card');
-      if(!card) return;
-
-        // Extra fields (now card exists)
-  const extraWrap = document.getElementById('previewExtra');
-  const descEl = document.getElementById('previewDescription');
-  const skuEl = document.getElementById('previewSku');
-  const matEl = document.getElementById('previewMaterial');
-  const desc = card.getAttribute('data-description') || '';
-  const sku  = card.getAttribute('data-sku') || '';
-  const mat  = card.getAttribute('data-material') || '';
-  if(extraWrap){
-    const hasAny = !!(desc || sku || mat);
-    extraWrap.hidden = !hasAny;
-    if(descEl) descEl.textContent = desc || '';
-    if(skuEl)  skuEl.textContent  = sku  || '-';
-    if(matEl)  matEl.textContent  = mat  || '-';
-  }
-
-      const activeSrc = imgEl.getAttribute('src');
-      const srcs = getCardImages(card, activeSrc);
-      if(srcs.length === 0){
-        console.error('No images available for slider. Provide data-images or valid img src.');
-        return;
-      }
-      buildSlides(srcs, activeSrc);
-
-      priceEl && (priceEl.textContent = card.querySelector('.product-price')?.textContent?.trim() || '0');
-      titleEl && (titleEl.textContent = card.querySelector('.product-title')?.textContent?.trim() || 'Title');
-
-      const cardItem = closest(card, '.card-item');
-      genderEl && (genderEl.textContent = cardItem?.getAttribute('data-gender') || '-');
-
-      // Sizes and colors
-      if(sizesWrap) {
-        sizesWrap.innerHTML = '';
-        const cardChips = card.querySelectorAll('.size-chip');
-        cardChips.forEach(chip => {
-          const btn = chip.cloneNode(true);
-          btn.addEventListener('click', ()=>{
-            cardChips.forEach(c => c.classList.remove('active'));
-            card.querySelector(`.size-chip[data-size="${btn.getAttribute('data-size')}"]`)?.classList.add('active');
-            sizesWrap.querySelectorAll('.size-chip').forEach(c => c.classList.remove('active'));
-            btn.classList.add('active');
-          });
-          sizesWrap.appendChild(btn);
-        });
-      }
-      if(colorsWrap) {
-        colorsWrap.innerHTML = '';
-        const checked = card.querySelector('.color-option:checked');
-        if(colorTextEl) colorTextEl.textContent = checked?.value || card.querySelector('.color-option')?.value || '-';
-        card.querySelectorAll('.color-swatch').forEach(swatch => {
-          const clone = swatch.cloneNode(true);
-          const input = clone.querySelector('.color-option');
-          const srcInput = swatch.querySelector('.color-option');
-          if(srcInput && srcInput.checked) input.checked = true;
-          clone.addEventListener('click', ()=>{
-            if(srcInput){
-              srcInput.checked = true;
-              srcInput.dispatchEvent(new Event('change', {bubbles:true}));
-            }
-            if(colorTextEl) colorTextEl.textContent = srcInput?.value || '-';
-            colorsWrap.querySelectorAll('.color-option').forEach(r => r.checked = false);
-            input.checked = true;
-          });
-          colorsWrap.appendChild(clone);
-        });
-      }
-
-      const cardBuyBtn = card.querySelector('.buy-btn');
-      if(buyBtn) buyBtn.onclick = function(){ if(cardBuyBtn){ cardBuyBtn.click(); } };
-
-      const insta = card.getAttribute('data-insta') || imgEl.getAttribute('data-insta') || '';
-      if(insta && instaBtn){
-        instaBtn.href = insta;
-        instaBtn.classList.remove('disabled');
-        instaBtn.setAttribute('aria-disabled','false');
-      }else if(instaBtn){
-        instaBtn.removeAttribute('href');
-        instaBtn.classList.add('disabled');
-        instaBtn.setAttribute('aria-disabled','true');
-      }
-
-      // Show modal + init carousel
-      const modal = bsModal || new bootstrap.Modal(modalEl);
-      bsModal = modal; modal.show();
-      if(bsCarousel) bsCarousel.dispose();
-      bsCarousel = new bootstrap.Carousel(carouselEl, { interval:false, touch:true, wrap:true });
-
-      enableSwipe(carouselEl);
-    }
-
-    modalEl.addEventListener('hidden.bs.modal', ()=>{ carouselInner.innerHTML = ''; });
-  })();
-});
-</script>
-
-
-
-
-
-
 
 
 <!-- Image Modal -->
-<!-- <div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content bg-transparent border-0">
-      <div class="modal-body p-0 text-center">
-        <img id="modalImage" src="" class="img-fluid rounded shadow" alt="Preview">
-      </div>
-    </div>
-  </div>
-</div> -->
-<!--latsttsts-->
 <section class="container-fluid " style="margin-bottom: 20px;">
   <!-- Top centered heading -->
   <div class="row">
@@ -1735,51 +1551,50 @@ document.addEventListener('DOMContentLoaded', function(){
       <div class="col-12">
         <div class="card-scroller d-flex gap-3 px-2" id="latestScroller" tabindex="0" aria-label="Latest products">
 
+          
           <!-- Card item -->
           <div class="card-item flex-0-0-auto"
                data-gender="boys"
-               data-sizes="xs,s,m,l,xl"
-               data-price="399">
-            <div class="product-card position-relative d-flex flex-column">
+               data-sizes="6 - 10 yrs"
+               data-price="1449"
+                    data-colors='{
+       "purple":"./images/fmb1.jpg",
+       "black":"./images/fmb2.jpg"
+     }'>
+            <div class="product-card position-relative d-flex flex-column" >
               <span class="badge bg-success badge-top">New</span>
 
               <div class="product-media">
                 <img class="product-img"
-                     src="./images/fboy1.jpg"
+                     src="./images/fmb1.jpg"
                      alt="Graphic Tee" />
               </div>
 
               <div class="p-3 d-flex flex-column product-body">
                 <div class="d-flex justify-content-between align-items-center">
-                  <h4><span class="fw-bold">₹<span class="product-price">399</span></span></h4>
+                  <h4><span class="fw-bold">₹<span class="product-price">1449</span></span></h4>
                 </div>
 
                 <!-- Ensure a product-title exists so scripts can read/update -->
-                <h6 class="product-title text-muted small mb-1">Graphic Tee (Purple)</h6>
+                <h6 class="product-title text-muted small mb-1">Premium Clothes</h6>
                 <p class="text-muted small mb-1">Gender: Boys</p>
 
                 <!-- Clickable sizes -->
-                <div class="small ">
-                  <span class="text-muted ">Size</span>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="XS">XS</button>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="S">S</button>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="M">M</button>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="L">L</button>
+          <div class="small">
+            <span class="text-muted me-2">Size</span>
+            <span class="me-2">6 - 10 yrs</span>
+          </div>
 
-                </div>
 
                 <div class="">
                   <div class="">
                     <div class="form-label small mb-1">Colors</div>
                     <div class="d-flex align-items-center gap-3">
-                      <label class="color-swatch" data-color="purple" style="--swatch:#7E3FF2;">
-                        <input type="radio" class="color-option" value="purple" checked />
+                      <label class="color-swatch" data-color="purple" style="--swatch:#00ff4c;">
+                        <input type="radio" class="color-option" name="color-TEE-PURPLE-Xl" value="purple" checked />
                         <span class="dot"></span>
                       </label>
-                      <label class="color-swatch" data-color="black" style="--swatch:#1E1E1E;">
-                        <input type="radio" class="color-option" value="black" />
-                        <span class="dot"></span>
-                      </label>
+
                     </div>
                   </div>
 
@@ -1792,13 +1607,21 @@ document.addEventListener('DOMContentLoaded', function(){
               </div>
             </div>
           </div>
-          <!-- /Card item -->
 
+          <!-- /Card item  g-->
           <div class="card-item flex-0-0-auto"
                data-gender="girls"
-               data-sizes="xs,s,m,l,xl"
-               data-price="399">
-            <div class="product-card position-relative d-flex flex-column">
+               data-sizes="4 - 14 yrs"
+               data-price="1499"
+               data-colors='{
+       "purple":"./images/fmb1.jpg",
+       "black":"./images/fmb2.jpg"
+     }'>
+            <div class="product-card position-relative d-flex flex-column"
+            data-colors='{
+       "purple":"./images/fmb1.jpg",
+       "black":"./images/fmb2.jpg"
+     }'>
               <span class="badge bg-success badge-top">New</span>
 
               <div class="product-media">
@@ -1809,33 +1632,25 @@ document.addEventListener('DOMContentLoaded', function(){
 
               <div class="p-3 d-flex flex-column product-body">
                 <div class="d-flex justify-content-between align-items-center">
-                  <h4><span class="fw-bold">₹<span class="product-price">399</span></span></h4>
+                  <h4><span class="fw-bold">₹<span class="product-price">1499</span></span></h4>
                 </div>
 
                 <!-- Ensure a product-title exists so scripts can read/update -->
-                <h6 class="product-title text-muted small mb-1">Graphic Tee (Purple)</h6>
-                <p class="text-muted small mb-1">Gender: Boys</p>
+                <h6 class="product-title text-muted small mb-1">Premium Clothes</h6>
+                <p class="text-muted small mb-1">Gender: Girls</p>
 
                 <!-- Clickable sizes -->
-                <div class="small ">
-                  <span class="text-muted ">Size</span>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="XS">XS</button>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="S">S</button>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="M">M</button>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="L">L</button>
-
-                </div>
+          <div class="small">
+            <span class="text-muted me-2">Size</span>
+            <span class="me-2">4 - 14 yrs</span>
+          </div>
 
                 <div class="">
                   <div class="">
                     <div class="form-label small mb-1">Colors</div>
                     <div class="d-flex align-items-center gap-3">
-                      <label class="color-swatch" data-color="purple" style="--swatch:#7E3FF2;">
-                        <input type="radio" class="color-option" value="purple" checked />
-                        <span class="dot"></span>
-                      </label>
-                      <label class="color-swatch" data-color="black" style="--swatch:#1E1E1E;">
-                        <input type="radio" class="color-option" value="black" />
+                      <label class="color-swatch" data-color="purple" style="--swatch:#26b6e2;">
+                        <input type="radio" class="color-option" value="Cyan" checked />
                         <span class="dot"></span>
                       </label>
                     </div>
@@ -1850,123 +1665,17 @@ document.addEventListener('DOMContentLoaded', function(){
               </div>
             </div>
           </div>
-                    <div class="card-item flex-0-0-auto"
+
+                                        <!-- Card item -->
+          <div class="card-item flex-0-0-auto"
                data-gender="boys"
-               data-sizes="xs,s,m,l,xl"
-               data-price="399">
-            <div class="product-card position-relative d-flex flex-column">
-              <span class="badge bg-success badge-top">New</span>
-
-              <div class="product-media">
-                <img class="product-img"
-                     src="./images/fboy2.jpg"
-                     alt="Graphic Tee" />
-              </div>
-
-              <div class="p-3 d-flex flex-column product-body">
-                <div class="d-flex justify-content-between align-items-center">
-                  <h4><span class="fw-bold">₹<span class="product-price">399</span></span></h4>
-                </div>
-
-                <!-- Ensure a product-title exists so scripts can read/update -->
-                <h6 class="product-title text-muted small mb-1">Graphic Tee (Purple)</h6>
-                <p class="text-muted small mb-1">Gender: Boys</p>
-
-                <!-- Clickable sizes -->
-                <div class="small ">
-                  <span class="text-muted ">Size</span>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="XS">XS</button>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="S">S</button>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="M">M</button>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="L">L</button>
-
-                </div>
-
-                <div class="">
-                  <div class="">
-                    <div class="form-label small mb-1">Colors</div>
-                    <div class="d-flex align-items-center gap-3">
-                      <label class="color-swatch" data-color="purple" style="--swatch:#7E3FF2;">
-                        <input type="radio" class="color-option" value="purple" checked />
-                        <span class="dot"></span>
-                      </label>
-                      <label class="color-swatch" data-color="black" style="--swatch:#1E1E1E;">
-                        <input type="radio" class="color-option" value="black" />
-                        <span class="dot"></span>
-                      </label>
-                    </div>
-                  </div>
-
-                  <div class="pt-3">
-                    <button class="btn btn-success w-100 buy-btn">
-                      <i class="bi bi-bag-check"></i> Buy
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-                    <div class="card-item flex-0-0-auto"
-               data-gender="girls"
-               data-sizes="xs,s,m,l,xl"
-               data-price="399">
-            <div class="product-card position-relative d-flex flex-column">
-              <span class="badge bg-success badge-top">New</span>
-
-              <div class="product-media">
-                <img class="product-img"
-                     src="./images/fgirl2.jpg"
-                     alt="Graphic Tee" />
-              </div>
-
-              <div class="p-3 d-flex flex-column product-body">
-                <div class="d-flex justify-content-between align-items-center">
-                  <h4><span class="fw-bold">₹<span class="product-price">399</span></span></h4>
-                </div>
-
-                <!-- Ensure a product-title exists so scripts can read/update -->
-                <h6 class="product-title text-muted small mb-1">Graphic Tee (Purple)</h6>
-                <p class="text-muted small mb-1">Gender: Boys</p>
-
-                <!-- Clickable sizes -->
-                <div class="small ">
-                  <span class="text-muted ">Size</span>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="XS">XS</button>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="S">S</button>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="M">M</button>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="L">L</button>
-
-                </div>
-
-                <div class="">
-                  <div class="">
-                    <div class="form-label small mb-1">Colors</div>
-                    <div class="d-flex align-items-center gap-3">
-                      <label class="color-swatch" data-color="purple" style="--swatch:#7E3FF2;">
-                        <input type="radio" class="color-option" value="purple" checked />
-                        <span class="dot"></span>
-                      </label>
-                      <label class="color-swatch" data-color="black" style="--swatch:#1E1E1E;">
-                        <input type="radio" class="color-option" value="black" />
-                        <span class="dot"></span>
-                      </label>
-                    </div>
-                  </div>
-
-                  <div class="pt-3">
-                    <button class="btn btn-success w-100 buy-btn">
-                      <i class="bi bi-bag-check"></i> Buy
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-                    <div class="card-item flex-0-0-auto"
-               data-gender="boys"
-               data-sizes="xs,s,m,l,xl"
-               data-price="399">
-            <div class="product-card position-relative d-flex flex-column">
+               data-sizes="6 - 10 yrs"
+               data-price="1449"
+                    data-colors='{
+       "purple":"./images/fmb1.jpg",
+       "black":"./images/fmb2.jpg"
+     }'>
+            <div class="product-card position-relative d-flex flex-column" >
               <span class="badge bg-success badge-top">New</span>
 
               <div class="product-media">
@@ -1977,35 +1686,29 @@ document.addEventListener('DOMContentLoaded', function(){
 
               <div class="p-3 d-flex flex-column product-body">
                 <div class="d-flex justify-content-between align-items-center">
-                  <h4><span class="fw-bold">₹<span class="product-price">399</span></span></h4>
+                  <h4><span class="fw-bold">₹<span class="product-price">1449</span></span></h4>
                 </div>
 
                 <!-- Ensure a product-title exists so scripts can read/update -->
-                <h6 class="product-title text-muted small mb-1">Graphic Tee (Purple)</h6>
+                <h6 class="product-title text-muted small mb-1">Premium Clothes</h6>
                 <p class="text-muted small mb-1">Gender: Boys</p>
 
                 <!-- Clickable sizes -->
-                <div class="small ">
-                  <span class="text-muted ">Size</span>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="XS">XS</button>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="S">S</button>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="M">M</button>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="L">L</button>
+          <div class="small">
+            <span class="text-muted me-2">Size</span>
+            <span class="me-2">6 - 10 yrs</span>
+          </div>
 
-                </div>
 
                 <div class="">
                   <div class="">
                     <div class="form-label small mb-1">Colors</div>
                     <div class="d-flex align-items-center gap-3">
-                      <label class="color-swatch" data-color="purple" style="--swatch:#7E3FF2;">
+                      <label class="color-swatch" data-color="purple" style="--swatch:#dea1f7;">
                         <input type="radio" class="color-option" value="purple" checked />
                         <span class="dot"></span>
                       </label>
-                      <label class="color-swatch" data-color="black" style="--swatch:#1E1E1E;">
-                        <input type="radio" class="color-option" value="black" />
-                        <span class="dot"></span>
-                      </label>
+
                     </div>
                   </div>
 
@@ -2018,11 +1721,21 @@ document.addEventListener('DOMContentLoaded', function(){
               </div>
             </div>
           </div>
-                    <div class="card-item flex-0-0-auto"
+
+                                        <!-- /Card item  g-->
+          <div class="card-item flex-0-0-auto"
                data-gender="girls"
-               data-sizes="xs,s,m,l,xl"
-               data-price="399">
-            <div class="product-card position-relative d-flex flex-column">
+               data-sizes="4 - 14 yrs"
+               data-price="1499"
+               data-colors='{
+       "purple":"./images/fmb1.jpg",
+       "black":"./images/fmb2.jpg"
+     }'>
+            <div class="product-card position-relative d-flex flex-column"
+            data-colors='{
+       "purple":"./images/fmb1.jpg",
+       "black":"./images/fmb2.jpg"
+     }'>
               <span class="badge bg-success badge-top">New</span>
 
               <div class="product-media">
@@ -2033,33 +1746,25 @@ document.addEventListener('DOMContentLoaded', function(){
 
               <div class="p-3 d-flex flex-column product-body">
                 <div class="d-flex justify-content-between align-items-center">
-                  <h4><span class="fw-bold">₹<span class="product-price">399</span></span></h4>
+                  <h4><span class="fw-bold">₹<span class="product-price">1499</span></span></h4>
                 </div>
 
                 <!-- Ensure a product-title exists so scripts can read/update -->
-                <h6 class="product-title text-muted small mb-1">Graphic Tee (Purple)</h6>
-                <p class="text-muted small mb-1">Gender: Boys</p>
+                <h6 class="product-title text-muted small mb-1">Premium Clothes</h6>
+                <p class="text-muted small mb-1">Gender: Girls</p>
 
                 <!-- Clickable sizes -->
-                <div class="small ">
-                  <span class="text-muted ">Size</span>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="XS">XS</button>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="S">S</button>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="M">M</button>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="L">L</button>
-
-                </div>
+          <div class="small">
+            <span class="text-muted me-2">Size</span>
+            <span class="me-2">4 - 14 yrs</span>
+          </div>
 
                 <div class="">
                   <div class="">
                     <div class="form-label small mb-1">Colors</div>
                     <div class="d-flex align-items-center gap-3">
-                      <label class="color-swatch" data-color="purple" style="--swatch:#7E3FF2;">
-                        <input type="radio" class="color-option" value="purple" checked />
-                        <span class="dot"></span>
-                      </label>
-                      <label class="color-swatch" data-color="black" style="--swatch:#1E1E1E;">
-                        <input type="radio" class="color-option" value="black" />
+                      <label class="color-swatch" data-color="purple" style="--swatch:#8dc8ff;">
+                        <input type="radio" class="color-option" value="Pink" checked />
                         <span class="dot"></span>
                       </label>
                     </div>
@@ -2074,11 +1779,18 @@ document.addEventListener('DOMContentLoaded', function(){
               </div>
             </div>
           </div>
-                    <div class="card-item flex-0-0-auto"
+
+          
+                                        <!-- Card item -->
+          <div class="card-item flex-0-0-auto"
                data-gender="boys"
-               data-sizes="xs,s,m,l,xl"
-               data-price="399">
-            <div class="product-card position-relative d-flex flex-column">
+               data-sizes="6 - 10 yrs"
+               data-price="1449"
+                    data-colors='{
+       "purple":"./images/fmb1.jpg",
+       "black":"./images/fmb2.jpg"
+     }'>
+            <div class="product-card position-relative d-flex flex-column" >
               <span class="badge bg-success badge-top">New</span>
 
               <div class="product-media">
@@ -2089,33 +1801,86 @@ document.addEventListener('DOMContentLoaded', function(){
 
               <div class="p-3 d-flex flex-column product-body">
                 <div class="d-flex justify-content-between align-items-center">
-                  <h4><span class="fw-bold">₹<span class="product-price">399</span></span></h4>
+                  <h4><span class="fw-bold">₹<span class="product-price">1449</span></span></h4>
                 </div>
 
                 <!-- Ensure a product-title exists so scripts can read/update -->
-                <h6 class="product-title text-muted small mb-1">Graphic Tee (Purple)</h6>
+                <h6 class="product-title text-muted small mb-1">Premium Clothes</h6>
                 <p class="text-muted small mb-1">Gender: Boys</p>
 
                 <!-- Clickable sizes -->
-                <div class="small ">
-                  <span class="text-muted ">Size</span>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="XS">XS</button>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="S">S</button>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="M">M</button>
-                  <button type="button" class="size-chip btn btn-sm btn-outline-primary " data-size="L">L</button>
+          <div class="small">
+            <span class="text-muted me-2">Size</span>
+            <span class="me-2">6 - 10 yrs</span>
+          </div>
 
-                </div>
 
                 <div class="">
                   <div class="">
                     <div class="form-label small mb-1">Colors</div>
                     <div class="d-flex align-items-center gap-3">
-                      <label class="color-swatch" data-color="purple" style="--swatch:#7E3FF2;">
+                      <label class="color-swatch" data-color="purple" style="--swatch:#6d0d15;">
                         <input type="radio" class="color-option" value="purple" checked />
                         <span class="dot"></span>
                       </label>
-                      <label class="color-swatch" data-color="black" style="--swatch:#1E1E1E;">
-                        <input type="radio" class="color-option" value="black" />
+
+                    </div>
+                  </div>
+
+                  <div class="pt-3">
+                    <button class="btn btn-success w-100 buy-btn">
+                      <i class="bi bi-bag-check"></i> Buy
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+                              <!-- /Card item  g-->
+          <div class="card-item flex-0-0-auto"
+               data-gender="girls"
+               data-sizes="4 - 14 yrs"
+               data-price="1499"
+               data-colors='{
+       "purple":"./images/fmb1.jpg",
+       "black":"./images/fmb2.jpg"
+     }'>
+            <div class="product-card position-relative d-flex flex-column"
+            data-colors='{
+       "purple":"./images/fmb1.jpg",
+       "black":"./images/fmb2.jpg"
+     }'>
+              <span class="badge bg-success badge-top">New</span>
+
+              <div class="product-media">
+                <img class="product-img"
+                     src="./images/fgirl2.jpg"
+                     alt="Graphic Tee" />
+              </div>
+
+              <div class="p-3 d-flex flex-column product-body">
+                <div class="d-flex justify-content-between align-items-center">
+                  <h4><span class="fw-bold">₹<span class="product-price">1499</span></span></h4>
+                </div>
+
+                <!-- Ensure a product-title exists so scripts can read/update -->
+                <h6 class="product-title text-muted small mb-1">Premium Clothes</h6>
+                <p class="text-muted small mb-1">Gender: Girls</p>
+
+                <!-- Clickable sizes -->
+          <div class="small">
+            <span class="text-muted me-2">Size</span>
+            <span class="me-2">4 - 14 yrs</span>
+          </div>
+
+                <div class="">
+                  <div class="">
+                    <div class="form-label small mb-1">Colors</div>
+                    <div class="d-flex align-items-center gap-3">
+                      <label class="color-swatch" data-color="purple" style="--swatch:#eeb6ff;">
+                        <input type="radio" class="color-option" value="Pink" checked />
                         <span class="dot"></span>
                       </label>
                     </div>
@@ -2130,6 +1895,70 @@ document.addEventListener('DOMContentLoaded', function(){
               </div>
             </div>
           </div>
+                    <!-- Card item -->
+          <div class="card-item flex-0-0-auto"
+               data-gender="boys"
+               data-sizes="6 - 10 yrs"
+               data-price="1449"
+                    data-colors='{
+       "purple":"./images/fmb1.jpg",
+       "black":"./images/fmb2.jpg"
+     }'>
+            <div class="product-card position-relative d-flex flex-column" >
+              <span class="badge bg-success badge-top">New</span>
+
+              <div class="product-media">
+                <img class="product-img"
+                     src="./images/fboy2.jpg"
+                     alt="Graphic Tee" />
+              </div>
+
+              <div class="p-3 d-flex flex-column product-body">
+                <div class="d-flex justify-content-between align-items-center">
+                  <h4><span class="fw-bold">₹<span class="product-price">1449</span></span></h4>
+                </div>
+
+                <!-- Ensure a product-title exists so scripts can read/update -->
+                <h6 class="product-title text-muted small mb-1">Premium Clothes</h6>
+                <p class="text-muted small mb-1">Gender: Boys</p>
+
+                <!-- Clickable sizes -->
+          <div class="small">
+            <span class="text-muted me-2">Size</span>
+            <span class="me-2">6 - 10 yrs</span>
+          </div>
+
+
+                <div class="">
+                  <div class="">
+                    <div class="form-label small mb-1">Colors</div>
+                    <div class="d-flex align-items-center gap-3">
+                      <label class="color-swatch" data-color="purple" style="--swatch:#a920df;">
+                        <input type="radio" class="color-option" value="purple" checked />
+                        <span class="dot"></span>
+                      </label>
+
+                    </div>
+                  </div>
+
+                  <div class="pt-3">
+                    <button class="btn btn-success w-100 buy-btn">
+                      <i class="bi bi-bag-check"></i> Buy
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+
+
+
+
 
         </div>
       </div>
@@ -2329,6 +2158,7 @@ document.addEventListener('DOMContentLoaded', function(){
       `Title: ${currentPayload.title}`, 
       `Gender: ${currentPayload.gender || 'N/A'}`,
       `Chosen Size: ${currentPayload.size || 'N/A'}`, 
+      `Available Size: ${currentPayload.sizes || 'N/A'}`,
       `Price: ₹${currentPayload.amount}`, 
       `Color: ${currentPayload.color || 'default'}`,
       `Image: ${currentPayload.img || ''}`
@@ -2348,7 +2178,7 @@ document.addEventListener('DOMContentLoaded', function(){
 })();
 </script>
 
-  <script>
+<script>
   document.querySelectorAll('.product-img').forEach(img => {
     img.addEventListener('click', function () {
       const modalImage = document.getElementById('modalImage');
@@ -2360,6 +2190,419 @@ document.addEventListener('DOMContentLoaded', function(){
 </script>
 
 
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  if(!(window.bootstrap && bootstrap.Modal)){
+    console.error('Bootstrap bundle not loaded. Include bootstrap.bundle.min.js before this script.');
+    return;
+  }
+
+  (function(){
+    function closest(el, sel){
+      while(el && el.nodeType === 1){
+        if(el.matches(sel)) return el;
+        el = el.parentElement;
+      }
+      return null;
+    }
+
+    const productImgs = document.querySelectorAll('.product-img');
+    const modalEl = document.getElementById('productPreviewModal');
+    const priceEl = document.getElementById('previewPrice');
+    const titleEl = document.getElementById('previewTitle');
+    const genderEl = document.getElementById('previewGender');
+    const colorTextEl = document.getElementById('previewColor');
+    const sizesWrap = document.getElementById('previewSizes');
+    const colorsWrap = document.getElementById('previewColors');
+    const buyBtn = document.getElementById('previewBuyBtn');
+    const instaBtn = document.getElementById('previewInstaBtn');
+    const carouselEl = document.getElementById('previewCarousel');
+    const carouselInner = document.getElementById('previewCarouselInner');
+
+
+
+    if(!modalEl || !carouselEl || !carouselInner){
+      console.error('Modal or carousel elements not found. Check IDs productPreviewModal, previewCarousel, previewCarouselInner.');
+      return;
+    }
+
+    let bsModal = null;
+    let bsCarousel = null;
+
+    function getCardImages(card, activeSrc){
+      const list = (card.getAttribute('data-images') || '')
+        .split(',').map(s => s.trim()).filter(Boolean);
+      if(list.length) return list;
+      if(activeSrc) return [activeSrc];
+      const img = card.querySelector('.product-img');
+      return img ? [img.getAttribute('src')] : [];
+    }
+
+    function buildSlides(srcs, activeSrc){
+      carouselInner.innerHTML = '';
+      srcs.forEach((src, idx) => {
+        const slide = document.createElement('div');
+        const active = (src === activeSrc) || (!activeSrc && idx === 0);
+        slide.className = 'carousel-item' + (active ? ' active' : '');
+        slide.innerHTML = `
+          <div class="w-100 d-flex align-items-center justify-content-center" style="background:#000;">
+            <img src="${src}" alt="Preview ${idx+1}" loading="lazy">
+          </div>
+        `;
+        carouselInner.appendChild(slide);
+      });
+    }
+
+    function enableSwipe(carouselElement){
+      let startX = 0, dx = 0, tracking = false;
+      const threshold = 40;
+      carouselElement.addEventListener('touchstart', e=>{
+        if(e.touches.length !== 1) return;
+        tracking = true; startX = e.touches[0].clientX; dx = 0;
+      }, {passive:true});
+      carouselElement.addEventListener('touchmove', e=>{
+        if(!tracking) return; dx = e.touches[0].clientX - startX;
+      }, {passive:true});
+      carouselElement.addEventListener('touchend', ()=>{
+        if(!tracking) return; tracking = false;
+        if(Math.abs(dx) > 40){
+          const dir = dx > 0 ? 'prev' : 'next';
+          const inst = bootstrap.Carousel.getInstance(carouselElement) || new bootstrap.Carousel(carouselElement);
+          inst[dir]();
+        }
+      }, {passive:true});
+    }
+
+    // Attach clicks or delegate if none found
+    if(productImgs.length === 0){
+      console.warn('No .product-img found at load; using delegated click.');
+      document.addEventListener('click', function(e){
+        const img = e.target.closest('.product-img');
+        if(img) handleClick(img);
+      });
+    }else{
+      productImgs.forEach(img => {
+        img.style.cursor = 'pointer';
+        img.addEventListener('click', function(){ handleClick(this); });
+      });
+    }
+
+    function handleClick(imgEl){
+      const card = closest(imgEl, '.product-card');
+      if(!card) return;
+
+        // Extra fields (now card exists)
+  const extraWrap = document.getElementById('previewExtra');
+  const descEl = document.getElementById('previewDescription');
+  const skuEl = document.getElementById('previewSku');
+  const matEl = document.getElementById('previewMaterial');
+  const desc = card.getAttribute('data-description') || '';
+  const sku  = card.getAttribute('data-sku') || '';
+  const mat  = card.getAttribute('data-material') || '';
+  if(extraWrap){
+    const hasAny = !!(desc || sku || mat);
+    extraWrap.hidden = !hasAny;
+    if(descEl) descEl.textContent = desc || '';
+    if(skuEl)  skuEl.textContent  = sku  || '-';
+    if(matEl)  matEl.textContent  = mat  || '-';
+  }
+
+      const activeSrc = imgEl.getAttribute('src');
+      const srcs = getCardImages(card, activeSrc);
+      if(srcs.length === 0){
+        console.error('No images available for slider. Provide data-images or valid img src.');
+        return;
+      }
+      buildSlides(srcs, activeSrc);
+
+      priceEl && (priceEl.textContent = card.querySelector('.product-price')?.textContent?.trim() || '0');
+      titleEl && (titleEl.textContent = card.querySelector('.product-title')?.textContent?.trim() || 'Title');
+
+      const cardItem = closest(card, '.card-item');
+      genderEl && (genderEl.textContent = cardItem?.getAttribute('data-gender') || '-');
+
+      // Sizes and colors
+      if(sizesWrap) {
+        sizesWrap.innerHTML = '';
+        const cardChips = card.querySelectorAll('.size-chip');
+        cardChips.forEach(chip => {
+          const btn = chip.cloneNode(true);
+          btn.addEventListener('click', ()=>{
+            cardChips.forEach(c => c.classList.remove('active'));
+            card.querySelector(`.size-chip[data-size="${btn.getAttribute('data-size')}"]`)?.classList.add('active');
+            sizesWrap.querySelectorAll('.size-chip').forEach(c => c.classList.remove('active'));
+            btn.classList.add('active');
+          });
+          sizesWrap.appendChild(btn);
+        });
+      }
+      
+// Sizes for modal: supports spans (.size-pill), buttons (.size-chip), or data-sizes CSV
+if (sizesWrap) {
+  sizesWrap.innerHTML = '';
+
+  // Prefer explicit size elements inside the clicked card
+  const pillNodes = Array.from(card.querySelectorAll('.size-pill'));
+  const chipNodes = Array.from(card.querySelectorAll('.size-chip'));
+  const explicit = pillNodes.length ? pillNodes : chipNodes;
+
+  function addModalSize(label, isActive){
+    const s = document.createElement('span');
+    s.className = 'size-pill';
+    s.textContent = label;
+    if (isActive) s.classList.add('active');
+    sizesWrap.appendChild(s);
+  }
+
+  if (explicit.length) {
+    explicit.forEach(el => {
+      const label = (el.getAttribute('data-size') || el.textContent || '').trim().toUpperCase();
+      const isActive = el.classList.contains('active') || el.getAttribute('aria-pressed') === 'true';
+      if (label) addModalSize(label, isActive);
+    });
+  } else {
+    // Fallback to data-sizes on the nearest wrapper that has it
+    const wrapperWithSizes = card.closest('[data-sizes]') || card;
+    const csv = wrapperWithSizes?.getAttribute('data-sizes') || '';
+    const list = csv.split(',').map(s => s.trim()).filter(Boolean);
+    if (list.length) {
+      list.forEach(sz => addModalSize(sz.toUpperCase(), false));
+    } else {
+      // As a last resort, mirror the static line if present (e.g., "6 - 10 yrs")
+      const staticLine = card.querySelector('.small span:not(.text-muted)');
+      if (staticLine) addModalSize(staticLine.textContent.trim(), false);
+    }
+  }
+
+  // Optional: allow selecting size inside modal and reflect back to the card if interactive
+  sizesWrap.querySelectorAll('.size-pill').forEach(span => {
+    span.addEventListener('click', () => {
+      const target = span.textContent.trim().toUpperCase();
+      sizesWrap.querySelectorAll('.size-pill').forEach(e => e.classList.remove('active'));
+      span.classList.add('active');
+
+      // Reflect to card if there are interactive size elements
+      const src = card.querySelector(`.size-pill[data-size="${target}"], .size-chip[data-size="${target}"]`);
+      if (src) {
+        card.querySelectorAll('.size-pill, .size-chip').forEach(e => {
+          e.classList.remove('active'); e.setAttribute('aria-pressed','false');
+        });
+        src.classList.add('active');
+        src.setAttribute('aria-pressed','true');
+      }
+    });
+  });
+}
+
+
+      if(colorsWrap) {
+        colorsWrap.innerHTML = '';
+        const checked = card.querySelector('.color-option:checked');
+        if(colorTextEl) colorTextEl.textContent = checked?.value || card.querySelector('.color-option')?.value || '-';
+        card.querySelectorAll('.color-swatch').forEach(swatch => {
+          const clone = swatch.cloneNode(true);
+          const input = clone.querySelector('.color-option');
+          const srcInput = swatch.querySelector('.color-option');
+          if(srcInput && srcInput.checked) input.checked = true;
+          clone.addEventListener('click', ()=>{
+            if(srcInput){
+              srcInput.checked = true;
+              srcInput.dispatchEvent(new Event('change', {bubbles:true}));
+            }
+            if(colorTextEl) colorTextEl.textContent = srcInput?.value || '-';
+            colorsWrap.querySelectorAll('.color-option').forEach(r => r.checked = false);
+            input.checked = true;
+          });
+          colorsWrap.appendChild(clone);
+        });
+      }
+
+      const cardBuyBtn = card.querySelector('.buy-btn');
+      if(buyBtn) buyBtn.onclick = function(){ if(cardBuyBtn){ cardBuyBtn.click(); } };
+
+      const insta = card.getAttribute('data-insta') || imgEl.getAttribute('data-insta') || '';
+      if(insta && instaBtn){
+        instaBtn.href = insta;
+        instaBtn.classList.remove('disabled');
+        instaBtn.setAttribute('aria-disabled','false');
+      }else if(instaBtn){
+        instaBtn.removeAttribute('href');
+        instaBtn.classList.add('disabled');
+        instaBtn.setAttribute('aria-disabled','true');
+      }
+
+      // Show modal + init carousel
+      const modal = bsModal || new bootstrap.Modal(modalEl);
+      bsModal = modal; modal.show();
+      if(bsCarousel) bsCarousel.dispose();
+      bsCarousel = new bootstrap.Carousel(carouselEl, { interval:false, touch:true, wrap:true });
+
+      enableSwipe(carouselEl);
+    }
+
+    modalEl.addEventListener('hidden.bs.modal', ()=>{ carouselInner.innerHTML = ''; });
+  })();
+});
+</script>
+
+<!--radio switch color-->
+<script>
+
+
+// --- Utilities ---
+function parseImagesMap(card){
+  const raw = card.getAttribute('data-images');
+  if(!raw) return null;
+  try { return JSON.parse(raw); } catch { return null; }
+}
+
+// Build slides for Bootstrap carousel
+function buildCarousel(innerEl, urls){
+  innerEl.innerHTML = '';
+  urls.forEach((src, i) => {
+    const slide = document.createElement('div');
+    slide.className = 'carousel-item' + (i === 0 ? ' active' : '');
+    slide.innerHTML = `<div><img src="${src}" alt=""></div>`;
+    innerEl.appendChild(slide);
+  });
+}
+
+// Re-init Bootstrap carousel safely after rebuilding slides
+function reinitCarousel(carouselEl){
+  if(!window.bootstrap || !carouselEl) return;
+  const existing = bootstrap.Carousel.getInstance(carouselEl);
+  if(existing) existing.dispose();
+  new bootstrap.Carousel(carouselEl, { interval: false, touch: true });
+}
+
+// Get current selected color within a product card
+function getSelectedColor(card){
+  const checked = card.querySelector('.color-option:checked');
+  return checked ? checked.value : null;
+}
+
+// Update just the card's visible thumbnail based on selected color
+function updateCardThumbnail(card, color){
+  const map = parseImagesMap(card);
+  const img = card.querySelector('.product-img');
+  if(!img) return;
+
+  if(map && color && Array.isArray(map[color]) && map[color].length){
+    img.src = map[color][0];
+  } else if(map && !color){
+    // default to first color's first image if no color selected
+    const firstColor = Object.keys(map)[0];
+    if(firstColor && map[firstColor]?.length) img.src = map[firstColor][0];
+  }
+}
+
+// If modal is open and this card is the one being previewed, sync the carousel
+function syncModalCarouselFromCard(card){
+  const modal = document.getElementById('productPreviewModal');
+  if(!modal || !modal.classList.contains('show')) return;
+
+  // Optional: guard with a data-selected-card marker if implemented in app.
+  // For generic behavior, we assume the open modal belongs to the clicked card.
+
+  const color = getSelectedColor(card);
+  const map = parseImagesMap(card);
+  const inner = document.getElementById('previewCarouselInner');
+  const carouselEl = document.getElementById('previewCarousel');
+
+  if(inner && map){
+    const urls = (color && map[color] && map[color].length) ? map[color] : [];
+    if(urls.length){
+      buildCarousel(inner, urls);
+      reinitCarousel(carouselEl);
+    } else {
+      // Fallback to card thumbnail if no list available
+      const thumb = card.querySelector('.product-img');
+      if(thumb){
+        buildCarousel(inner, [thumb.src]);
+        reinitCarousel(carouselEl);
+      }
+    }
+  }
+}
+
+// --- Event wiring ---
+
+// 1) Change thumbnail on radio change
+document.addEventListener('change', (e) => {
+  const input = e.target.closest('.color-option');
+  if(!input) return;
+
+  const card = input.closest('.product-card');
+  if(!card) return;
+
+  const color = input.value;
+  updateCardThumbnail(card, color); // swap main image on the card [web:21][web:29]
+  syncModalCarouselFromCard(card);  // if modal open, sync its slides [web:10][web:34]
+});
+
+// 2) Open modal by clicking card image and populate carousel based on current color
+document.addEventListener('click', (e) => {
+  const img = e.target.closest('.product-img');
+  if(!img) return;
+
+  const card = img.closest('.product-card');
+  if(!card) return;
+
+  // Fill modal fields from card
+  const price = card.closest('.card-item')?.dataset.price || '0';
+  const title = card.querySelector('.product-title')?.textContent?.trim() || 'Product';
+  const gender = card.closest('.card-item')?.dataset.gender || '-';
+
+  const modalPrice = document.getElementById('previewPrice');
+  const modalTitle = document.getElementById('previewTitle');
+  const modalGender = document.getElementById('previewGender');
+
+  if(modalPrice) modalPrice.textContent = price;
+  if(modalTitle) modalTitle.textContent = title;
+  if(modalGender) modalGender.textContent = gender;
+
+  const color = getSelectedColor(card);
+  const map = parseImagesMap(card);
+
+  const inner = document.getElementById('previewCarouselInner');
+  const carouselEl = document.getElementById('previewCarousel');
+
+  if(inner){
+    let urls = [];
+    if(map && color && Array.isArray(map[color]) && map[color].length){
+      urls = map[color];
+    } else if(map){
+      // fallback to first available list
+      const firstColor = Object.keys(map)[0];
+      if(firstColor && map[firstColor]?.length) urls = map[firstColor];
+    }
+    if(!urls.length) urls = [img.src];
+
+    buildCarousel(inner, urls);     // create slides [web:10][web:34]
+    reinitCarousel(carouselEl);     // ensure controls work after rebuild [web:10][web:34]
+  }
+
+  // Show modal
+  const modalEl = document.getElementById('productPreviewModal');
+  if(window.bootstrap && modalEl){
+    const instance = new bootstrap.Modal(modalEl);
+    instance.show();                // open Bootstrap modal [web:16]
+  }
+});
+
+// Robust cleanup after a modal is fully hidden
+document.addEventListener('hidden.bs.modal', (e) => {
+  // Remove any lingering backdrops
+  const stuck = document.querySelectorAll('.modal-backdrop');
+  stuck.forEach(el => el.remove());
+
+  // Remove modal-open and any inline body styles left by Bootstrap
+  document.body.classList.remove('modal-open');
+  document.body.style.removeProperty('padding-right');
+  document.body.style.removeProperty('overflow');
+});
+
+</script>
 
 
 
@@ -2440,6 +2683,8 @@ document.addEventListener('DOMContentLoaded', function(){
         <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
       </div>
       <p class="fw-copy">© 2025 Follow Me. All rights reserved.</p>
+            <p class="fw-copy">Designed and Developed by <a href="https://17dot.in/">17 Dot
+      </a> </p>
       <ul class="fw-legal">
         <li><a href="#">Terms</a></li>
         <li><a href="#">Privacy</a></li>
@@ -2523,83 +2768,6 @@ document.addEventListener('DOMContentLoaded', function(){
   <!-- Bootstrap JS CDN -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-<!--whatsapp-->
-<!-- <script>
-  // WhatsApp number: digits-only international format (no +, spaces, dashes)
-  const PHONE_IN_E164 = '919623266520'; // per WhatsApp docs [web:21][web:12]
-
-  function initScroller(scroller) {
-    if (!scroller || scroller.__fmInit) return;
-    scroller.__fmInit = true;
-
-    const ensureCode = (wrap) => {
-      if (!wrap.dataset.code) {
-        wrap.dataset.code =
-          'FM-' + Date.now().toString(36).toUpperCase() + '-' +
-          Math.random().toString(36).slice(2,6).toUpperCase();
-      }
-      return wrap.dataset.code;
-    };
-    const txt = (el, fb='') => el ? (el.textContent || '').trim() : fb;
-
-    // One delegated listener handles size clicks and Buy
-    scroller.addEventListener('click', (e) => {
-      // Size chip selection
-      const sizeChip = e.target.closest('.size-chip');
-      if (sizeChip && scroller.contains(sizeChip)) {
-        const card = sizeChip.closest('.product-card');
-        if (card) {
-          card.querySelectorAll('.size-chip').forEach(c => c.classList.remove('active'));
-          sizeChip.classList.add('active');
-        }
-        return;
-      }
-
-      // Buy button → WhatsApp
-      const buyBtn = e.target.closest('.buy-btn');
-      if (!buyBtn || !scroller.contains(buyBtn)) return;
-
-      const card = buyBtn.closest('.product-card');
-      const wrap = buyBtn.closest('.card-item');
-      if (!card || !wrap) return;
-
-      const code = ensureCode(wrap);
-      const titleEl = card.querySelector('.product-title') || card.querySelector('h6, h5, h4');
-      const priceEl = card.querySelector('.product-price');
-      const imgEl = card.querySelector('img.product-img');
-      const genderTextEl = Array.from(card.querySelectorAll('p,span'))
-        .find(p => /gender\s*:/i.test(p.textContent || ''));
-
-      const chosenColor = card.querySelector('.color-option:checked')?.value || 'default';
-      const chosenSize = card.querySelector('.size-chip.active')?.dataset.size
-                       || card.querySelector('.size-chip.active')?.textContent?.trim()
-                       || 'N/A';
-
-      const genderData = wrap.dataset.gender || '';
-      const priceData = wrap.dataset.price || '';
-
-      // Always show Available Sizes: N/A as required
-      const msg = [
-        'New Order Request',
-        `Article Code: ${code}`,
-        `Title: ${txt(titleEl, 'Product')}`,
-        `Gender: ${genderData || txt(genderTextEl).replace(/^\s*Gender:\s*/i,'') || 'N/A'}`,
-        `Chosen Size: ${chosenSize}`,
-        `Available Sizes: N/A`,
-        `Price: ₹${priceData || txt(priceEl) || 'N/A'}`,
-        `Color: ${chosenColor}`,
-        `Image: ${imgEl ? imgEl.src : ''}`
-      ].join('\n');
-
-      const url = `https://wa.me/${PHONE_IN_E164}?text=${encodeURIComponent(msg)}`; // correct format [web:21][web:12][web:56]
-      location.href = url; // fewer popup-blocker issues vs window.open [web:52][web:79]
-    }, false);
-  }
-
-  // Initialize all scrollers in the page, so every “Latest” section works
-  document.querySelectorAll('.card-scroller').forEach(initScroller); // avoid relying on a single id [web:68][web:63]
-</script> -->
-
 <script>
   (function(){
     const scroller = document.getElementById('latestScroller');
@@ -2629,6 +2797,10 @@ document.addEventListener('DOMContentLoaded', function(){
   })();
 </script>
 
+
+<script> (function initSizesInLatest(){ const root = document.getElementById('latestScroller'); // scope to this section 
+if(!root){ console.warn('latestScroller not found'); return; } root.querySelectorAll('.product-card').forEach(card=>{ const chips = card.querySelectorAll('.size-chip'); if(!chips.length) return; function setActive(btn){ chips.forEach(c=>{ c.classList.remove('active'); c.setAttribute('aria-pressed','false'); }); btn.classList.add('active'); btn.setAttribute('aria-pressed','true'); } chips.forEach(btn=>{ btn.type = 'button'; if(btn._sizeBound) return; btn._sizeBound = true; btn.addEventListener('click', ()=> setActive(btn)); btn.addEventListener('keydown', (e)=>{ if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); setActive(btn); } }); }); // Initial default if none selected 
+if(!card.querySelector('.size-chip.active') && chips){ setActive(chips); } }); })(); </script>
 <style>
 /* Tokens */
 :root {

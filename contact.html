@@ -200,7 +200,7 @@
     }
     textarea{min-height:120px;resize:vertical}
 
-    .btn{
+    .btns{
       display:inline-flex;align-items:center;justify-content:center;gap:10px;
       padding:12px 18px;
       border-radius:12px;
@@ -212,9 +212,9 @@
       transition: transform .12s ease, box-shadow .12s ease, filter .12s ease;
       font-weight:700;
     }
-    .btn:hover{ transform: translateY(-1px); filter:saturate(1.05); }
-    .btn:active{ transform: translateY(0); box-shadow: 0 6px 14px rgba(212,175,55,.3); }
-    .btn-outline{
+    .btns:hover{ transform: translateY(-1px); filter:saturate(1.05); }
+    .btns:active{ transform: translateY(0); box-shadow: 0 6px 14px rgba(212,175,55,.3); }
+    .btns-outline{
       background:#fff; border-style:dashed;
       box-shadow:0 6px 16px rgba(212,175,55,.18);
     }
@@ -372,10 +372,10 @@
 
           <div class="row two" style="align-items:center;">
             <div>
-              <button type="submit" class="btn">Submit & WhatsApp</button>
+              <button type="submit" class="btns">Submit & WhatsApp</button>
             </div>
             <div>
-              <button type="button" id="resetBtn" class="btn btn-outline">Clear</button>
+              <button type="button" id="resetBtn" class="btns btns-outline">Clear</button>
             </div>
           </div>
 

@@ -17,7 +17,7 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"> <!-- [file:1] -->
     <!--Navbar-->
 
-<style>
+  <style>
 
     /* ===== Grid wrapper ===== */
 .card-container-grid {
@@ -107,8 +107,7 @@
   .filters .form-range { max-width: 100%; }
 }
 
-</style>
-
+  </style>
 
   <style>
     /* Circular color radios styled as swatches */
@@ -145,7 +144,7 @@
     }
   </style>
 
-    <style>
+  <style>
     :root{
       --gold:#d4af37;
       --gold-deep:#b9931e;
@@ -349,7 +348,11 @@
       text-align:center; color:#7a6829; font-size:13px; padding:18px 12px 36px;
     }
   </style>
+
+  
+
 </head>
+
 <body data-current-page="catalogue.html">
 
 <div id="navbar-placeholder"></div>
@@ -394,7 +397,6 @@
   loadNavbar();
 </script>
 
-
   <!-- Hero -->
   <section class="hero" style="margin-top: 40px;">
     <div class="shine"></div>
@@ -405,7 +407,6 @@
       <div class="divider"></div>
     </div>
   </section>
-
 
   <!-- Filters -->
   <section class="py-3 px-3">
@@ -687,9 +688,11 @@
 body.modal-open {
   overflow: hidden; /* stop page scroll behind modal */
 }
-</style>
-<style> /* Modal sizes: plain text pills (no blue border, no outline) */ #productPreviewModal #previewSizes{ gap: 10px; } #productPreviewModal .size-chip{ appearance: none; -webkit-appearance:none; border: 0; background: transparent; padding: 0; margin: 0; font-size: 0.95rem; line-height: 1.4; color: #555; cursor: pointer; } /* active just bolds slightly */ #productPreviewModal .size-chip.active{ font-weight: 600; color: #222; } /* kill default focus rings and outline boxes */ #productPreviewModal .size-chip:focus, #productPreviewModal .size-chip:focus-visible, #productPreviewModal .size-chip:active{ outline: none !important; box-shadow: none !important; } /* If earlier you used Bootstrap button classes on size chips, neutralize them here */ #productPreviewModal .size-chip.btn{ border: 0 !important; background: transparent !important; padding: 0 !important; box-shadow: none !important; } </style>
-<div class="modal fade" id="productPreviewModal" tabindex="-1" aria-hidden="true">
+  </style>
+
+  <style> /* Modal sizes: plain text pills (no blue border, no outline) */ #productPreviewModal #previewSizes{ gap: 10px; } #productPreviewModal .size-chip{ appearance: none; -webkit-appearance:none; border: 0; background: transparent; padding: 0; margin: 0; font-size: 0.95rem; line-height: 1.4; color: #555; cursor: pointer; } /* active just bolds slightly */ #productPreviewModal .size-chip.active{ font-weight: 600; color: #222; } /* kill default focus rings and outline boxes */ #productPreviewModal .size-chip:focus, #productPreviewModal .size-chip:focus-visible, #productPreviewModal .size-chip:active{ outline: none !important; box-shadow: none !important; } /* If earlier you used Bootstrap button classes on size chips, neutralize them here */ #productPreviewModal .size-chip.btn{ border: 0 !important; background: transparent !important; padding: 0 !important; box-shadow: none !important; } </style>
+
+  <div class="modal fade" id="productPreviewModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-fullscreen-sm-down modal-lg">
     <div class="modal-content border-0 rounded-3 shadow-lg overflow-hidden">
       <div class="modal-header border-0">
@@ -721,7 +724,10 @@ body.modal-open {
 
           <div class="small">
             <span class="text-muted">Size</span>
-            <div id="previewSizes" class="d-inline-flex align-items-center gap-2 ms-2"></div>
+            <!-- <div id="previewSizes" class="d-inline-flex align-items-center gap-2 ms-2"></div> -->
+            <div id="previewMaterial" class="d-inline-flex align-items-center gap-2 ms-2"></div>
+            <!-- <div class="d-inline-flex align-items-center gap-2 ms-2">Available : <span id="previewSku">-</span></div> -->
+
           </div>
 
           <div class="mt-3">
@@ -730,9 +736,9 @@ body.modal-open {
           </div>
 
           <div class="mt-3" id="previewExtra" hidden>
-            <div class="text-muted small mb-1" id="previewDescription"></div>
-            <div class="text-muted small">SKU: <span id="previewSku">-</span></div>
-            <div class="text-muted small">Material: <span id="previewMaterial">-</span></div>
+            <!-- <div class="text-muted small mb-1" id="previewDescription"></div> -->
+            <!-- <div class="text-muted small">SKU: <span id="previewSku">-</span></div> -->
+            <!-- <div class="text-muted small">Material: <span id="previewMaterial">-</span></div> -->
           </div>
         </div>
       </div>
@@ -741,16 +747,16 @@ body.modal-open {
         <button type="button" class="btn btn-success flex-fill me-sm-2" id="previewBuyBtn">
           <i class="bi bi-bag-check"></i> Buy
         </button>
-        <a class="btn flex-fill" id="previewInstaBtn" style="background-color: rgb(231, 20, 231);" target="_blank" rel="noopener">
+        <a class="btn flex-fill" id="previewInstaBtn" style=" color: #ffffff; background-color: rgb(231, 20, 231);" target="_blank" rel="noopener">
           <i class="bi bi-instagram"></i> Reel
         </a>
       </div>
     </div>
   </div>
-</div>
+  </div>
 
   <!-- Products -->
-<section class="py-4">
+  <section class="py-4">
   <div class="container-fluid">
     <div id="productGrid" class="card-container-grid">
 
@@ -760,6 +766,9 @@ body.modal-open {
           "purple":"./images/fmb1.jpg",
         }'
         data-insta="https://www.instagram.com/reel/CxYzAbCdEfG/"
+         data-description="100% cotton, 180 GSM, regular fit"
+         data-sku="TEE-PURPLE-XS"
+         data-material="6 - 10 yrs"
         >
         <span class="badge badge-top">New</span>
 
@@ -804,7 +813,8 @@ body.modal-open {
       <div class="product-card" data-gender="girls" data-sizes="4-5,5-6,6-7,7-8,8-9,9-10,10-11,11-12,12-13,13-14" data-price="1499"
         data-colors='{
           "Cyan":"./images/fmg1.jpg",
-        }'>
+        }'
+        data-material="4 - 14 yrs">
         <span class="badge  badge-top">New</span>
 
         <div class="product-media">
@@ -848,7 +858,8 @@ body.modal-open {
       <div class="product-card" data-gender="girls" data-sizes="4-5,5-6,6-7,7-8,8-9,9-10,10-11,11-12,12-13,13-14" data-price="1499"
         data-colors='{
           "Purple":"./images/fmg2.jpg",
-        }'>
+        }'
+        data-material="4 - 14 yrs">
         <span class="badge  badge-top">New</span>
 
         <div class="product-media">
@@ -894,6 +905,7 @@ body.modal-open {
           "Pink":"./images/fmb2.jpg",
         }'
         data-insta="https://www.instagram.com/reel/CxYzAbCdEfG/"
+        data-material="1 - 10 yrs"
         >
         <span class="badge badge-top">New</span>
 
@@ -946,7 +958,8 @@ body.modal-open {
       <div class="product-card" data-gender="girls" data-sizes="5-6,6-7,7-8,8-9,9-10" data-price="1499"
         data-colors='{
           "Purple":"./images/fmg3.jpg",
-        }'>
+        }'
+        data-material="5 - 10 yrs">
         <span class="badge  badge-top">New</span>
 
         <div class="product-media">
@@ -994,6 +1007,7 @@ body.modal-open {
           "Blue":"./images/fmb3-3.jpg",
         }'
         data-insta="https://www.instagram.com/reel/CxYzAbCdEfG/"
+        data-material="0 - 6 yrs"
         >
         <span class="badge badge-top">New</span>
 
@@ -1046,7 +1060,8 @@ body.modal-open {
       <div class="product-card" data-gender="girls" data-sizes="6-7,7-8,8-9,9-10" data-price="1399"
         data-colors='{
           "Purple":"./images/fmg4.jpg",
-        }'>
+        }'
+        data-material="6 - 10 yrs">
         <span class="badge  badge-top">New</span>
 
         <div class="product-media">
@@ -1090,7 +1105,8 @@ body.modal-open {
       <div class="product-card" data-gender="girls" data-sizes="6-7,7-8,8-9,9-10,10-11,11-12,12-13,13-14,14-15" data-price="1549"
         data-colors='{
           "Purple":"./images/fmg5.jpg",
-        }'>
+        }'
+        data-material="6 - 15 yrs">
         <span class="badge  badge-top">New</span>
 
         <div class="product-media">
@@ -1134,7 +1150,8 @@ body.modal-open {
       <div class="product-card" data-gender="girls" data-sizes="6-7,7-8,8-9,9-10,10-11,11-12,12-13,13-14,14-15" data-price="1549"
         data-colors='{
           "Purple":"./images/fmg6.jpg",
-        }'>
+        }'
+        data-material="6 - 15 yrs">
         <span class="badge  badge-top">New</span>
 
         <div class="product-media">
@@ -1178,7 +1195,8 @@ body.modal-open {
       <div class="product-card" data-gender="girls" data-sizes="8-9,9-10,10-11,11-12,12-13,13-14,14-15" data-price="1499"
         data-colors='{
           "Purple":"./images/fmg7.jpg",
-        }'>
+        }'
+        data-material="8 - 15 yrs">
         <span class="badge  badge-top">New</span>
 
         <div class="product-media">
@@ -1222,7 +1240,8 @@ body.modal-open {
       <div class="product-card" data-gender="girls" data-sizes="5-6,6-7,7-8,8-9,9-10" data-price="1499"
         data-colors='{
           "Purple":"./images/fmg8.jpg",
-        }'>
+        }'
+        data-material="5 - 10 yrs">
         <span class="badge  badge-top">New</span>
 
         <div class="product-media">
@@ -1266,7 +1285,8 @@ body.modal-open {
       <div class="product-card" data-gender="girls" data-sizes="5-6,6-7,7-8,8-9,9-10,10-11,11-12" data-price="1499"
         data-colors='{
           "Purple":"./images/fmg9.jpg",
-        }'>
+        }'
+        data-material="5 - 12 yrs">
         <span class="badge  badge-top">New</span>
 
         <div class="product-media">
@@ -1310,7 +1330,8 @@ body.modal-open {
       <div class="product-card" data-gender="girls" data-sizes="5-6,6-7,7-8,8-9,9-10,10-11,11-12,12-13,13-14" data-price="1499"
         data-colors='{
           "Purple":"./images/fmg10.jpg",
-        }'>
+        }'
+        data-material="5 - 14 yrs">
         <span class="badge  badge-top">New</span>
 
         <div class="product-media">
@@ -1361,10 +1382,10 @@ body.modal-open {
       No products match the selected filters.
     </div>
   </div>
-</section>
+  </section>
 
 <!-- Universal QR Pay Modal -->
-<div id="qrPayModal" class="modal fade" tabindex="-1" aria-hidden="true">
+  <div id="qrPayModal" class="modal fade" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content" style="background:#0c0b09;border:1px solid #cda45e;color:#fff;">
       <div class="modal-header" style="border-bottom:1px solid rgba(205,164,94,.35)">
@@ -1384,16 +1405,16 @@ body.modal-open {
       </div>
     </div>
   </div>
-</div>
+  </div>
 
 <!-- Include QRCode library -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" referrerpolicy="no-referrer"></script>
 
 <!-- Main Script: Modal + UPI/GPay + WhatsApp for #productGrid cards -->
 <!-- Buy → opens modal (no auto navigation) -->
 <!-- Pay in UPI/GPay → opens GPay with amount prefilled via UPI deep link -->
 <!-- WhatsApp → sends structured order message -->
-<script>
+  <script>
 /* Modal + UPI/GPay + WhatsApp for #productGrid cards - Buy → opens modal (no auto navigation) - Pay in UPI/GPay → opens GPay with amount prefilled via UPI deep link - WhatsApp → sends structured order message */
 (function () { 
   // Config 
@@ -1581,8 +1602,9 @@ body.modal-open {
     wireGridBuyButtons(); 
   }; 
 })(); 
-</script>
-<script>
+  </script>
+
+  <script>
 document.addEventListener('DOMContentLoaded', function () {
   if (!(window.bootstrap && bootstrap.Modal)) {
     console.error('Bootstrap bundle not loaded. Include bootstrap.bundle.min.js before this script.');
@@ -1857,11 +1879,11 @@ if (colorsWrap) {
     });
   })();
 });
-</script>
+  </script>
 
 
   
-<script>
+  <script>
   // Run after DOM is ready
   document.addEventListener('DOMContentLoaded', () => {
     const grid       = document.getElementById('productGrid');
@@ -1921,72 +1943,61 @@ if (colorsWrap) {
     clampPriceRange();
     applyFilters();
   });
-</script>
+  </script>
 
-<!--color-->
-<script> document.addEventListener('DOMContentLoaded', function () {
-    function normalizeColorMap(rawJson) {
-      if (!rawJson) return {}; // Ensure valid JSON (attribute often uses single quotes) 
-      const fixed = rawJson.replace(/'/g, '"').replace(/,\s*}/g, '}').replace(/,\s*]/g, ']'); try { const parsed = JSON.parse(fixed); const norm = {}; Object.keys(parsed).forEach(k => { const v = parsed[k]; 
-        // store as string URL or first of array
-         if (Array.isArray(v)) { norm[k.toLowerCase()] = v || ''; } else { norm[k.toLowerCase()] = v || ''; } }); return norm; } catch (e) { console.warn('Invalid data-colors JSON:', e, rawJson); return {}; } } function updateTitleWithColor(titleEl, colorKey) { if (!titleEl) return; const label = (colorKey || '').trim(); const base = titleEl.textContent.replace(/\s*$$.+$$\s*$/, ''); if (label) { titleEl.textContent = base + ' (' + label.charAt(0).toUpperCase() + label.slice(1) + ')'; } else { titleEl.textContent = base; } } 
-         // Wire all cards in 
-         // #productGrid 
-         document.querySelectorAll('#productGrid .product-card').forEach((card, idx) => { // ensure code for unique radio name 
-         if (!card.dataset.code) { card.dataset.code = 'FM-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).slice(2,6).toUpperCase(); } const group = 'color-' + card.dataset.code; const img = card.querySelector('.product-img'); const title = card.querySelector('.product-title'); const radios = card.querySelectorAll('.color-option'); 
-         // Parse and normalize map
-          const colorMap = normalizeColorMap(card.dataset.colors || ''); // Attach events 
-          radios.forEach(r => { r.name = group; r.addEventListener('change', () => { const keyLower = (r.value || '').toLowerCase(); const url = colorMap[keyLower] || ''; if (url && img) { img.src = url; } updateTitleWithColor(title, keyLower); }); }); // Initial image sync to checked color (if any) 
-          const checked = card.querySelector('.color-option:checked'); if (checked) { const initKey = (checked.value || '').toLowerCase(); const initUrl = colorMap[initKey]; if (initUrl && img) { img.src = initUrl; } updateTitleWithColor(title, initKey); } }); }); </script>
-
-<!--whatsaoo-->
-  <!-- <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    // 1) Required: international number digits only (no +)
-    const WA_NUMBER = '919623266520';
-
-    // 2) Cache shared inputs safely (optional)
-    const sizeSelect = document.getElementById('sizeSelect');
-
-    // 3) Find all cards and wire their own Buy button
-    const cards = document.querySelectorAll('#productGrid .product-card');
-
-    cards.forEach((card, idx) => {
-      // Unique code per card
-      if (!card.dataset.code) {
-        card.dataset.code =
-          'FM-' + Date.now().toString(36).toUpperCase() + '-' +
-          Math.random().toString(36).slice(2,6).toUpperCase();
-      }
-
-      const titleEl = card.querySelector('.product-title');
-      const imgEl   = card.querySelector('.product-img');
-      const buyBtn  = card.querySelector('.buy-btn');
-
-      if (!buyBtn) return;
-
-      // 4) Synchronous click handler so popup blockers allow window.open
-      buyBtn.addEventListener('click', () => {
-        const chosenSize = (sizeSelect && sizeSelect.value && sizeSelect.value !== 'all')
-          ? sizeSelect.value.toUpperCase() : 'N/A';
-
-        const msg = [
-          'New Order Request',
-          'Article Code: ' + (card.dataset.code || ''),
-          'Title: ' + (titleEl ? titleEl.textContent.trim() : 'Product'),
-          'Gender: ' + (card.dataset.gender || ''),
-          'Chosen Size: ' + chosenSize,
-          'Available Sizes: ' + String(card.dataset.sizes || '').toUpperCase(),
-          'Price: ₹' + (card.dataset.price || ''),
-          'Image: ' + (imgEl ? imgEl.src : '')
-        ].join('\n');
-
-        const waUrl = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg);
-        window.open(waUrl, '_blank', 'noopener,noreferrer');
+  <!--color-->
+  <script> 
+document.addEventListener('DOMContentLoaded', function () {
+  function normalizeMap(raw){
+    if(!raw) return {};
+    const fixed = raw.replace(/'/g,'"').replace(/,\s*}/g,'}').replace(/,\s*]/g,']');
+    try{
+      const obj = JSON.parse(fixed);
+      const out = {};
+      Object.keys(obj).forEach(k=>{
+        const v = obj[k];
+        out[k.toLowerCase()] = Array.isArray(v) ? (v[0]||'') : (v||'');
       });
+      return out;
+    }catch(e){ return {}; }
+  }
+
+  document.querySelectorAll('#productGrid .product-card').forEach((card, idx)=>{
+    const img     = card.querySelector('.product-img');
+    const titleEl = card.querySelector('.product-title');
+    const radios  = card.querySelectorAll('.color-option');
+    const cmap    = normalizeMap(card.dataset.colors || '');
+
+    // Ensure unique name group if needed
+    if(!card.dataset.code){
+      card.dataset.code = 'FM-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).slice(2,6).toUpperCase();
+    }
+    const group = 'color-' + card.dataset.code;
+    radios.forEach(r => r.name = group);
+
+    function applyFrom(val){
+      const key = (val || '').toLowerCase();
+      const url = cmap[key] || '';
+      if(url && img) img.src = url;
+
+      if(titleEl){
+        const base = titleEl.textContent.replace(/\s*\(.+\)\s*$/, '');
+        titleEl.textContent = val ? `${base} (${val})` : base;
+      }
+    }
+
+    // Bind change
+    radios.forEach(r=>{
+      r.addEventListener('change', ()=> applyFrom(r.value));
     });
+
+    // Initial sync
+    const init = card.querySelector('.color-option:checked')?.value || '';
+    applyFrom(init);
   });
-</script> -->
+});
+
+  </script>
 
   <div id="footer-placeholder"></div>
 
@@ -2004,5 +2015,6 @@ if (colorsWrap) {
    // if using the navbar partial too
   inject('footer-placeholder', 'footer.html');   // footer partial
   </script>
+
 </body>
 </html>
